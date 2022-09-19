@@ -1,3 +1,3 @@
-# OOP's game repository written in *Java* by Lê Hoàng Minh Hà.
+# OOP's game repository using *Java* by Lê Hoàng Minh Hà.
 
 ## Game: Bomberman
