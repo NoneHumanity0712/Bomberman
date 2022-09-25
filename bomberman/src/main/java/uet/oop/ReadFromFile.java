@@ -75,6 +75,7 @@ public class ReadFromFile {
             myReader.close();
 
             Bomber bomber = new Bomber();
+
             bomber.MOVE_RIGHT(gameMap);
             System.out.println(1);
             gameMap.printMap();
@@ -91,15 +92,16 @@ public class ReadFromFile {
             System.out.println(4);
             gameMap.printMap();
 
-            Bomb bomb_position = new Bomb(bomber.setBomb(gameMap));
-            if (bomb_position.getX() < 0 || bomb_position.getY() < 0) return;
+            Bomb bomb = new Bomb(bomber.placeBomb(gameMap));
             System.out.println(5);
             gameMap.printMap();
 
             bomber.MOVE_LEFT(gameMap);
-            char[][] temp = gameMap.getMap();
-            temp[bomb_position.getY()][bomb_position.getX()] = 'b';
-            gameMap.setMap(temp);
+            if (bomb.getX() >= 0 || bomb.getY() >= 0) {
+                char[][] temp = gameMap.getMap();
+                temp[bomb.getY()][bomb.getX()] = 'b';
+                gameMap.setMap(temp);
+            }
             System.out.println(5);
             gameMap.printMap();
 
@@ -107,7 +109,8 @@ public class ReadFromFile {
             System.out.println(6);
             gameMap.printMap();
 
-            gameMap.Explode(bomb_position.getY(), bomb_position.getX());
+            if (bomb.getX() >= 0 || bomb.getY() >= 0)
+                bomb.Explode(gameMap);
             System.out.println(7);
             gameMap.printMap();
 

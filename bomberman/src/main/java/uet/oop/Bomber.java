@@ -3,6 +3,14 @@ package uet.oop;
 public class Bomber extends Entity {
     private int bombs;
 
+    public int getBombs() {
+        return bombs;
+    }
+
+    public void setBombs(int bombs) {
+        this.bombs = bombs;
+    }
+
     public Bomber() {
         super(1, 1);
         bombs = 15;
@@ -75,11 +83,11 @@ public class Bomber extends Entity {
         }
     }
 
-    public Entity setBomb(Map map) {
+    public Entity placeBomb(Map map) {
         bombs = bombs - 1;
         Entity en = new Entity();
         if (bombs < 0) {
-            System.err.println("There are no more bombs");
+            System.err.println("There are no more bombs!");
             return en;
         }
         en.setX(this.getX());

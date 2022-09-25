@@ -72,36 +72,6 @@ public class Map {
         this.setMap(inputFile.getMap_read());
     }
 
-    public void Explode(int i, int j) {
-        this.map[i][j] = ' ';
-
-        if (this.getMap()[i - 1][j] == '*') {
-            this.map[i - 1][j] = ' ';
-        }
-        if (this.getMap()[i + 1][j] == '*') {
-            this.map[i + 1][j] = ' ';
-        }
-        if (this.getMap()[i][j - 1] == '*') {
-            this.map[i][j - 1] = ' ';
-        }
-        if (this.getMap()[i][j + 1] == '*') {
-            this.map[i][j + 1] = ' ';
-        }
-
-        if (this.getMap()[i - 1][j] == 'b') {
-            this.Explode(i-1, j);
-        }
-        if (this.getMap()[i + 1][j] == 'b') {
-            this.Explode(i+1, j);
-        }
-        if (this.getMap()[i][j-1] == 'b') {
-            this.Explode(i, j-1);
-        }
-        if (this.getMap()[i][j+1] == 'b') {
-            this.Explode(i, j+1);
-        }
-    }
-
     public void printMap() {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
