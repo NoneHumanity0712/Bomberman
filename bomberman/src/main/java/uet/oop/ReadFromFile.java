@@ -42,32 +42,74 @@ public class ReadFromFile {
         return map_read;
     }
 
+    public void readFile(Scanner myReader) {
+        this.setLevel_read(myReader.nextInt());
+        this.setRow_read(myReader.nextInt());
+        this.setColumn_read(myReader.nextInt());
+        myReader.nextLine();
+        char[][] temp = new char[this.getRow_read()][this.getColumn_read()];
+        for (int i = 0; i < this.getRow_read(); i++) {
+            String s = myReader.nextLine();
+            for (int j = 0; j < s.length(); j++) {
+                temp[i][j] = s.charAt(j);
+            }
+        }
+        this.setMap_read(temp);
+    }
+
     public static void main(String[] args) {
-        File input = new File("src/main/java/uet/oop/level.txt");
+        File input = new File("src/main/java/uet/oop/level1.txt");
         ReadFromFile inputFile = new ReadFromFile();
         try {
             Scanner myReader = new Scanner(input);
             if (myReader.hasNext()) {
-                inputFile.setLevel_read(myReader.nextInt());
-                inputFile.setRow_read(myReader.nextInt());
-                inputFile.setColumn_read(myReader.nextInt());
-                myReader.nextLine();
-                char[][] temp = new char[inputFile.getRow_read()][inputFile.getColumn_read()];
-                for (int i = 0; i < inputFile.getRow_read(); i++) {
-                    String s = myReader.nextLine();
-                    for (int j = 0; j < s.length(); j++) {
-                        temp[i][j] = s.charAt(j);
-                    }
-                }
-                inputFile.setMap_read(temp);
+                inputFile.readFile(myReader);
             }
+            // Map[] gameMapsLevels = new Map[10];
             Map gameMap = new Map();
-            gameMap.setRow(inputFile.getRow_read());
-            gameMap.setColumn(inputFile.getColumn_read());
-            gameMap.setMap(inputFile.getMap_read());
+            gameMap.setMapFromFile(inputFile);
             System.out.println(gameMap.getRow() + " " + gameMap.getColumn());
             gameMap.printMap();
+            // gameMapsLevels[inputFile.getLevel_read() - 1] = new Map(gameMap);
+            // gameMapsLevels[inputFile.getLevel_read() - 1].printMap();
             myReader.close();
+
+            Bomber bomber = new Bomber();
+            bomber.MOVE_RIGHT(gameMap);
+            System.out.println(1);
+            gameMap.printMap();
+
+            bomber.MOVE_RIGHT(gameMap);
+            System.out.println(2);
+            gameMap.printMap();
+
+            bomber.MOVE_RIGHT(gameMap);
+            System.out.println(3);
+            gameMap.printMap();
+
+            bomber.MOVE_RIGHT(gameMap);
+            System.out.println(4);
+            gameMap.printMap();
+
+            Bomb bomb_position = new Bomb(bomber.setBomb(gameMap));
+            if (bomb_position.getX() < 0 || bomb_position.getY() < 0) return;
+            System.out.println(5);
+            gameMap.printMap();
+
+            bomber.MOVE_LEFT(gameMap);
+            char[][] temp = gameMap.getMap();
+            temp[bomb_position.getY()][bomb_position.getX()] = 'b';
+            gameMap.setMap(temp);
+            System.out.println(5);
+            gameMap.printMap();
+
+            bomber.MOVE_LEFT(gameMap);
+            System.out.println(6);
+            gameMap.printMap();
+
+            gameMap.Explode(bomb_position.getY(), bomb_position.getX());
+            System.out.println(7);
+            gameMap.printMap();
 
         } catch (FileNotFoundException e) {
             System.err.println("Error: File not found.");
