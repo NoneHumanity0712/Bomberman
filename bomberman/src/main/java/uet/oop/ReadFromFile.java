@@ -76,42 +76,35 @@ public class ReadFromFile {
 
             Bomber bomber = new Bomber();
 
-            bomber.MOVE_RIGHT(gameMap);
             System.out.println(1);
-            gameMap.printMap();
-
             bomber.MOVE_RIGHT(gameMap);
+
             System.out.println(2);
-            gameMap.printMap();
-
             bomber.MOVE_RIGHT(gameMap);
+
             System.out.println(3);
-            gameMap.printMap();
-
             bomber.MOVE_RIGHT(gameMap);
+
             System.out.println(4);
-            gameMap.printMap();
+            bomber.MOVE_RIGHT(gameMap);
 
-            Bomb bomb = new Bomb(bomber.placeBomb(gameMap));
             System.out.println(5);
-            gameMap.printMap();
-
-            bomber.MOVE_LEFT(gameMap);
-            if (bomb.getX() >= 0 || bomb.getY() >= 0) {
+            Bomb bomb = new Bomb(bomber.placeBomb(gameMap)); //print bomb behind bomber
+            if (bomb.legalPosition(gameMap)) {
                 char[][] temp = gameMap.getMap();
                 temp[bomb.getY()][bomb.getX()] = 'b';
                 gameMap.setMap(temp);
             }
-            System.out.println(5);
             gameMap.printMap();
 
-            bomber.MOVE_LEFT(gameMap);
             System.out.println(6);
-            gameMap.printMap();
+            bomber.MOVE_LEFT(gameMap);
 
-            if (bomb.getX() >= 0 || bomb.getY() >= 0)
-                bomb.Explode(gameMap);
             System.out.println(7);
+            bomber.MOVE_LEFT(gameMap);
+
+            System.out.println(8);
+            if (bomb.legalPosition(gameMap)) bomb.Explode(gameMap);
             gameMap.printMap();
 
         } catch (FileNotFoundException e) {

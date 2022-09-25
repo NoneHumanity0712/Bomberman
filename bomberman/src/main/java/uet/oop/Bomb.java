@@ -9,6 +9,14 @@ public class Bomb extends Entity {
         super(e);
     }
 
+    public boolean legalPosition(Map map) {
+        if (this.getX() < 0 || this.getY() < 0
+        || this.getX() >= map.getColumn() || this.getY() >= map.getRow()) {
+            return false;
+        }
+        return true;
+    }
+
     public void Explode(Map map) {
         char[][] temp = map.getMap();
         int i = this.getY();

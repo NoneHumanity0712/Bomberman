@@ -27,7 +27,9 @@ public class Bomber extends Entity {
         if (legal_move(map, this.getY(), this.getX() + 1)) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
-            temp[this.getY()][this.getX()] = ' ';
+
+            if (temp[this.getY()][this.getX()] != 'b')
+                temp[this.getY()][this.getX()] = ' ';
 
             setY(this.getY());
             setX(this.getX() + 1);
@@ -35,6 +37,7 @@ public class Bomber extends Entity {
             temp[this.getY()][this.getX()] = 'p';
 
             map.setMap(temp);
+            map.printMap();
         }
     }
 
@@ -42,7 +45,9 @@ public class Bomber extends Entity {
         if (legal_move(map, this.getY(), this.getX() - 1)) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
-            temp[this.getY()][this.getX()] = ' ';
+
+            if (temp[this.getY()][this.getX()] != 'b')
+                temp[this.getY()][this.getX()] = ' ';
 
             setY(this.getY());
             setX(this.getX() - 1);
@@ -50,6 +55,7 @@ public class Bomber extends Entity {
             temp[this.getY()][this.getX()] = 'p';
 
             map.setMap(temp);
+            map.printMap();
         }
     }
 
@@ -57,14 +63,17 @@ public class Bomber extends Entity {
         if (legal_move(map, this.getY() - 1, this.getX())) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
-            temp[this.getY()][this.getX()] = ' ';
+
+            if (temp[this.getY()][this.getX()] != 'b')
+                temp[this.getY()][this.getX()] = ' ';
 
             setY(this.getY() - 1);
             setX(this.getX());
-            
+
             temp[this.getY()][this.getX()] = 'p';
 
             map.setMap(temp);
+            map.printMap();
         }
     }
 
@@ -72,14 +81,17 @@ public class Bomber extends Entity {
         if (legal_move(map, this.getY() + 1, this.getX())) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
-            temp[this.getY()][this.getX()] = ' ';
+
+            if (temp[this.getY()][this.getX()] != 'b')
+                temp[this.getY()][this.getX()] = ' ';
 
             setY(this.getY() + 1);
             setX(this.getX());
-                        
+
             temp[this.getY()][this.getX()] = 'p';
 
             map.setMap(temp);
+            map.printMap();
         }
     }
 
