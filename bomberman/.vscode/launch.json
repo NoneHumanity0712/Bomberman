@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "uet.oop.Main",
+            "projectName": "bomberman"
+        },
+        {
+            "type": "java",
             "name": "Launch ReadFromFile",
             "request": "launch",
             "mainClass": "uet.oop.ReadFromFile",
