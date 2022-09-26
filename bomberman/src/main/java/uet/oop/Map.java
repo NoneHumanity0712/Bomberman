@@ -4,6 +4,8 @@ public class Map {
     private int row;
     private int column;
     private char[][] map;
+    Portal portal;
+    private int enemy = 0;
 
     public Map() {
     };
@@ -12,6 +14,8 @@ public class Map {
         this.row = m.getRow();
         this.column = m.getColumn();
         this.map = m.getMap();
+        this.setPortal();
+        this.setEnemy();
     }
 
     public void setRow(int row) {
@@ -32,6 +36,33 @@ public class Map {
 
     public void setMap(char[][] map) {
         this.map = map;
+    }
+
+    public void setPortal() {
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.column; j++) {
+                if (this.map[i][j] == 'p') {
+                    this.portal = new Portal(j, i);
+                    break;
+                }
+            }
+        }
+    }
+    
+    public void checkPortal() {
+        if (this.enemy == 0) {
+            portal.ACTIVATE();
+        }
+    }
+
+    public void setEnemy() {
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.column; j++) {
+                if (this.map[i][j] == '1' || this.map[i][j] == '2') {
+                    enemy = enemy + 1;
+                }
+            }
+        }
     }
 
     /**

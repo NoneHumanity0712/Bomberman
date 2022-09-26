@@ -2,6 +2,8 @@ package uet.oop;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class ReadFromFile {
@@ -60,7 +62,11 @@ public class ReadFromFile {
     public static void main(String[] args) {
         File input = new File("src/main/java/uet/oop/level1.txt");
         ReadFromFile inputFile = new ReadFromFile();
+
         try {
+            FileOutputStream out = new FileOutputStream("src/main/java/uet/oop/output.txt");
+            System.setOut(new PrintStream(out));
+
             Scanner myReader = new Scanner(input);
             if (myReader.hasNext()) {
                 inputFile.readFile(myReader);
