@@ -4,7 +4,7 @@
 
     <groupId>uet.oop</groupId>
     <artifactId>bomberman</artifactId>
-    <version>0.1.0</version>
+    <version>18.0.2</version>
     <packaging>jar</packaging>
 
     <name>bomberman</name>
