@@ -12,15 +12,15 @@ public class Entity {
     private int y;
 
     /**
-     * #:    Wall,
-     * *:    Brick,
-     * x:    Portal,
-     * p:    Bomber,
-     * 1:    Balloom,
-     * 2:    Oneal,
-     * b:    Bomb Item,
-     * f:    Flame Item,
-     * s:    Speed Item.
+     * #    Wall,
+     * *    Brick,
+     * x    Portal,
+     * p    Bomber,
+     * 1    Balloom,
+     * 2    Oneal,
+     * b    Bomb Item,
+     * f    Flame Item,
+     * s    Speed Item.
      */
     private final char[] types = { '#', '*', 'x', 'p',
             '1', '2', 'b', 'f', 's' };
@@ -74,7 +74,7 @@ public class Entity {
         return false;
     }
 
-    public void MOVE_RIGHT(Map map) {
+    public boolean MOVE_RIGHT(Map map) {
         if (legal_move(map, this.getY(), this.getX() + 1)) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
@@ -89,10 +89,13 @@ public class Entity {
 
             map.setMap(temp);
             map.printMap();
+
+            return true;
         }
+        return false;
     }
 
-    public void MOVE_LEFT(Map map) {
+    public boolean MOVE_LEFT(Map map) {
         if (legal_move(map, this.getY(), this.getX() - 1)) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
@@ -107,10 +110,13 @@ public class Entity {
 
             map.setMap(temp);
             map.printMap();
+
+            return true;
         }
+        return false;
     }
 
-    public void MOVE_UP(Map map) {
+    public boolean MOVE_UP(Map map) {
         if (legal_move(map, this.getY() - 1, this.getX())) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
@@ -125,10 +131,13 @@ public class Entity {
 
             map.setMap(temp);
             map.printMap();
+
+            return true;
         }
+        return false;
     }
 
-    public void MOVE_DOWN(Map map) {
+    public boolean MOVE_DOWN(Map map) {
         if (legal_move(map, this.getY() + 1, this.getX())) {
             char[][] temp = new char[map.getRow()][map.getColumn()];
             temp = map.getMap();
@@ -143,6 +152,8 @@ public class Entity {
 
             map.setMap(temp);
             map.printMap();
-        }
+
+            return true;
+        } return false;
     }
 }
