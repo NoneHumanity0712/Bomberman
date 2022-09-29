@@ -8,12 +8,19 @@ public class Map {
     private int enemy = 0;
 
     public Map() {
+        this.row = 1;
+        this.column = 1;
     };
 
     public Map(Map m) {
         this.row = m.getRow();
         this.column = m.getColumn();
-        this.map = m.getMap();
+        this.map = new char[row][column];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                this.map[i][j] = m.getMap()[i][j];
+            }
+        }
         this.setPortal();
         this.setEnemy();
     }
@@ -35,7 +42,12 @@ public class Map {
     }
 
     public void setMap(char[][] map) {
-        this.map = map;
+        this.map = new char[this.row][this.column];
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.column; j++) {
+                this.map[i][j] = map[i][j];
+            }
+        }
     }
 
     public void setPortal() {
