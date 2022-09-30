@@ -1,6 +1,6 @@
 package uet.oop;
 
-public class Bomber extends Entity {
+public class Bomber extends MovingEntity {
     private int bombs;
 
     public int getBombs() {

@@ -1,6 +1,6 @@
 package uet.oop;
 
-public class Enemy extends Entity {
+public class Enemy extends MovingEntity {
     private int speed;
     private int direction;
 
