@@ -2,6 +2,7 @@ package uet.oop;
 
 public class Bomber extends MovingEntity {
     private int bombs;
+    private int direction;
 
     public int getBombs() {
         return bombs;
@@ -11,8 +12,17 @@ public class Bomber extends MovingEntity {
         this.bombs = bombs;
     }
 
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
     public Bomber() {
         super(1, 1, 'p');
+        direction = 0;
         bombs = 15;
     }
 
