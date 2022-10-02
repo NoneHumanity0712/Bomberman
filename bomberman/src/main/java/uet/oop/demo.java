@@ -17,7 +17,7 @@ public class demo extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FileInputStream inputstream = new FileInputStream("C:\\Users\\HP\\Downloads\\bqcuong bomberman-starter starter-2 res\\demo.png");
+        FileInputStream inputstream = new FileInputStream("sprites/grass.png");
         Image demoImage = new Image(inputstream);
 
         ImageView imageView = new ImageView(demoImage);

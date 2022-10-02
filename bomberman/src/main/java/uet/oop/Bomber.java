@@ -26,6 +26,12 @@ public class Bomber extends MovingEntity {
         bombs = 15;
     }
 
+    public Bomber(int x, int y){
+        super(x, y, 'p');
+        direction = 0;
+        bombs = 15;
+    }
+
     public Entity placeBomb(Map map) {
         bombs = bombs - 1;
         Entity en = new Entity();

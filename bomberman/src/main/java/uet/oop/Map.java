@@ -4,8 +4,11 @@ public class Map {
     private int row;
     private int column;
     private char[][] map;
+    private int enemyNumber = 0;
+
+    Bomber bomber;
+    Enemy enemy;
     Portal portal;
-    private int enemy = 0;
 
     public Map() {
         this.row = 1;
@@ -21,8 +24,6 @@ public class Map {
                 this.map[i][j] = m.getMap()[i][j];
             }
         }
-        this.setPortal();
-        this.setEnemy();
     }
 
     public void setRow(int row) {
@@ -41,37 +42,34 @@ public class Map {
         this.column = column;
     }
 
+    public Bomber getBomber() {
+        return bomber;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    public Portal getPortal() {
+        return portal;
+    }
+
     public void setMap(char[][] map) {
         this.map = new char[this.row][this.column];
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.column; j++) {
-                this.map[i][j] = map[i][j];
-            }
-        }
-    }
-
-    public void setPortal() {
-        for (int i = 0; i < this.row; i++) {
-            for (int j = 0; j < this.column; j++) {
-                if (this.map[i][j] == 'p') {
+                if (this.map[i][j] == 'x') {
                     this.portal = new Portal(j, i);
-                    break;
-                }
-            }
-        }
-    }
-    
-    public void checkPortal() {
-        if (this.enemy == 0) {
-            portal.ACTIVATE();
-        }
-    }
-
-    public void setEnemy() {
-        for (int i = 0; i < this.row; i++) {
-            for (int j = 0; j < this.column; j++) {
-                if (this.map[i][j] == '1' || this.map[i][j] == '2') {
-                    enemy = enemy + 1;
+                    this.map[i][j] = ' ';
+                } else if (this.map[i][j] == 'p') {
+                    this.bomber = new Bomber(j, i);
+                    this.map[i][j] = '*';
+                } else if (this.map[i][j] == '1' || this.map[i][j] == '2') {
+                    this.enemyNumber = this.enemyNumber + 1;
+                    this.enemy = new Enemy(j, i);
+                    this.map[i][j] = ' ';
+                } else {
+                    this.map[i][j] = map[i][j];
                 }
             }
         }
