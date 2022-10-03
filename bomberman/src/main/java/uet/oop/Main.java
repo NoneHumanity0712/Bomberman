@@ -1,7 +1,6 @@
 package uet.oop;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -72,6 +71,7 @@ public class Main extends Application implements HandleImage{
                 try {
                     bombermanGame.handle(event);
                     bombermanGame.drawScene();
+                    System.out.println(bombermanGame.isBombPlace());
                     
                 } catch (IOException e) {
                     e.printStackTrace();
