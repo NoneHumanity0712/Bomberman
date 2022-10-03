@@ -26,6 +26,7 @@ public class Bomb extends Entity {
     }
 
     public void Explode(Map map) {
+        explode = true;
         char[][] temp = map.getMap();
         int i = this.getY();
         int j = this.getX();

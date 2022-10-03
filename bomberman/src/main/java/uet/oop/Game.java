@@ -1,6 +1,5 @@
 package uet.oop;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -141,11 +140,12 @@ public class Game implements HandleImage {
             imageGroup.getChildren().add(bombView);
             bomb.Explode(gameMap);
         } else {
+            setBombPlace(false);
+
             ImageView bombView = createView(bombImage[1], pixel,
                     bomb.getY() * pixel, bomb.getX() * pixel);
             imageGroup.getChildren().add(bombView);
 
-            BombPlace = false;
         }
 
     }
@@ -154,8 +154,9 @@ public class Game implements HandleImage {
         drawBackground();
         drawMap();
         drawMovingEntity();
-        if (isBombPlace())
+        if (isBombPlace()){
             drawBomb();
+        }
     };
 
     public void handle(Event e) throws IOException {

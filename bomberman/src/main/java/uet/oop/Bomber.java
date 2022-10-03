@@ -29,14 +29,14 @@ public class Bomber extends MovingEntity {
         dead = false;
     }
 
-    public Bomber(int x, int y){
+    public Bomber(int x, int y) {
         super(x, y, 'p');
         direction = 0;
         bombs = 15;
         dead = false;
     }
 
-    public Bomber(Bomber bomber){
+    public Bomber(Bomber bomber) {
         super(bomber.getX(), bomber.getY(), 'p');
         direction = 0;
         bombs = 15;
@@ -48,12 +48,13 @@ public class Bomber extends MovingEntity {
     }
 
     public Entity placeBomb(Map map) {
-        bombs = bombs - 1;
         Entity en = new Entity();
         if (bombs < 0) {
             System.err.println("There are no more bombs!");
             return en;
         }
+        bombs = bombs - 1;
+
         en.setX(this.getX());
         en.setY(this.getY());
         return en;
