@@ -3,8 +3,6 @@ package uet.oop;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.event.Event;
 import javafx.scene.Group;
@@ -13,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class Game {
+public class Game implements HandleImage {
     private int level;
     private long score;
     private boolean GameOver;
@@ -24,6 +22,7 @@ public class Game {
     private Map gameMap;
     private Bomber bomber;
     private Enemy enemy;
+    public Bomb bomb;
 
     private Image grassImage;
     private Image wallImage;
@@ -45,7 +44,7 @@ public class Game {
     }
 
     public Game(Map map) throws FileNotFoundException {
-        this.gameMap = map;
+        this.gameMap = new Map(map);
         this.bomber = map.bomber;
         this.enemy = map.enemy;
         imageGroup = new Group();
@@ -112,37 +111,17 @@ public class Game {
         for (int i = 0; i < gameMap.getRow(); i++) {
             for (int j = 0; j < gameMap.getColumn(); j++) {
                 if (gameMap.getMap()[i][j] == '#') {
-                    ImageView wallView = new ImageView(wallImage);
 
-                    wallView.setFitHeight(pixel);
-                    wallView.setFitWidth(pixel);
-                    wallView.setPreserveRatio(true);
-
-                    wallView.setY(i * pixel);
-                    wallView.setX(j * pixel);
-
+                    ImageView wallView = createView(wallImage, pixel, i * pixel, j * pixel);
                     imageGroup.getChildren().add(wallView);
+
                 } else if (gameMap.getMap()[i][j] == '*') {
-                    ImageView brickView = new ImageView(brickImage);
 
-                    brickView.setFitHeight(pixel);
-                    brickView.setFitWidth(pixel);
-                    brickView.setPreserveRatio(true);
-
-                    brickView.setY(i * pixel);
-                    brickView.setX(j * pixel);
-
+                    ImageView brickView = createView(brickImage, pixel, i * pixel, j * pixel);
                     imageGroup.getChildren().add(brickView);
                 } else {
-                    ImageView grassView = new ImageView(grassImage);
 
-                    grassView.setFitHeight(pixel);
-                    grassView.setFitWidth(pixel);
-                    grassView.setPreserveRatio(true);
-
-                    grassView.setY(i * pixel);
-                    grassView.setX(j * pixel);
-
+                    ImageView grassView = createView(grassImage, pixel, i * pixel, j * pixel);
                     imageGroup.getChildren().add(grassView);
                 }
             }
@@ -150,9 +129,25 @@ public class Game {
     };
 
     private void drawMovingEntity() {
-    };
+        ImageView bomberView = createView(bomberImage[bomber.getDirection()],
+                pixel, bomber.getY() * pixel, bomber.getX() * pixel);
+        imageGroup.getChildren().add(bomberView);
+    }
 
     private void drawBomb() {
+        if (!bomb.isExplode()) {
+            ImageView bombView = createView(bombImage[0], pixel,
+                    bomb.getY() * pixel, bomb.getX() * pixel);
+            imageGroup.getChildren().add(bombView);
+            bomb.Explode(gameMap);
+        } else {
+            ImageView bombView = createView(bombImage[1], pixel,
+                    bomb.getY() * pixel, bomb.getX() * pixel);
+            imageGroup.getChildren().add(bombView);
+
+            BombPlace = false;
+        }
+
     }
 
     public void drawScene() {
@@ -187,7 +182,8 @@ public class Game {
                     QuitGame = true;
                     break;
                 case SPACE:
-                    bomber.placeBomb(gameMap);
+                    bomb = new Bomb(bomber.placeBomb(gameMap));
+                    BombPlace = true;
                     break;
                 default:
                     break;

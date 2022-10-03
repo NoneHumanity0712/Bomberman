@@ -1,12 +1,20 @@
 package uet.oop;
 
 public class Bomb extends Entity {
+    private boolean explode;
+
+    public boolean isExplode() {
+        return explode;
+    }
+
     public Bomb(int x, int y) {
         super(x, y, 'b');
+        explode = false;
     }
 
     public Bomb(Entity e) {
         super(e);
+        explode = false;
     }
 
     public boolean legalPosition(Map map) {
@@ -26,38 +34,18 @@ public class Bomb extends Entity {
 
         if (temp[i - 1][j] == '*') {
             temp[i - 1][j] = ' ';
-        } else if (temp[i - 1][j] == 'b') {
-            Bomb newBomb = new Bomb(i - 1, j);
-            newBomb.Explode(map);
-        } else if (temp[i - 1][j] == 'p') {
-            temp[i - 1][j] = 'P';
         }
 
         if (temp[i + 1][j] == '*') {
             temp[i + 1][j] = ' ';
-        } else if (temp[i + 1][j] == 'b') {
-            Bomb newBomb = new Bomb(i + 1, j);
-            newBomb.Explode(map);
-        } else if (temp[i + 1][j] == 'p') {
-            temp[i + 1][j] = 'P';
         }
 
         if (temp[i][j - 1] == '*') {
             temp[i][j - 1] = ' ';
-        } else if (temp[i][j - 1] == 'b') {
-            Bomb newBomb = new Bomb(i, j - 1);
-            newBomb.Explode(map);
-        } else if (temp[i][j - 1] == 'p') {
-            temp[i][j - 1] = 'P';
         }
 
         if (temp[i][j + 1] == '*') {
             temp[i][j + 1] = ' ';
-        } else if (temp[i][j + 1] == 'b') {
-            Bomb newBomb = new Bomb(i, j + 1);
-            newBomb.Explode(map);
-        } else if (temp[i][j + 1] == 'p') {
-            temp[i][j + 1] = 'P';
         }
     }
 }

@@ -12,7 +12,7 @@ public class MovingEntity extends Entity {
 
     public boolean legal_move(Map map, int y, int x) {
         if (y >= 0 && y < map.getRow() && x >= 0 && x < map.getColumn()) {
-            if (map.getMap()[y][x] == ' ') {
+            if (map.getMap()[y][x] != '#' && map.getMap()[y][x] != '*') {
                 return true;
             }
         }
@@ -25,11 +25,12 @@ public class MovingEntity extends Entity {
             setY(this.getY());
             setX(this.getX() + 1);
 
-            map.printMap();
-
             return true;
+        }else {
+            setY(this.getY());
+            setX(this.getX());
+            return false;
         }
-        return false;
     }
 
     public boolean MOVE_LEFT(Map map) {
@@ -38,11 +39,12 @@ public class MovingEntity extends Entity {
             setY(this.getY());
             setX(this.getX() - 1);
 
-            map.printMap();
-
             return true;
+        }else {
+            setY(this.getY());
+            setX(this.getX());
+            return false;
         }
-        return false;
     }
 
     public boolean MOVE_UP(Map map) {
@@ -50,11 +52,12 @@ public class MovingEntity extends Entity {
             setY(this.getY() - 1);
             setX(this.getX());
 
-            map.printMap();
-
             return true;
+        } else {
+            setY(this.getY());
+            setX(this.getX());
+            return false;
         }
-        return false;
     }
 
     public boolean MOVE_DOWN(Map map) {
@@ -63,9 +66,11 @@ public class MovingEntity extends Entity {
             setY(this.getY() + 1);
             setX(this.getX());
 
-            map.printMap();
             return true;
+        } else {
+            setY(this.getY());
+            setX(this.getX());
+            return false;
         }
-        return false;
     }
 }

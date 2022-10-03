@@ -13,17 +13,20 @@ public class Map {
     public Map() {
         this.row = 1;
         this.column = 1;
+
+        bomber = new Bomber();
+        enemy = new Enemy();
+        portal = new Portal();
     };
 
     public Map(Map m) {
-        this.row = m.getRow();
-        this.column = m.getColumn();
-        this.map = new char[row][column];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                this.map[i][j] = m.getMap()[i][j];
-            }
-        }
+        setRow(m.getRow());
+        setColumn(m.getColumn());
+        setMap(m.getMap());
+
+        bomber = new Bomber();
+        enemy = new Enemy();
+        portal = new Portal();
     }
 
     public void setRow(int row) {
@@ -60,10 +63,10 @@ public class Map {
             for (int j = 0; j < this.column; j++) {
                 if (this.map[i][j] == 'x') {
                     this.portal = new Portal(j, i);
-                    this.map[i][j] = ' ';
+                    this.map[i][j] = '*';
                 } else if (this.map[i][j] == 'p') {
                     this.bomber = new Bomber(j, i);
-                    this.map[i][j] = '*';
+                    this.map[i][j] = ' ';
                 } else if (this.map[i][j] == '1' || this.map[i][j] == '2') {
                     this.enemyNumber = this.enemyNumber + 1;
                     this.enemy = new Enemy(j, i);

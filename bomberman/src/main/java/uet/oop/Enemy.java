@@ -4,7 +4,11 @@ public class Enemy extends MovingEntity {
     private int speed;
     private int direction;
 
-    Enemy(int x, int y){
+    public Enemy(){
+        super();
+    }
+
+    public Enemy(int x, int y){
         super(x, y, 'x');
         direction = 0;
     }
