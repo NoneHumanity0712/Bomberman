@@ -4,13 +4,19 @@ public class Enemy extends MovingEntity {
     private int speed;
     private int direction;
 
-    public Enemy(){
-        super();
-    }
+    public Enemy(){};
 
     public Enemy(int x, int y){
-        super(x, y, 'x');
+        super(x, y);
         direction = 0;
+    }
+
+    public Enemy(int x, int y, char type){
+        super(x, y, type);
+        direction = 0;
+    }
+
+    public Enemy(Enemy enemy) {
     }
 
     public void setSpeed(int speed) {

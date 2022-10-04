@@ -22,10 +22,12 @@ public class Game implements HandleImage {
     private Bomber bomber;
     private Enemy enemy;
     public Bomb bomb;
+    public Portal portal;
 
     private Image grassImage;
     private Image wallImage;
     private Image brickImage;
+    private Image portalImage;
     private Image[] bombImage;
     private Image[] bomberImage;
     public Group imageGroup;
@@ -44,8 +46,9 @@ public class Game implements HandleImage {
 
     public Game(Map map) throws FileNotFoundException {
         this.gameMap = new Map(map);
-        this.bomber = map.bomber;
-        this.enemy = map.enemy;
+        this.bomber = gameMap.bomber;
+        this.enemy = gameMap.enemy;
+        this.portal = gameMap.portal;
         imageGroup = new Group();
 
         level = 1;
@@ -73,6 +76,10 @@ public class Game implements HandleImage {
 
     public void setWallImage(Image wallImage) {
         this.wallImage = wallImage;
+    }
+
+    public void setPortalImage(Image portalImage) {
+        this.portalImage = portalImage;
     }
 
     public int getLevel() {
@@ -128,6 +135,11 @@ public class Game implements HandleImage {
     };
 
     private void drawMovingEntity() {
+        if (!portal.isHide()) {
+            ImageView portalView = createView(portalImage, pixel, portal.getY() * pixel, portal.getX() * pixel);
+            imageGroup.getChildren().add(portalView);
+        }
+        
         ImageView bomberView = createView(bomberImage[bomber.getDirection()],
                 pixel, bomber.getY() * pixel, bomber.getX() * pixel);
         imageGroup.getChildren().add(bomberView);
@@ -154,7 +166,7 @@ public class Game implements HandleImage {
         drawBackground();
         drawMap();
         drawMovingEntity();
-        if (isBombPlace()){
+        if (isBombPlace()) {
             drawBomb();
         }
     };

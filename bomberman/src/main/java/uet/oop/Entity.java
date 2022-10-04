@@ -51,9 +51,11 @@ public class Entity {
         return type;
     }
 
-    public Entity() {
-        this.x = -1;
-        this.y = -1;
+    public Entity(){};
+
+    public Entity(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public Entity(int x, int y, char type) {

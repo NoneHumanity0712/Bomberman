@@ -25,21 +25,21 @@ public class Bomber extends MovingEntity {
     public Bomber() {
         super(1, 1, 'p');
         direction = 0;
-        bombs = 15;
+        bombs = 50;
         dead = false;
     }
 
     public Bomber(int x, int y) {
         super(x, y, 'p');
         direction = 0;
-        bombs = 15;
+        bombs = 50;
         dead = false;
     }
 
     public Bomber(Bomber bomber) {
         super(bomber.getX(), bomber.getY(), 'p');
         direction = 0;
-        bombs = 15;
+        bombs = 50;
         dead = false;
     }
 
@@ -48,15 +48,13 @@ public class Bomber extends MovingEntity {
     }
 
     public Entity placeBomb(Map map) {
-        Entity en = new Entity();
+        Entity en = new Entity(this.getX(), this.getY());
         if (bombs < 0) {
             System.err.println("There are no more bombs!");
             return en;
         }
         bombs = bombs - 1;
 
-        en.setX(this.getX());
-        en.setY(this.getY());
         return en;
     }
 }

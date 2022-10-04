@@ -17,14 +17,6 @@ public class Bomb extends Entity {
         explode = false;
     }
 
-    public boolean legalPosition(Map map) {
-        if (this.getX() < 0 || this.getY() < 0
-                || this.getX() >= map.getColumn() || this.getY() >= map.getRow()) {
-            return false;
-        }
-        return true;
-    }
-
     public void Explode(Map map) {
         explode = true;
         char[][] temp = map.getMap();
@@ -32,21 +24,36 @@ public class Bomb extends Entity {
         int j = this.getX();
 
         temp[i][j] = ' ';
+        if (map.portal.getY() == i && map.portal.getX() == j){
+            map.portal.APPEAR();
+        }
 
         if (temp[i - 1][j] == '*') {
             temp[i - 1][j] = ' ';
+        } 
+        if (map.portal.getY() == i - 1 && map.portal.getX() == j) {
+            map.portal.APPEAR();
         }
 
         if (temp[i + 1][j] == '*') {
             temp[i + 1][j] = ' ';
+        } 
+        if (map.portal.getY() == i + 1 && map.portal.getX() == j) {
+            map.portal.APPEAR();
         }
 
         if (temp[i][j - 1] == '*') {
             temp[i][j - 1] = ' ';
+        } 
+        if (map.portal.getY() == i && map.portal.getX() == j - 1) {
+            map.portal.APPEAR();
         }
 
         if (temp[i][j + 1] == '*') {
             temp[i][j + 1] = ' ';
+        } 
+        if (map.portal.getY() == i && map.portal.getX() == j + 1) {
+            map.portal.APPEAR();
         }
     }
 }

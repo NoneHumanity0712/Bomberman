@@ -14,9 +14,9 @@ public class Map {
         this.row = 1;
         this.column = 1;
 
-        bomber = new Bomber();
-        enemy = new Enemy();
-        portal = new Portal();
+        this.bomber = new Bomber();
+        this.enemy = new Enemy();
+        this.portal = new Portal();
     };
 
     public Map(Map m) {
@@ -24,9 +24,9 @@ public class Map {
         setColumn(m.getColumn());
         setMap(m.getMap());
 
-        bomber = new Bomber();
-        enemy = new Enemy();
-        portal = new Portal();
+        this.bomber = new Bomber(m.bomber);
+        this.enemy = new Enemy(m.enemy);
+        this.portal = new Portal(m.portal);
     }
 
     public void setRow(int row) {
@@ -61,13 +61,14 @@ public class Map {
         this.map = new char[this.row][this.column];
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.column; j++) {
-                if (this.map[i][j] == 'x') {
-                    this.portal = new Portal(j, i);
+                if (map[i][j] == 'x') {
+                    this.portal.setY(i);
+                    this.portal.setX(j);
                     this.map[i][j] = '*';
-                } else if (this.map[i][j] == 'p') {
+                } else if (map[i][j] == 'p') {
                     this.bomber = new Bomber(j, i);
                     this.map[i][j] = ' ';
-                } else if (this.map[i][j] == '1' || this.map[i][j] == '2') {
+                } else if (map[i][j] == '1' || map[i][j] == '2') {
                     this.enemyNumber = this.enemyNumber + 1;
                     this.enemy = new Enemy(j, i);
                     this.map[i][j] = ' ';

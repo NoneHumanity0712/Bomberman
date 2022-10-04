@@ -44,6 +44,7 @@ public class Main extends Application implements HandleImage{
             Image grassImage = getImage("sprites/grass.png");
             Image wallImage = getImage("sprites/wall.png");
             Image brickImage = getImage("sprites/brick.png");
+            Image portalImage = getImage("sprites/portal.png");
 
             Image[] bombImage = new Image[2];
             bombImage[0] = getImage("sprites/bomb.png");
@@ -60,6 +61,7 @@ public class Main extends Application implements HandleImage{
             bombermanGame.setBrickImage(brickImage);
             bombermanGame.setGrassImage(grassImage);
             bombermanGame.setWallImage(wallImage);
+            bombermanGame.setPortalImage(portalImage);
 
             bombermanGame.drawScene();
 
@@ -71,8 +73,6 @@ public class Main extends Application implements HandleImage{
                 try {
                     bombermanGame.handle(event);
                     bombermanGame.drawScene();
-                    System.out.println(bombermanGame.isBombPlace());
-                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

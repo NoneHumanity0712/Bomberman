@@ -2,8 +2,10 @@ package uet.oop;
 
 public class MovingEntity extends Entity {
 
-    public MovingEntity() {
-        super();
+    public MovingEntity(){};
+
+    public MovingEntity(int x, int y) {
+        super(x, y);
     }
 
     public MovingEntity(int x, int y, char type) {
