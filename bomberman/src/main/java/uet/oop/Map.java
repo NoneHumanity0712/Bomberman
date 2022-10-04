@@ -1,13 +1,15 @@
 package uet.oop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Map {
     private int row;
     private int column;
     private char[][] map;
-    private int enemyNumber = 0;
 
     Bomber bomber;
-    Enemy enemy;
+    private List<Enemy> enemy;
     Portal portal;
 
     public Map() {
@@ -15,8 +17,8 @@ public class Map {
         this.column = 1;
 
         this.bomber = new Bomber();
-        this.enemy = new Enemy();
         this.portal = new Portal();
+        this.enemy = new ArrayList<Enemy>();
     };
 
     public Map(Map m) {
@@ -25,8 +27,8 @@ public class Map {
         setMap(m.getMap());
 
         this.bomber = new Bomber(m.bomber);
-        this.enemy = new Enemy(m.enemy);
         this.portal = new Portal(m.portal);
+        this.enemy = new ArrayList<Enemy>();
     }
 
     public void setRow(int row) {
@@ -49,7 +51,7 @@ public class Map {
         return bomber;
     }
 
-    public Enemy getEnemy() {
+    public List<Enemy> getEnemy() {
         return enemy;
     }
 
@@ -68,9 +70,9 @@ public class Map {
                 } else if (map[i][j] == 'p') {
                     this.bomber = new Bomber(j, i);
                     this.map[i][j] = ' ';
-                } else if (map[i][j] == '1' || map[i][j] == '2') {
-                    this.enemyNumber = this.enemyNumber + 1;
-                    this.enemy = new Enemy(j, i);
+                } else if (map[i][j] == '1') {
+                    Balloom balloom = new Balloom(j, i);
+                    enemy.add(balloom);
                     this.map[i][j] = ' ';
                 } else {
                     this.map[i][j] = map[i][j];

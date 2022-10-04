@@ -15,13 +15,17 @@ import javafx.scene.input.KeyEvent;
 
 public class Main extends Application implements HandleImage{
 
-    /**
-     * @param args
+    /** 
+     * launch game.
+     * @param args String[]
      */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /* (non-Javadoc)
+     * @see javafx.application.Application#start(javafx.stage.Stage)
+     */
     @Override
     public void start(Stage primaryStage) {
         File input = new File("src/main/java/uet/oop/level1.txt");
@@ -50,11 +54,14 @@ public class Main extends Application implements HandleImage{
             bombImage[0] = getImage("sprites/bomb.png");
             bombImage[1] = getImage("sprites/bomb_exploded.png");
 
-            Image bomberImage[] = new Image[4];
+            Image[] bomberImage = new Image[4];
             bomberImage[0] = getImage("sprites/player_right.png");
             bomberImage[1] = getImage("sprites/player_down.png");
             bomberImage[2] = getImage("sprites/player_left.png");
             bomberImage[3] = getImage("sprites/player_up.png");
+
+            Image[] enemyImage = new Image[2];
+            enemyImage[0] = getImage("sprites/balloom_right1.png");
 
             bombermanGame.setBombImage(bombImage);
             bombermanGame.setBomberImage(bomberImage);
@@ -62,6 +69,7 @@ public class Main extends Application implements HandleImage{
             bombermanGame.setGrassImage(grassImage);
             bombermanGame.setWallImage(wallImage);
             bombermanGame.setPortalImage(portalImage);
+            bombermanGame.setEnemyImage(enemyImage);
 
             bombermanGame.drawScene();
 

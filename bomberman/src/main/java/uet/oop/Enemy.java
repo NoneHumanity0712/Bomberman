@@ -4,7 +4,10 @@ public class Enemy extends MovingEntity {
     private int speed;
     private int direction;
 
-    public Enemy(){};
+    public Enemy(){
+        speed = 1;
+        direction = 0;
+    };
 
     public Enemy(int x, int y){
         super(x, y);
@@ -17,6 +20,10 @@ public class Enemy extends MovingEntity {
     }
 
     public Enemy(Enemy enemy) {
+        super(enemy.getX(), enemy.getY(), enemy.getType());
+        this.speed = enemy.speed;
+        this.direction = enemy.direction;
+
     }
 
     public void setSpeed(int speed) {
@@ -31,22 +38,7 @@ public class Enemy extends MovingEntity {
         return direction;
     }
 
-    public boolean checkDirection(Map map) {
-        if (direction == 0) {
-            return this.MOVE_RIGHT(map);
-        } else if (direction == 1) {
-            return this.MOVE_DOWN(map);
-        } else if (direction == 2) {
-            return this.MOVE_LEFT(map);
-        } else if (direction == 3) {
-            return this.MOVE_UP(map);
-        }
-        return false;
-    }
-
-    public void MOVE(Map map) {
-        while (!this.checkDirection(map)) {
-            direction = (direction + 1) % 4;
-        }
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 }
