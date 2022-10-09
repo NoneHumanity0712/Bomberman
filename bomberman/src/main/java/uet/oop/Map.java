@@ -1,5 +1,6 @@
 package uet.oop;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Map {
     private List<Enemy> enemy;
     Portal portal;
 
-    public Map() {
+    public Map() throws FileNotFoundException {
         this.row = 1;
         this.column = 1;
 
@@ -21,7 +22,7 @@ public class Map {
         this.enemy = new ArrayList<Enemy>();
     };
 
-    public Map(Map m) {
+    public Map(Map m) throws FileNotFoundException {
         setRow(m.getRow());
         setColumn(m.getColumn());
         setMap(m.getMap());
@@ -59,7 +60,7 @@ public class Map {
         return portal;
     }
 
-    public void setMap(char[][] map) {
+    public void setMap(char[][] map) throws FileNotFoundException {
         this.map = new char[this.row][this.column];
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.column; j++) {
@@ -113,7 +114,7 @@ public class Map {
         return map;
     }
 
-    public void setMapFromFile(ReadFromFile inputFile) {
+    public void setMapFromFile(ReadFromFile inputFile) throws FileNotFoundException {
         this.setRow(inputFile.getRow_read());
         this.setColumn(inputFile.getColumn_read());
         this.setMap(inputFile.getMap_read());

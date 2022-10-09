@@ -1,15 +1,39 @@
 package uet.oop;
 
-public class MovingEntity extends Entity {
+import java.io.FileNotFoundException;
 
-    public MovingEntity(){};
+public abstract class MovingEntity extends Entity {
+
+    private int stepCount;
+    private int speed; // in pixel
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setStepCount(int stepCount) {
+        this.stepCount = stepCount;
+    }
+
+    public int getStepCount() {
+        return stepCount;
+    }
+
+    public MovingEntity() {
+    };
 
     public MovingEntity(int x, int y) {
         super(x, y);
+        stepCount = 0;
     }
 
     public MovingEntity(int x, int y, char type) {
         super(x, y, type);
+        stepCount = 0;
     }
 
     public boolean legal_move(Map map, int y, int x) {
@@ -21,19 +45,22 @@ public class MovingEntity extends Entity {
         return false;
     }
 
-    public boolean MOVE_RIGHT(Map map) {
-        if (legal_move(map, this.getY(), this.getX() + 1)) {
+    public abstract void STEP_RIGHT();
 
-            setY(this.getY());
-            setX(this.getX() + 1);
+    public boolean MOVE_RIGHT(Map map) {
+        if (legal_move(map, this.getY(), this.getX() + getSpeed() / 8)) {
+
+            STEP_RIGHT();
+
+            setX(this.getX() + getSpeed() / 8);
 
             return true;
-        }else {
-            setY(this.getY());
-            setX(this.getX());
+        } else {
             return false;
         }
     }
+
+    public abstract void STEP_LEFT();
 
     public boolean MOVE_LEFT(Map map) {
         if (legal_move(map, this.getY(), this.getX() - 1)) {
@@ -42,12 +69,12 @@ public class MovingEntity extends Entity {
             setX(this.getX() - 1);
 
             return true;
-        }else {
-            setY(this.getY());
-            setX(this.getX());
+        } else {
             return false;
         }
     }
+
+    public abstract void STEP_UP();
 
     public boolean MOVE_UP(Map map) {
         if (legal_move(map, this.getY() - 1, this.getX())) {
@@ -56,11 +83,11 @@ public class MovingEntity extends Entity {
 
             return true;
         } else {
-            setY(this.getY());
-            setX(this.getX());
             return false;
         }
     }
+
+    public abstract void STEP_DOWN();
 
     public boolean MOVE_DOWN(Map map) {
         if (legal_move(map, this.getY() + 1, this.getX())) {
@@ -70,9 +97,13 @@ public class MovingEntity extends Entity {
 
             return true;
         } else {
-            setY(this.getY());
-            setX(this.getX());
             return false;
         }
+    }
+
+    public abstract void DEAD();
+
+    @Override
+    public void setupImage() throws FileNotFoundException {
     }
 }

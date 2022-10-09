@@ -56,4 +56,10 @@ public class Bomb extends Entity {
             map.portal.APPEAR();
         }
     }
+
+    @Override
+    public void setupImage() {
+        // TODO Auto-generated method stub
+        
+    }
 }

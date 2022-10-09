@@ -1,8 +1,14 @@
 package uet.oop;
 
-public class Portal extends Entity{
+import java.io.FileNotFoundException;
+
+import javafx.scene.image.Image;
+
+public class Portal extends Entity implements HandleImage{
     private boolean activate;
     private boolean hide;
+
+    Image portalImage;
 
     public Portal(){
         activate = false;
@@ -43,5 +49,10 @@ public class Portal extends Entity{
 
     public void ACTIVATE(){
         setActivate(true);
+    }
+
+    @Override
+    public void setupImage() throws FileNotFoundException {
+        portalImage = getImage("sprites/portal.png");
     }
 }

@@ -1,31 +1,32 @@
 package uet.oop;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
-public class demo {
-    public static void main(String[] args) throws FileNotFoundException {
-        File input = new File("src/main/java/uet/oop/level1.txt");
-        Scanner scanner;
+public class demo extends Application{
 
-        scanner = new Scanner(input);
-        ReadFromFile readFromFile = new ReadFromFile();
-        if (scanner.hasNext()) {
-            readFromFile.readFile(scanner);
-        }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-        Map map = new Map();
-        map.setRow(readFromFile.getRow_read());
-        map.setColumn(readFromFile.getColumn_read());
-        map.setMap(readFromFile.getMap_read());
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View.fxml"));
+        Parent root = loader.load();
 
-        for (int i = 0; i < map.getRow(); i++) {
-            for (int j = 0; j < map.getColumn(); j++) {
-                System.out.print(map.getMap()[i][j]);
-            }
-            System.out.println();
-        }
+        Scene scene = new Scene(root, 1200, 720);
+
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("DEMO");
+
+        primaryStage.show();
     }
 
 }

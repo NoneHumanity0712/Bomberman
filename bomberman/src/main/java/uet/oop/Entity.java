@@ -1,6 +1,13 @@
 package uet.oop;
 
-public class Entity {
+import java.io.FileNotFoundException;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
+public abstract class Entity {
+    public final static int SCALE = 3;
+
     /**
      * x position from the top left corner.
      */
@@ -11,19 +18,35 @@ public class Entity {
      */
     private int y;
 
+    protected Image image;
+
     /**
-     * #    Wall,
-     * *    Brick,
-     * x    Portal,
-     * p    Bomber,
-     * 1    Balloom,
-     * 2    Oneal,
-     * b    Bomb Item,
-     * f    Flame Item,
-     * s    Speed Item.
+     * # Wall,
+     * * Brick,
+     * x Portal,
+     * p Bomber,
+     * 1 Balloom,
+     * 2 Oneal,
+     * b Bomb Item,
+     * f Flame Item,
+     * s Speed Item.
+     * 
+     * @throws FileNotFoundException
      */
-    private final char[] types = { '#', '*', 'x', 'p',
-            '1', '2', 'b', 'f', 's' };
+    public abstract void setupImage() throws FileNotFoundException;
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void render(GraphicsContext context) {
+        context.drawImage(image, x * SCALE, y * SCALE,
+                image.getWidth() * SCALE, image.getHeight() * SCALE);
+    }
 
     private char type;
 
@@ -51,7 +74,8 @@ public class Entity {
         return type;
     }
 
-    public Entity(){};
+    public Entity() {
+    };
 
     public Entity(int x, int y) {
         this.x = x;

@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.Event;
-import javafx.scene.Group;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class Game implements HandleImage {
     private int level;
@@ -26,14 +27,15 @@ public class Game implements HandleImage {
     public Bomb bomb;
     public Portal portal;
 
+    public AnchorPane gamePane;
+    public Canvas gameCanvas;
+    private GraphicsContext context;
+
     private Image grassImage;
     private Image wallImage;
     private Image brickImage;
     private Image portalImage;
-    private Image[] bombImage;
-    private Image[] bomberImage;
     private Image[] enemyImage;
-    public Group imageGroup;
 
     public final int pixel = 16 * 3;
 
@@ -44,35 +46,33 @@ public class Game implements HandleImage {
         QuitGame = false;
         BombPlace = false;
 
-        imageGroup = new Group();
         gameMap = new Map();
         enemies = new ArrayList<Enemy>();
     }
 
-    public Game(Map map) throws FileNotFoundException {
+    public Game(Map map, Canvas canvas) throws FileNotFoundException {
         this.gameMap = new Map(map);
         this.bomber = gameMap.bomber;
         this.portal = gameMap.portal;
         this.enemies = new ArrayList<Enemy>(map.getEnemy());
-        this.imageGroup = new Group();
+
+        this.gameCanvas = canvas;
+        this.context = gameCanvas.getGraphicsContext2D();
 
         level = 1;
         score = 0;
         GameOver = false;
         QuitGame = false;
         BombPlace = false;
-    }
 
-    public void setBombImage(Image[] bombImage) {
-        this.bombImage = bombImage;
+        setGrassImage(getImage("sprites/grass.png"));
+        setBrickImage(getImage("sprites/brick.png"));
+        setWallImage(getImage("sprites/wall.png"));
+        setPortalImage(getImage("sprites/portal.png"));
     }
 
     public void setBrickImage(Image brickImage) {
         this.brickImage = brickImage;
-    }
-
-    public void setBomberImage(Image[] bomberImage) {
-        this.bomberImage = bomberImage;
     }
 
     public void setGrassImage(Image grassImage) {
@@ -127,17 +127,23 @@ public class Game implements HandleImage {
             for (int j = 0; j < gameMap.getColumn(); j++) {
                 if (gameMap.getMap()[i][j] == '#') {
 
-                    ImageView wallView = createView(wallImage, pixel, i * pixel, j * pixel);
-                    imageGroup.getChildren().add(wallView);
+                    // ImageView wallView = createView(wallImage, pixel, i * pixel, j * pixel);
+                    // imageGroup.getChildren().add(wallView);
+
+                    render(context, gameCanvas, wallImage, j * pixel, i * pixel);
 
                 } else if (gameMap.getMap()[i][j] == '*') {
 
-                    ImageView brickView = createView(brickImage, pixel, i * pixel, j * pixel);
-                    imageGroup.getChildren().add(brickView);
+                    // ImageView brickView = createView(brickImage, pixel, i * pixel, j * pixel);
+                    // imageGroup.getChildren().add(brickView);
+
+                    render(context, gameCanvas, brickImage, j * pixel, i * pixel);
                 } else {
 
-                    ImageView grassView = createView(grassImage, pixel, i * pixel, j * pixel);
-                    imageGroup.getChildren().add(grassView);
+                    // ImageView grassView = createView(grassImage, pixel, i * pixel, j * pixel);
+                    // imageGroup.getChildren().add(grassView);
+
+                    render(context, gameCanvas, grassImage, j * pixel, i * pixel);
                 }
             }
         }
@@ -145,37 +151,23 @@ public class Game implements HandleImage {
 
     private void drawMovingEntity() {
         if (!portal.isHide()) {
-            ImageView portalView = createView(portalImage, pixel,
-                    portal.getY() * pixel, portal.getX() * pixel);
-            imageGroup.getChildren().add(portalView);
+
+            render(context, gameCanvas, portalImage, portal.getX() * pixel,
+                    portal.getY() * pixel);
         }
 
-        ImageView bomberView = createView(bomberImage[bomber.getDirection()],
-                pixel, bomber.getY() * pixel, bomber.getX() * pixel);
-        imageGroup.getChildren().add(bomberView);
+        render(context, gameCanvas, bomber.getImage(), bomber.getX(), bomber.getY());
 
-        for (Enemy enemy : enemies) {
-            if (enemy.getType() == '1') {
-                ImageView balloomView = createView(enemyImage[0], pixel, enemy.getY() * pixel, enemy.getX() * pixel);
-                imageGroup.getChildren().add(balloomView);
-            }
-        }
+        // for (Enemy enemy : enemies) {
+        // if (enemy.getType() == '1') {
+
+        // render(context, gameCanvas, enemyImage[0], enemy.getX() * pixel, enemy.getY()
+        // * pixel);
+        // }
+        // }
     }
 
     private void drawBomb() {
-        if (!bomb.isExplode()) {
-            ImageView bombView = createView(bombImage[0], pixel,
-                    bomb.getY() * pixel, bomb.getX() * pixel);
-            imageGroup.getChildren().add(bombView);
-            bomb.Explode(gameMap);
-        } else {
-            setBombPlace(false);
-
-            ImageView bombView = createView(bombImage[1], pixel,
-                    bomb.getY() * pixel, bomb.getX() * pixel);
-            imageGroup.getChildren().add(bombView);
-
-        }
 
     }
 
@@ -222,5 +214,4 @@ public class Game implements HandleImage {
         }
         ;
     }
-
 }

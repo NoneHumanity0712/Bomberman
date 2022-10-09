@@ -41,4 +41,34 @@ public class Enemy extends MovingEntity {
     public void setDirection(int direction) {
         this.direction = direction;
     }
+
+    @Override
+    public void STEP_RIGHT() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void STEP_LEFT() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void STEP_UP() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void STEP_DOWN() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void DEAD() {
+        // TODO Auto-generated method stub
+        
+    }
 }
