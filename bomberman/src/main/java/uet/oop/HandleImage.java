@@ -11,8 +11,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-
-import uet.oop.Entity;
+import uet.oop.entities.Entity;
 
 public interface HandleImage {
     default Image getImage(String path) throws FileNotFoundException {
@@ -58,21 +57,21 @@ public interface HandleImage {
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    default void render(GraphicsContext context, Canvas canvas, Image image, int x, int y) {
+    default void render(GraphicsContext context, Image image, int x, int y) {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, x, y, image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
+            context.drawImage(image, x*image.getWidth() * Entity.SCALE, y*image.getHeight() * Entity.SCALE, image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 
         context.restore();
     }
 
-    default void render(GraphicsContext context, Canvas canvas, Image image, double x, double y) {
+    default void render(GraphicsContext context, Image image, double x, double y) {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, x * Entity.SCALE, y * Entity.SCALE);
+            context.drawImage(image, x*image.getWidth() * Entity.SCALE, y*image.getHeight() * Entity.SCALE, image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 
         context.restore();

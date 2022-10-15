@@ -1,4 +1,6 @@
-package uet.oop;
+package uet.oop.entities;
+
+import uet.oop.Map;
 
 public class Bomb extends Entity {
     private boolean explode;

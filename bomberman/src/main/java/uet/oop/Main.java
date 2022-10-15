@@ -10,12 +10,9 @@ import javafx.scene.Scene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import uet.oop.demogame.GameCanvas;
 
 public class Main extends Application implements HandleImage {
-
-    private Canvas canvas;
 
     /**
      * launch game.
@@ -42,7 +39,7 @@ public class Main extends Application implements HandleImage {
             map.setColumn(readFromFile.getColumn_read());
             map.setMap(readFromFile.getMap_read());
 
-            canvas = new Canvas(1200, 720);
+            GameCanvas canvas = new GameCanvas();
 
             Game bombermanGame = new Game(map, canvas);
             bombermanGame.setLevel(readFromFile.getLevel_read());
@@ -51,14 +48,6 @@ public class Main extends Application implements HandleImage {
             root.getChildren().add(canvas);
 
             Scene scene = new Scene(root);
-
-            scene.setOnKeyPressed(event -> {
-                try {
-                    bombermanGame.handle(event);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
 
             primaryStage.setTitle("BOMBERMAN");
 
@@ -70,9 +59,9 @@ public class Main extends Application implements HandleImage {
 
                 @Override
                 public void handle(long now) {
-                    if (!bombermanGame.isQuitGame() & !bombermanGame.isGameOver()) {
-                        bombermanGame.drawScene();
-                    }
+                    bombermanGame.handle();
+                    bombermanGame.update();
+                    bombermanGame.drawScene();
                 }
             };
 

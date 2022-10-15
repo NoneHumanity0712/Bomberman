@@ -1,8 +1,9 @@
-package uet.oop;
+package uet.oop.entities;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
+import uet.oop.HandleImage;
 
 public class Portal extends Entity implements HandleImage{
     private boolean activate;

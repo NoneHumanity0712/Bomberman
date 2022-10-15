@@ -1,4 +1,4 @@
-package uet.oop;
+package uet.oop.entities;
 
 public class Enemy extends MovingEntity {
     private int speed;
@@ -30,7 +30,7 @@ public class Enemy extends MovingEntity {
         this.speed = speed;
     }
 
-    public int getSpeed() {
+    public int Speed() {
         return speed;
     }
 

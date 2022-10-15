@@ -1,4 +1,6 @@
-package uet.oop;
+package uet.oop.entities;
+
+import uet.oop.Map;
 
 public class Balloom extends Enemy {
 
@@ -15,15 +17,15 @@ public class Balloom extends Enemy {
     }
 
     public boolean checkDirection(Map map) {
-        if (super.getDirection() == 0) {
-            return this.MOVE_RIGHT(map);
-        } else if (super.getDirection() == 1) {
-            return this.MOVE_DOWN(map);
-        } else if (super.getDirection() == 2) {
-            return this.MOVE_LEFT(map);
-        } else if (super.getDirection() == 3) {
-            return this.MOVE_UP(map);
-        }
+        // if (super.getDirection() == 0) {
+        //     return this.MOVE_RIGHT(map);
+        // } else if (super.getDirection() == 1) {
+        //     return this.MOVE_DOWN(map);
+        // } else if (super.getDirection() == 2) {
+        //     return this.MOVE_LEFT(map);
+        // } else if (super.getDirection() == 3) {
+        //     return this.MOVE_UP(map);
+        // }
         return false;
     }
 

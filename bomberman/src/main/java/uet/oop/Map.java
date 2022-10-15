@@ -4,6 +4,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import uet.oop.entities.Balloom;
+import uet.oop.entities.Bomber;
+import uet.oop.entities.Enemy;
+import uet.oop.entities.Portal;
+
 public class Map {
     private int row;
     private int column;
@@ -11,7 +16,7 @@ public class Map {
 
     Bomber bomber;
     private List<Enemy> enemy;
-    Portal portal;
+    public Portal portal;
 
     public Map() throws FileNotFoundException {
         this.row = 1;

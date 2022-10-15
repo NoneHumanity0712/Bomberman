@@ -1,13 +1,17 @@
-package uet.oop;
+package uet.oop.entities;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import uet.oop.HandleImage;
 
-public abstract class Entity {
+public abstract class Entity implements HandleImage{
+    public final static int spriteSize = 16; // in pixel
+
     public final static int SCALE = 3;
 
+    public final static int size = spriteSize * SCALE;
     /**
      * x position from the top left corner.
      */
@@ -44,8 +48,7 @@ public abstract class Entity {
     }
 
     public void render(GraphicsContext context) {
-        context.drawImage(image, x * SCALE, y * SCALE,
-                image.getWidth() * SCALE, image.getHeight() * SCALE);
+        render(context, image, x, y);
     }
 
     private char type;
