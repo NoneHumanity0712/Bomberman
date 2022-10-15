@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import uet.oop.demogame.GameCanvas;
 
 public class Main extends Application implements HandleImage {
 

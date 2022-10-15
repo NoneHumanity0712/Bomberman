@@ -7,7 +7,6 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import uet.oop.demogame.GameCanvas;
 import uet.oop.entities.Balloom;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.Bomber;

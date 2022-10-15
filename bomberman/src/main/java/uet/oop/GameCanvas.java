@@ -1,4 +1,4 @@
-package uet.oop.demogame;
+package uet.oop;
 
 import java.io.FileNotFoundException;
 
