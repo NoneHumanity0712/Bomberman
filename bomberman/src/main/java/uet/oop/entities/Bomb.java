@@ -1,9 +1,31 @@
 package uet.oop.entities;
 
+import java.io.FileNotFoundException;
+
+import javafx.scene.image.Image;
 import uet.oop.Map;
 
 public class Bomb extends Entity {
     private boolean explode;
+    private int range;
+
+    Image[][] bomb_images;
+
+    @Override
+    public void setupImage() throws FileNotFoundException {
+        for (int i = 0; i < 3; i++) {
+            bomb_images[0][i] = getImage("sprites/bomb_" + i +".png");
+            bomb_images[1][i] = getImage("sprites/bomb_exploded" + i +".png");
+        }
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
 
     public boolean isExplode() {
         return explode;
@@ -12,11 +34,13 @@ public class Bomb extends Entity {
     public Bomb(int x, int y) {
         super(x, y, 'b');
         explode = false;
+        bomb_images = new Image[2][3];
     }
 
     public Bomb(Entity e) {
         super(e);
         explode = false;
+        bomb_images = new Image[2][3];
     }
 
     public void Explode(Map map) {
@@ -59,9 +83,4 @@ public class Bomb extends Entity {
         }
     }
 
-    @Override
-    public void setupImage() {
-        // TODO Auto-generated method stub
-        
-    }
 }
