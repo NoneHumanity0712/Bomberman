@@ -2,12 +2,9 @@ package uet.oop.demogame;
 
 import java.io.FileNotFoundException;
 
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import uet.oop.entities.Bomber;
 import uet.oop.entities.Entity;
 
@@ -20,8 +17,6 @@ public class GameCanvas extends Canvas {
     final int screenHeight = numsOfRows * Entity.spriteSize;
 
     public GraphicsContext context;
-
-    double step = Entity.size;
 
     Bomber player;
 

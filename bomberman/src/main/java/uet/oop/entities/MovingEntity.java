@@ -8,7 +8,7 @@ import uet.oop.Map;
 public abstract class MovingEntity extends Entity {
 
     private int stepCount;
-    private double speed = 1; // in pixel
+    private double speed; // in pixel
 
     private double doubleX;
     private double doubleY;
@@ -16,7 +16,7 @@ public abstract class MovingEntity extends Entity {
     private double oldX;
     private double oldY;
 
-    private final double step = speed/8;
+    private double step;
 
     private int direction;
 
@@ -40,6 +40,10 @@ public abstract class MovingEntity extends Entity {
 
     public double getStep() {
         return step;
+    }
+
+    public void setStep(double step) {
+        this.step = step;
     }
 
     public double getDoubleX() {
@@ -70,7 +74,7 @@ public abstract class MovingEntity extends Entity {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 

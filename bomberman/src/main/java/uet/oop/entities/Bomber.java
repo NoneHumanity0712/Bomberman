@@ -44,6 +44,7 @@ public class Bomber extends MovingEntity {
         bomber_images = new Image[4][3];
         setupImage();
         setSpeed(1);
+        setStep(getSpeed()/8);
         setStepCount(0);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
@@ -57,6 +58,7 @@ public class Bomber extends MovingEntity {
         bomber_images = new Image[4][3];
         setupImage();
         setSpeed(1);
+        setStep(getSpeed()/8);
         setStepCount(0);    
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
@@ -69,6 +71,7 @@ public class Bomber extends MovingEntity {
         bomber_images = new Image[4][3];
         setupImage();
         setSpeed(1);
+        setStep(getSpeed()/8);
         setStepCount(0);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }

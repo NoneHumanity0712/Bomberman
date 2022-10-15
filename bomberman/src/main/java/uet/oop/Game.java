@@ -5,13 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.event.Event;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import uet.oop.demogame.GameCanvas;
+import uet.oop.entities.Balloom;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.Bomber;
 import uet.oop.entities.Enemy;
@@ -39,7 +36,6 @@ public class Game implements HandleImage {
     private Image wallImage;
     private Image brickImage;
     private Image portalImage;
-    private Image[] enemyImage;
 
     public Game() throws FileNotFoundException {
         level = 1;
@@ -75,6 +71,10 @@ public class Game implements HandleImage {
         setPortalImage(getImage("sprites/portal.png"));
     }
 
+    private void setPortalImage(Image image) {
+        this.portalImage = image;
+    }
+
     public void setBrickImage(Image brickImage) {
         this.brickImage = brickImage;
     }
@@ -85,14 +85,6 @@ public class Game implements HandleImage {
 
     public void setWallImage(Image wallImage) {
         this.wallImage = wallImage;
-    }
-
-    public void setPortalImage(Image portalImage) {
-        this.portalImage = portalImage;
-    }
-
-    public void setEnemyImage(Image[] enemyImage) {
-        this.enemyImage = enemyImage;
     }
 
     public int getLevel() {
@@ -127,6 +119,10 @@ public class Game implements HandleImage {
 
     };
 
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public void drawMap() {
         for (int i = 0; i < gameMap.getRow(); i++) {
             for (int j = 0; j < gameMap.getColumn(); j++) {
@@ -138,15 +134,23 @@ public class Game implements HandleImage {
 
                     gameCanvas.context.drawImage(brickImage, j * Entity.size, i * Entity.size, Entity.size,
                             Entity.size);
-
                 } else {
-
                     gameCanvas.context.drawImage(grassImage, j * Entity.size, i * Entity.size, Entity.size,
                             Entity.size);
                 }
             }
         }
     };
+
+    public void drawMovingEntities() {
+        gameCanvas.context.drawImage(bomber.getImage(), bomber.getOldX() * Entity.size, bomber.getOldY() * Entity.size,
+                Entity.size, Entity.size);
+
+        for (Enemy enemy : enemies) {
+            gameCanvas.context.drawImage(enemy.getImage(), enemy.getOldX() * Entity.size, enemy.getOldY() * Entity.size,
+                    Entity.size, Entity.size);
+        }
+    }
 
     private void drawBomb() {
 
@@ -155,7 +159,7 @@ public class Game implements HandleImage {
     public void drawScene() {
         drawBackground();
         drawMap();
-        gameCanvas.render();
+        drawMovingEntities();
         if (isBombPlace()) {
             drawBomb();
         }
@@ -163,6 +167,9 @@ public class Game implements HandleImage {
 
     public void update() {
         bomber.update(gameMap);
+        for (Enemy enemy : enemies) {
+            enemy.update(gameMap);
+        }
     }
 
     public void handle() {
@@ -216,6 +223,14 @@ public class Game implements HandleImage {
                     break;
             }
         });
-
+        for (Enemy enemy : enemies) {
+            if (enemy instanceof Balloom) {
+                long now = System.currentTimeMillis();
+                if (now - ((Balloom) enemy).getTimeBefore() > 1500) {
+                    ((Balloom) enemy).MOVE(gameMap);
+                }
+                
+            }
+        }
     }
 }
