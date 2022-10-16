@@ -1,4 +1,4 @@
-package uet.oop;
+package uet.oop.gameprocess;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

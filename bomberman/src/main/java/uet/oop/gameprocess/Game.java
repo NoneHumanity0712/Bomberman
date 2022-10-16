@@ -1,18 +1,15 @@
-package uet.oop;
+package uet.oop.gameprocess;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import uet.oop.entities.Balloom;
 import uet.oop.entities.Bomb;
-import uet.oop.entities.Bomber;
-import uet.oop.entities.Enemy;
-import uet.oop.entities.Entity;
-import uet.oop.entities.Portal;
+import uet.oop.entities.movingentities.Balloom;
+import uet.oop.entities.movingentities.Bomber;
+import uet.oop.entities.movingentities.Enemy;
 
 public class Game implements HandleImage {
     private int level;
@@ -20,13 +17,8 @@ public class Game implements HandleImage {
     private boolean GameOver;
     private boolean QuitGame;
 
-    private boolean BombPlace;
-
     private Map gameMap;
     private Bomber bomber;
-    private List<Enemy> enemies;
-    public Bomb bomb;
-    public Portal portal;
 
     public AnchorPane gamePane;
     public GameCanvas gameCanvas;
@@ -34,26 +26,12 @@ public class Game implements HandleImage {
     private Image grassImage;
     private Image wallImage;
     private Image brickImage;
-    private Image portalImage;
 
-    public Game() throws FileNotFoundException {
-        level = 1;
-        score = 0;
-        GameOver = false;
-        QuitGame = false;
-        BombPlace = false;
-
-        gameMap = new Map();
-        gameCanvas = new GameCanvas();
-        gameCanvas.setPlayer(bomber);
-        enemies = new ArrayList<Enemy>();
-    }
+    private long before;
 
     public Game(Map map, GameCanvas canvas) throws FileNotFoundException {
         this.gameMap = new Map(map);
-        this.bomber = gameMap.bomber;
-        this.portal = gameMap.portal;
-        this.enemies = new ArrayList<Enemy>(map.getEnemy());
+        this.bomber = gameMap.getBomber();
 
         this.gameCanvas = canvas;
         gameCanvas.setPlayer(bomber);
@@ -62,16 +40,10 @@ public class Game implements HandleImage {
         score = 0;
         GameOver = false;
         QuitGame = false;
-        BombPlace = false;
 
         setGrassImage(getImage("sprites/grass.png"));
         setBrickImage(getImage("sprites/brick.png"));
         setWallImage(getImage("sprites/wall.png"));
-        setPortalImage(getImage("sprites/portal.png"));
-    }
-
-    private void setPortalImage(Image image) {
-        this.portalImage = image;
     }
 
     public void setBrickImage(Image brickImage) {
@@ -102,73 +74,105 @@ public class Game implements HandleImage {
         return QuitGame;
     }
 
-    public boolean isBombPlace() {
-        return BombPlace;
-    }
-
-    public void setBombPlace(boolean bombPlace) {
-        BombPlace = bombPlace;
-    }
-
     public void setGameOver(boolean gameOver) {
         GameOver = gameOver;
+    }
+
+    public void setBefore(long before) {
+        this.before = before;
+    }
+
+    public long getBefore() {
+        return before;
     }
 
     private void drawBackground() {
 
     };
 
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
     public void drawMap() {
         for (int i = 0; i < gameMap.getRow(); i++) {
             for (int j = 0; j < gameMap.getColumn(); j++) {
                 if (gameMap.getMap()[i][j] == '#') {
 
-                    gameCanvas.context.drawImage(wallImage, j * Entity.size, i * Entity.size, Entity.size, Entity.size);
+                    render(gameCanvas.context, wallImage, j, i);
 
                 } else if (gameMap.getMap()[i][j] == '*') {
 
-                    gameCanvas.context.drawImage(brickImage, j * Entity.size, i * Entity.size, Entity.size,
-                            Entity.size);
+                    render(gameCanvas.context, brickImage, j, i);
+
                 } else {
-                    gameCanvas.context.drawImage(grassImage, j * Entity.size, i * Entity.size, Entity.size,
-                            Entity.size);
+
+                    render(gameCanvas.context, grassImage, j, i);
+
                 }
             }
         }
     };
 
     public void drawMovingEntities() {
-        gameCanvas.context.drawImage(bomber.getImage(), bomber.getOldX() * Entity.size, bomber.getOldY() * Entity.size,
-                Entity.size, Entity.size);
+        if (!gameMap.getPortal().isHide()) {
+            render(gameCanvas.context, gameMap.getPortal().getImage(), gameMap.getPortal().getX(),
+                    gameMap.getPortal().getY());
+        }
 
-        for (Enemy enemy : enemies) {
-            gameCanvas.context.drawImage(enemy.getImage(), enemy.getOldX() * Entity.size, enemy.getOldY() * Entity.size,
-                    Entity.size, Entity.size);
+        render(gameCanvas.context, bomber.getImage(), bomber.getOldX(), bomber.getOldY());
+
+        for (Enemy enemy : gameMap.getEnemy()) {
+            render(gameCanvas.context, enemy.getImage(), enemy.getOldX(), enemy.getOldY());
         }
     }
 
     private void drawBomb() {
+        for (Bomb bomb : gameMap.getBombs()) {
+            render(gameCanvas.context, bomb.getImage(), bomb.getX(), bomb.getY());
 
+            for (Bomb edge : bomb.getEdges()) {
+                if (gameMap.getMap()[edge.getY()][edge.getX()] != '#') {
+                    if (gameMap.getMap()[edge.getY()][edge.getX()] == '*') {
+                        render(gameCanvas.context, bomb.tempBrickImage, edge.getX(), edge.getY());
+                    }
+                    render(gameCanvas.context, edge.getImage(), edge.getX(), edge.getY());
+                }
+            }
+        }
     }
 
     public void drawScene() {
+        gameCanvas.context.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
         drawBackground();
         drawMap();
         drawMovingEntities();
-        if (isBombPlace()) {
+        if (!gameMap.getBombs().isEmpty()) {
             drawBomb();
         }
     };
 
     public void update() {
         bomber.update(gameMap);
-        for (Enemy enemy : enemies) {
-            enemy.update(gameMap);
+        List<Enemy> toRemoveEnemies = new ArrayList<>();
+        for (Enemy enemy : gameMap.getEnemy()) {
+
+            if (enemy instanceof Balloom) {
+                enemy.update(gameMap);
+            }
+            if (!enemy.isAlive()) {
+                if (System.currentTimeMillis() - enemy.getTimesincedead() > 1000) {
+                    toRemoveEnemies.add(enemy);
+                }
+            }
         }
+        gameMap.getEnemy().removeAll(toRemoveEnemies);
+
+        List<Bomb> toRemoveBombs = new ArrayList<>();
+        for (Bomb bomb : gameMap.getBombs()) {
+            if (!bomb.isExplode() && !bomb.isPlace()) {
+                toRemoveBombs.add(bomb);
+            } else {
+                bomb.update(gameMap);
+            }
+        }
+        gameMap.getBombs().removeAll(toRemoveBombs);
     }
 
     public void handle() {
@@ -178,6 +182,7 @@ public class Game implements HandleImage {
                 case D:
                     if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1)) {
                         bomber.setDirection(0);
+                        bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
                         bomber.setDoubleX(bomber.getDoubleX() + 1);
                         bomber.setMoving(true);
@@ -187,6 +192,7 @@ public class Game implements HandleImage {
                 case S:
                     if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX())) {
                         bomber.setDirection(1);
+                        bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());
                         bomber.setDoubleY(bomber.getDoubleY() + 1);
                         bomber.setMoving(true);
@@ -196,6 +202,7 @@ public class Game implements HandleImage {
                 case A:
                     if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1)) {
                         bomber.setDirection(2);
+                        bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
                         bomber.setDoubleX(bomber.getDoubleX() - 1);
                         bomber.setMoving(true);
@@ -205,6 +212,7 @@ public class Game implements HandleImage {
                 case W:
                     if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX())) {
                         bomber.setDirection(3);
+                        bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());
                         bomber.setDoubleY(bomber.getDoubleY() - 1);
                         bomber.setMoving(true);
@@ -215,21 +223,23 @@ public class Game implements HandleImage {
                     QuitGame = true;
                     break;
                 case SPACE:
-                    bomb = new Bomb(bomber.placeBomb(gameMap));
-                    BombPlace = true;
+                    if (bomber.getBombs() > 0) {
+                        Bomb bomb = new Bomb(bomber);
+                        gameMap.getBombs().add(bomb);
+                    }
                     break;
                 default:
                     break;
             }
         });
-        for (Enemy enemy : enemies) {
+        for (Enemy enemy : gameMap.getEnemy()) {
             if (enemy instanceof Balloom) {
                 long now = System.currentTimeMillis();
-                if (now - ((Balloom) enemy).getTimeBefore() > 1500) {
+                if (now - ((Balloom) enemy).getTimeBefore() > 2000) {
                     ((Balloom) enemy).MOVE(gameMap);
                 }
-                
             }
         }
+        before = System.nanoTime();
     }
 }

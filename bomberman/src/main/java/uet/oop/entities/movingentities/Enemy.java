@@ -1,4 +1,4 @@
-package uet.oop.entities;
+package uet.oop.entities.movingentities;
 
 public class Enemy extends MovingEntity {
     public Enemy(){

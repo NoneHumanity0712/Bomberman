@@ -1,12 +1,12 @@
-package uet.oop;
+package uet.oop.gameprocess;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import uet.oop.entities.Bomber;
 import uet.oop.entities.Entity;
+import uet.oop.entities.movingentities.Bomber;
 
 public class GameCanvas extends Canvas {
 

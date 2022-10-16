@@ -10,6 +10,11 @@ import javafx.scene.Scene;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import uet.oop.gameprocess.Game;
+import uet.oop.gameprocess.GameCanvas;
+import uet.oop.gameprocess.HandleImage;
+import uet.oop.gameprocess.Map;
+import uet.oop.gameprocess.ReadFromFile;
 
 public class Main extends Application implements HandleImage {
 
@@ -58,9 +63,11 @@ public class Main extends Application implements HandleImage {
 
                 @Override
                 public void handle(long now) {
-                    bombermanGame.handle();
-                    bombermanGame.update();
-                    bombermanGame.drawScene();
+                    if (now - bombermanGame.getBefore() > 1e7) {
+                        bombermanGame.handle();
+                        bombermanGame.update();
+                        bombermanGame.drawScene();
+                    }
                 }
             };
 

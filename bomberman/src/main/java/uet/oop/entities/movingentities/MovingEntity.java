@@ -1,9 +1,10 @@
-package uet.oop.entities;
+package uet.oop.entities.movingentities;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.canvas.GraphicsContext;
-import uet.oop.Map;
+import uet.oop.entities.Entity;
+import uet.oop.gameprocess.Map;
 
 public abstract class MovingEntity extends Entity {
 
@@ -21,6 +22,11 @@ public abstract class MovingEntity extends Entity {
     private int direction;
 
     private boolean moving;
+    private boolean alive;
+
+    private long timebeforeeachstep;
+    private long delaytime;
+    private long timesincedead;
 
     public void setOldX(double oldX) {
         this.oldX = oldX;
@@ -94,12 +100,38 @@ public abstract class MovingEntity extends Entity {
         this.moving = moving;
     }
 
+    public long getTimesincedead() {
+        return timesincedead;
+    }
+
+    public void setTimesincedead(long timesincedead) {
+        this.timesincedead = timesincedead;
+    }
+    
+    public long getTimebeforeeachstep() {
+        return timebeforeeachstep;
+    }
+
+    public void setTimebeforeeachstep(long timebeforeeachstep) {
+        this.timebeforeeachstep = timebeforeeachstep;
+    }
+
+    public long getDelaytime() {
+        return delaytime;
+    }
+
+    public void setDelaytime(long delaytime) {
+        this.delaytime = delaytime;
+    }
+
     public MovingEntity() {
         super();
         stepCount = 0;
 
         oldX = getDoubleX();
         oldY = getDoubleY();
+        
+        alive = true;
     };
 
     public MovingEntity(int x, int y) {
@@ -110,6 +142,8 @@ public abstract class MovingEntity extends Entity {
 
         oldX = getDoubleX();
         oldY = getDoubleY();
+
+        alive = true;
     }
 
     public MovingEntity(int x, int y, char type) {
@@ -120,15 +154,25 @@ public abstract class MovingEntity extends Entity {
 
         oldX = getDoubleX();
         oldY = getDoubleY();
+
+        alive = true;
     }
 
     public boolean legal_move(Map map, int y, int x) {
         if (y >= 0 && y < map.getRow() && x >= 0 && x < map.getColumn()) {
-            if (map.getMap()[y][x] != '#' && map.getMap()[y][x] != '*') {
+            if (map.getMap()[y][x] == ' ') {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
     public abstract void STEP_RIGHT();
@@ -170,7 +214,7 @@ public abstract class MovingEntity extends Entity {
     }
 
     public void update(Map map) {
-        if (isMoving()) {
+        if (isMoving() && System.currentTimeMillis() - timebeforeeachstep >= delaytime) {
             switch (direction) {
                 case 0:
                     if (oldX < doubleX) {
@@ -193,6 +237,7 @@ public abstract class MovingEntity extends Entity {
                     break;
             }
             if (oldX == getDoubleX() && oldY == getDoubleY()) {
+                setStepCount(0);
                 setX((int) doubleX);
                 setY((int) doubleY);
 

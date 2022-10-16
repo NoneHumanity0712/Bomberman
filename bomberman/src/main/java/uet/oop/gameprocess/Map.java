@@ -1,22 +1,24 @@
-package uet.oop;
+package uet.oop.gameprocess;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import uet.oop.entities.Balloom;
-import uet.oop.entities.Bomber;
-import uet.oop.entities.Enemy;
+import uet.oop.entities.Bomb;
 import uet.oop.entities.Portal;
+import uet.oop.entities.movingentities.Balloom;
+import uet.oop.entities.movingentities.Bomber;
+import uet.oop.entities.movingentities.Enemy;
 
 public class Map {
     private int row;
     private int column;
     private char[][] map;
 
-    Bomber bomber;
-    private List<Enemy> enemy;
-    public Portal portal;
+    private Bomber bomber;
+    private List<Enemy> enemies;
+    private List<Bomb> bombs;
+    private Portal portal;
 
     public Map() throws FileNotFoundException {
         this.row = 1;
@@ -24,7 +26,8 @@ public class Map {
 
         this.bomber = new Bomber();
         this.portal = new Portal();
-        this.enemy = new ArrayList<Enemy>();
+        this.bombs = new ArrayList<Bomb>();
+        this.enemies = new ArrayList<Enemy>();
     };
 
     public Map(Map m) throws FileNotFoundException {
@@ -34,7 +37,8 @@ public class Map {
 
         this.bomber = new Bomber(m.bomber);
         this.portal = new Portal(m.portal);
-        this.enemy = new ArrayList<Enemy>();
+        this.bombs = new ArrayList<>(m.getBombs());
+        this.enemies = new ArrayList<Enemy>(m.getEnemy());
     }
 
     public void setRow(int row) {
@@ -58,11 +62,15 @@ public class Map {
     }
 
     public List<Enemy> getEnemy() {
-        return enemy;
+        return enemies;
     }
 
     public Portal getPortal() {
         return portal;
+    }
+
+    public List<Bomb> getBombs() {
+        return bombs;
     }
 
     public void setMap(char[][] map) throws FileNotFoundException {
@@ -78,7 +86,7 @@ public class Map {
                     this.map[i][j] = ' ';
                 } else if (map[i][j] == '1') {
                     Balloom balloom = new Balloom(j, i);
-                    enemy.add(balloom);
+                    enemies.add(balloom);
                     this.map[i][j] = ' ';
                 } else {
                     this.map[i][j] = map[i][j];

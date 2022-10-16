@@ -1,16 +1,14 @@
-package uet.oop.entities;
+package uet.oop.entities.movingentities;
 
 import java.io.FileNotFoundException;
 import java.util.Random;
 
 import javafx.scene.image.Image;
-import uet.oop.Map;
+import uet.oop.gameprocess.Map;
 
 public class Balloom extends Enemy {
 
-    private boolean dead;
-
-    private long timeBefore;
+    private long timeBefore; //time before each move
 
     Image[][] balloom_images;
     Image balloom_dead;
@@ -34,9 +32,10 @@ public class Balloom extends Enemy {
 
     public Balloom() throws FileNotFoundException {
         super();
+        super.setType('1');
         super.setDirection(0);
-        dead = false;
-
+        
+        setDelaytime(150);
         setSpeed(0.5);
         setStep(getSpeed() / 8);
 
@@ -47,7 +46,10 @@ public class Balloom extends Enemy {
 
     public Balloom(Balloom balloom) throws FileNotFoundException {
         super(balloom);
+        super.setType('1');
         super.setDirection(0);
+
+        setDelaytime(100);
         setSpeed(0.5);
         setStep(getSpeed() / 8);
         setStepCount(0);
@@ -60,6 +62,8 @@ public class Balloom extends Enemy {
     public Balloom(int x, int y) throws FileNotFoundException {
         super(x, y, '1');
         super.setDirection(0);
+
+        setDelaytime(100);
         setSpeed(0.5);
         setStep(getSpeed() / 8);
         setStepCount(0);
@@ -71,8 +75,13 @@ public class Balloom extends Enemy {
     }
 
     public void MOVE(Map map) {
+        if (!isAlive()) {
+            DEAD();
+            return;
+        }
+
         Random random = new Random();
-        int nextDirection = random.nextInt(4) - 1;
+        int nextDirection = random.nextInt(4);
 
         switch (nextDirection) {
             case 0:
@@ -112,6 +121,7 @@ public class Balloom extends Enemy {
         }
 
         timeBefore = System.currentTimeMillis();
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -119,18 +129,22 @@ public class Balloom extends Enemy {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(balloom_images[1][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(balloom_images[1][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(balloom_images[1][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(balloom_images[1][0]);
                 break;
         }
-        setImage(balloom_images[getDirection() % 2][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -138,18 +152,22 @@ public class Balloom extends Enemy {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(balloom_images[0][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(balloom_images[0][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(balloom_images[0][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(balloom_images[0][0]);
                 break;
         }
-        setImage(balloom_images[getDirection() % 2][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -157,18 +175,22 @@ public class Balloom extends Enemy {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(balloom_images[0][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(balloom_images[0][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(balloom_images[0][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(balloom_images[0][0]);
                 break;
         }
-        setImage(balloom_images[getDirection() % 2][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -176,18 +198,28 @@ public class Balloom extends Enemy {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(balloom_images[1][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(balloom_images[1][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(balloom_images[1][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(balloom_images[1][0]);
                 break;
         }
-        setImage(balloom_images[getDirection() % 2][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
+    @Override
+    public void DEAD() {
+        setImage(balloom_dead);
+        
+        setTimesincedead(System.currentTimeMillis());
+    }
 }

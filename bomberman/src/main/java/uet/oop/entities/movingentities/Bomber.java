@@ -1,17 +1,18 @@
-package uet.oop.entities;
+package uet.oop.entities.movingentities;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
-import uet.oop.Map;
 
 public class Bomber extends MovingEntity {
     private int bombs;
-    private boolean dead;
+
+    private final int delaytime = 25;
+    private final int speed = 1;
 
     private Image[] bomber_dead;
     private Image[][] bomber_images;
-    
+
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
@@ -39,13 +40,13 @@ public class Bomber extends MovingEntity {
         super(1, 1, 'p');
         super.setDirection(0);
         bombs = 50;
-        dead = false;
 
         bomber_images = new Image[4][3];
         setupImage();
-        setSpeed(1);
-        setStep(getSpeed()/8);
+        setSpeed(speed);
+        setStep(getSpeed() / 8);
         setStepCount(0);
+        setDelaytime(delaytime);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
 
@@ -53,42 +54,27 @@ public class Bomber extends MovingEntity {
         super(x, y, 'p');
         super.setDirection(0);
         bombs = 50;
-        dead = false;
 
         bomber_images = new Image[4][3];
         setupImage();
-        setSpeed(1);
-        setStep(getSpeed()/8);
-        setStepCount(0);    
+        setSpeed(speed);
+        setStep(getSpeed() / 8);
+        setStepCount(0);
+        setDelaytime(delaytime);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
 
     public Bomber(Bomber bomber) throws FileNotFoundException {
         super(bomber.getX(), bomber.getY(), 'p');
         bombs = 50;
-        dead = false;
 
         bomber_images = new Image[4][3];
         setupImage();
-        setSpeed(1);
-        setStep(getSpeed()/8);
+        setSpeed(speed);
+        setStep(getSpeed() / 8);
         setStepCount(0);
+        setDelaytime(delaytime);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
-
-    public Bomb placeBomb(Map map) {
-        Bomb en = new Bomb(this.getX(), this.getY());
-        if (bombs < 0) {
-            System.err.println("There are no more bombs!");
-            return en;
-        }
-        bombs = bombs - 1;
-
-        return en;
     }
 
     @Override
@@ -96,18 +82,22 @@ public class Bomber extends MovingEntity {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(bomber_images[getDirection()][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(bomber_images[getDirection()][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(bomber_images[getDirection()][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(bomber_images[getDirection()][0]);
                 break;
         }
-        setImage(bomber_images[getDirection()][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -115,18 +105,22 @@ public class Bomber extends MovingEntity {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(bomber_images[getDirection()][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(bomber_images[getDirection()][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(bomber_images[getDirection()][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(bomber_images[getDirection()][0]);
                 break;
         }
-        setImage(bomber_images[getDirection()][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -134,18 +128,22 @@ public class Bomber extends MovingEntity {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(bomber_images[getDirection()][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(bomber_images[getDirection()][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(bomber_images[getDirection()][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(bomber_images[getDirection()][0]);
                 break;
         }
-        setImage(bomber_images[getDirection()][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
@@ -153,18 +151,22 @@ public class Bomber extends MovingEntity {
         switch (super.getStepCount()) {
             case 0:
                 setStepCount(1);
+                setImage(bomber_images[getDirection()][0]);
                 break;
             case 1:
                 setStepCount(2);
+                setImage(bomber_images[getDirection()][1]);
                 break;
             case 2:
                 setStepCount(3);
+                setImage(bomber_images[getDirection()][2]);
                 break;
             case 3:
                 setStepCount(0);
+                setImage(bomber_images[getDirection()][0]);
                 break;
         }
-        setImage(bomber_images[getDirection()][getStepCount() % 2]);
+        setTimebeforeeachstep(System.currentTimeMillis());
     }
 
     @Override
