@@ -186,7 +186,7 @@ public class Game implements HandleImage {
     }
 
     public void handle() {
-        gameCanvas.setOnKeyReleased(e -> {
+        gameCanvas.setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case RIGHT:
                 case D:
@@ -195,6 +195,7 @@ public class Game implements HandleImage {
                         bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
                         bomber.setDoubleX(bomber.getDoubleX() + 1);
+                        bomber.setX((int) bomber.getDoubleX());
                         bomber.setMoving(true);
                     }
                     break;
@@ -205,6 +206,7 @@ public class Game implements HandleImage {
                         bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());
                         bomber.setDoubleY(bomber.getDoubleY() + 1);
+                        bomber.setY((int) bomber.getDoubleY());
                         bomber.setMoving(true);
                     }
                     break;
@@ -215,6 +217,7 @@ public class Game implements HandleImage {
                         bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
                         bomber.setDoubleX(bomber.getDoubleX() - 1);
+                        bomber.setX((int) bomber.getDoubleX());
                         bomber.setMoving(true);
                     }
                     break;
@@ -225,6 +228,7 @@ public class Game implements HandleImage {
                         bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());
                         bomber.setDoubleY(bomber.getDoubleY() - 1);
+                        bomber.setY((int) bomber.getDoubleY());
                         bomber.setMoving(true);
                     }
                     break;

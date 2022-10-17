@@ -238,9 +238,6 @@ public abstract class MovingEntity extends Entity {
             }
             if (oldX == getDoubleX() && oldY == getDoubleY()) {
                 setStepCount(0);
-                setX((int) doubleX);
-                setY((int) doubleY);
-
                 moving = false;
             }
         }

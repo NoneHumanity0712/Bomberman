@@ -63,7 +63,7 @@ public class Main extends Application implements HandleImage {
 
                 @Override
                 public void handle(long now) {
-                    if (now - bombermanGame.getBefore() > 1e7) {
+                    if (now - bombermanGame.getBefore() > 2e6) {
                         bombermanGame.handle();
                         bombermanGame.update();
                         bombermanGame.drawScene();

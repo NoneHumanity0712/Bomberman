@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 public class Bomber extends MovingEntity {
     private int bombs;
 
-    private final int delaytime = 25;
+    private final int delaytime = 20;
     private final int startSpeed = 1;
     private int bombRange = 1;
 

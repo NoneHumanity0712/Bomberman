@@ -89,6 +89,7 @@ public class Balloom extends Enemy {
                     setDirection(nextDirection);
                     setOldX(getDoubleX());
                     setDoubleX(getDoubleX() + 1);
+                    setX((int) getDoubleX());
                     setMoving(true);
                 }
                 break;
@@ -97,6 +98,7 @@ public class Balloom extends Enemy {
                     setDirection(nextDirection);
                     setOldY(getDoubleY());
                     setDoubleY(getDoubleY() + 1);
+                    setY((int) getDoubleY());
                     setMoving(true);
                 }
                 break;
@@ -105,6 +107,7 @@ public class Balloom extends Enemy {
                     setDirection(nextDirection);
                     setOldX(getDoubleX());
                     setDoubleX(getDoubleX() - 1);
+                    setX((int) getDoubleX());
                     setMoving(true);
                 }
                 break;
@@ -113,6 +116,7 @@ public class Balloom extends Enemy {
                     setDirection(nextDirection);
                     setOldY(getDoubleY());
                     setDoubleY(getDoubleY() - 1);
+                    setY((int) getDoubleY());
                     setMoving(true);
                 }
                 break;
