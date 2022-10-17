@@ -137,11 +137,13 @@ public class Game implements HandleImage {
             render(gameCanvas.context, bomb.getImage(), bomb.getX(), bomb.getY());
 
             for (Bomb edge : bomb.getEdges()) {
-                if (gameMap.getMap()[edge.getY()][edge.getX()] != '#') {
-                    if (gameMap.getMap()[edge.getY()][edge.getX()] == '*') {
-                        render(gameCanvas.context, bomb.tempBrickImage, edge.getX(), edge.getY());
+                if (edge != null) {
+                    if (gameMap.getMap()[edge.getY()][edge.getX()] != '#') {
+                        if (gameMap.getMap()[edge.getY()][edge.getX()] == '*') {
+                            render(gameCanvas.context, bomb.tempBrickImage, edge.getX(), edge.getY());
+                        }
+                        render(gameCanvas.context, edge.getImage(), edge.getX(), edge.getY());
                     }
-                    render(gameCanvas.context, edge.getImage(), edge.getX(), edge.getY());
                 }
             }
 
@@ -204,7 +206,7 @@ public class Game implements HandleImage {
 
         List<Item> toRemoveItems = new ArrayList<>();
         for (Item item : gameMap.getItems()) {
-            if (bomber.getX() == item.getX() && bomber.getY() == item.getY()){
+            if (bomber.getX() == item.getX() && bomber.getY() == item.getY()) {
                 item.beingReceived(bomber);
             }
 
@@ -277,12 +279,11 @@ public class Game implements HandleImage {
             }
         });
         for (Enemy enemy : gameMap.getEnemy()) {
-            if (enemy instanceof Balloom) {
-                long now = System.currentTimeMillis();
-                if (now - ((Balloom) enemy).getTimeBefore() > 2000) {
-                    ((Balloom) enemy).MOVE(gameMap);
+            long now = System.currentTimeMillis();
+                if (now - enemy.getTimeBefore() > 2000) {
+                    enemy.MOVE(gameMap);
                 }
-            }
+            
         }
         before = System.nanoTime();
     }

@@ -3,6 +3,7 @@ package uet.oop.entities.movingentities;
 import java.io.FileNotFoundException;
 
 import javafx.scene.canvas.GraphicsContext;
+import uet.oop.entities.Bomb;
 import uet.oop.entities.Entity;
 import uet.oop.gameprocess.Map;
 
@@ -161,6 +162,11 @@ public abstract class MovingEntity extends Entity {
     public boolean legal_move(Map map, int y, int x) {
         if (y >= 0 && y < map.getRow() && x >= 0 && x < map.getColumn()) {
             if (map.getMap()[y][x] == ' ') {
+                
+                for (Bomb bomb : map.getBombs()) {
+                    if (x == bomb.getX() && y == bomb.getY()) return false;
+                }
+
                 return true;
             }
         }

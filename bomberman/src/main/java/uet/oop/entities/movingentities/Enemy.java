@@ -1,6 +1,10 @@
 package uet.oop.entities.movingentities;
 
-public class Enemy extends MovingEntity {
+import uet.oop.gameprocess.Map;
+
+public abstract class Enemy extends MovingEntity {
+    private long timeBefore; //time before each move
+
     public Enemy(){
         super();
     };
@@ -20,6 +24,16 @@ public class Enemy extends MovingEntity {
         super.setDirection(enemy.getDirection());
 
     }
+    
+    public void setTimeBefore(long timeBefore) {
+        this.timeBefore = timeBefore;
+    }
+
+    public long getTimeBefore() {
+        return timeBefore;
+    }
+
+    abstract public void MOVE(Map map);
 
     @Override
     public void STEP_RIGHT() {

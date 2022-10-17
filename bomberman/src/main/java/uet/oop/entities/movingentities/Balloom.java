@@ -8,18 +8,8 @@ import uet.oop.gameprocess.Map;
 
 public class Balloom extends Enemy {
 
-    private long timeBefore; //time before each move
-
     Image[][] balloom_images;
     Image balloom_dead;
-
-    public void setTimeBefore(long timeBefore) {
-        this.timeBefore = timeBefore;
-    }
-
-    public long getTimeBefore() {
-        return timeBefore;
-    }
 
     @Override
     public void setupImage() throws FileNotFoundException {
@@ -124,7 +114,7 @@ public class Balloom extends Enemy {
                 break;
         }
 
-        timeBefore = System.currentTimeMillis();
+        setTimeBefore(System.currentTimeMillis());
         setTimebeforeeachstep(System.currentTimeMillis());
     }
 
