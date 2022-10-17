@@ -8,7 +8,8 @@ public class Bomber extends MovingEntity {
     private int bombs;
 
     private final int delaytime = 25;
-    private final int speed = 1;
+    private final int startSpeed = 1;
+    private int bombRange = 1;
 
     private Image[] bomber_dead;
     private Image[][] bomber_images;
@@ -36,6 +37,14 @@ public class Bomber extends MovingEntity {
         this.bombs = bombs;
     }
 
+    public void setBombRange(int bombRange) {
+        this.bombRange = bombRange;
+    }
+
+    public int getBombRange() {
+        return bombRange;
+    }
+
     public Bomber() throws FileNotFoundException {
         super(1, 1, 'p');
         super.setDirection(0);
@@ -43,7 +52,7 @@ public class Bomber extends MovingEntity {
 
         bomber_images = new Image[4][3];
         setupImage();
-        setSpeed(speed);
+        setSpeed(startSpeed);
         setStep(getSpeed() / 8);
         setStepCount(0);
         setDelaytime(delaytime);
@@ -57,7 +66,7 @@ public class Bomber extends MovingEntity {
 
         bomber_images = new Image[4][3];
         setupImage();
-        setSpeed(speed);
+        setSpeed(startSpeed);
         setStep(getSpeed() / 8);
         setStepCount(0);
         setDelaytime(delaytime);
@@ -70,7 +79,7 @@ public class Bomber extends MovingEntity {
 
         bomber_images = new Image[4][3];
         setupImage();
-        setSpeed(speed);
+        setSpeed(startSpeed);
         setStep(getSpeed() / 8);
         setStepCount(0);
         setDelaytime(delaytime);

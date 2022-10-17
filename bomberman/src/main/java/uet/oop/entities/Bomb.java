@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.Enemy;
 import uet.oop.gameprocess.Map;
@@ -51,7 +52,7 @@ public class Bomb extends Entity {
 
         place = true;
         explode = false;
-        range = 1;
+        range = bomber.getBombRange();
 
         placedState = 0;
 
@@ -282,7 +283,7 @@ public class Bomb extends Entity {
 
             for (Enemy enemy : map.getEnemy()) {
                 if (x == (int) enemy.getOldX() && y == (int) enemy.getOldY()) {
-                    enemy.setAlive(false);
+                    enemy.DEAD();
                 }
             }
 
@@ -292,6 +293,12 @@ public class Bomb extends Entity {
                     bomb.setPlace(false);
                     bomb.setupEdge();
                     bomb.setTime_since_exploded(System.currentTimeMillis());
+                }
+            }
+
+            for (Item item : map.getItems()){
+                if (x == item.getX() && y == item.getY()){
+                    item.APPEAR();
                 }
             }
         }

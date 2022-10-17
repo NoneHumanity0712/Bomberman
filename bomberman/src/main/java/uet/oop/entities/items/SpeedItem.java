@@ -8,10 +8,11 @@ import uet.oop.entities.movingentities.Bomber;
 public class SpeedItem extends Item{
 
     Image speedItemImage;
-    private final int speed_to_increase = 1;
+    private final double speed_to_increase = 0.5;
 
-    public SpeedItem(int x, int y) {
+    public SpeedItem(int x, int y) throws FileNotFoundException {
         super(x, y, 's');
+        setupImage();
     }
 
     @Override

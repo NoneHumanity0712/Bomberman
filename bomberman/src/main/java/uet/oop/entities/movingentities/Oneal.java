@@ -67,7 +67,11 @@ public class Oneal extends Enemy{
 
     @Override
     public void DEAD() {
-        
+        setAlive(false);
+
+        setImage(oneal_dead);
+
+        setTimesincedead(System.currentTimeMillis());
     }
 
     @Override
