@@ -11,9 +11,9 @@ Task list:
 - [x] Create portal, make portal appears when the brick is exploded
 - [x] Create speed item
 - [x] Create enemy Oneal
+- [x] Create flame item
 - [ ] Make Bomber die when being bomb, meet enemies,...
 - [ ] Add sound effects
-- [ ] Create flame item
 - [ ] Create bomb item
 - [ ] Add new level
 - [ ] Move to new level when go through portal 
