@@ -178,8 +178,19 @@ public class Game implements HandleImage {
         }
     };
 
-    public void update() {
+    public void update() throws FileNotFoundException {
+
         bomber.update(gameMap);
+
+        if (!bomber.isAlive()) {
+            if (System.currentTimeMillis() - bomber.getTimesincedead() > 1000) {
+                bomber = new Bomber(1, 1);
+                gameMap.setBomber(bomber);
+            } else {
+                if (System.currentTimeMillis() - bomber.getDeadBeforeTime() > 250)
+                    bomber.DEAD();
+            }
+        }
 
         List<Enemy> toRemoveEnemies = new ArrayList<>();
         for (Enemy enemy : gameMap.getEnemy()) {
@@ -280,10 +291,10 @@ public class Game implements HandleImage {
         });
         for (Enemy enemy : gameMap.getEnemy()) {
             long now = System.currentTimeMillis();
-                if (now - enemy.getTimeBefore() > 2000) {
-                    enemy.MOVE(gameMap);
-                }
-            
+            if (now - enemy.getTimeBefore() > 2000) {
+                enemy.MOVE(gameMap);
+            }
+
         }
         before = System.nanoTime();
     }

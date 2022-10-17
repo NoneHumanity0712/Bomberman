@@ -247,6 +247,17 @@ public abstract class MovingEntity extends Entity {
                 moving = false;
             }
         }
+
+        if (this instanceof Bomber && this.isAlive()){
+            for (Enemy enemy : map.getEnemy()) {
+                if (this.getOldX() == enemy.getOldX() && this.getOldY() == enemy.getOldY()
+                || this.getOldX() == enemy.getDoubleX() && this.getOldY() == enemy.getDoubleY()
+                || this.getDoubleX() == enemy.getOldX() && this.getDoubleY() == enemy.getOldY()) {
+                    this.setAlive(false);
+                    this.setTimesincedead(System.currentTimeMillis());
+                }
+            }
+        }
     }
 
     @Override

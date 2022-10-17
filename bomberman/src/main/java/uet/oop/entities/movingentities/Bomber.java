@@ -15,6 +15,7 @@ public class Bomber extends MovingEntity {
     private Image[][] bomber_images;
 
     private int deadState;
+    private long deadBeforeTime;
 
     @Override
     public void setupImage() throws FileNotFoundException {
@@ -55,6 +56,10 @@ public class Bomber extends MovingEntity {
         return deadState;
     }
 
+    public long getDeadBeforeTime() {
+        return deadBeforeTime;
+    }
+
     public Bomber() throws FileNotFoundException {
         super(1, 1, 'p');
         super.setDirection(0);
@@ -65,6 +70,7 @@ public class Bomber extends MovingEntity {
         setSpeed(startSpeed);
         setStep(getSpeed() / 8);
         setStepCount(0);
+        setDeadState(0);
         setDelaytime(delaytime);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
@@ -79,6 +85,7 @@ public class Bomber extends MovingEntity {
         setSpeed(startSpeed);
         setStep(getSpeed() / 8);
         setStepCount(0);
+        setDeadState(0);
         setDelaytime(delaytime);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
@@ -91,6 +98,7 @@ public class Bomber extends MovingEntity {
         setupImage();
         setSpeed(startSpeed);
         setStep(getSpeed() / 8);
+        setDeadState(0);
         setStepCount(0);
         setDelaytime(delaytime);
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
@@ -190,7 +198,24 @@ public class Bomber extends MovingEntity {
 
     @Override
     public void DEAD() {
-
+        switch (getDeadState()) {
+            case 0:
+                setDeadState(1);
+                setImage(bomber_dead[0]);
+                break;
+            case 1:
+                setDeadState(2);
+                setImage(bomber_dead[1]);
+                break;
+            case 2:
+                setDeadState(3);
+                setImage(bomber_dead[2]);
+                break;
+            case 3:
+                setImage(null);
+                break;
+        }
+        deadBeforeTime = System.currentTimeMillis();
     }
 
 }

@@ -441,6 +441,7 @@ public class Bomb extends Entity {
         if (x == (int) map.getBomber().getOldX() && y == (int) map.getBomber().getOldY()
             || x == (int) map.getBomber().getDoubleX() && y == (int) map.getBomber().getDoubleY()) {
             map.getBomber().setAlive(false);
+            map.getBomber().setTimesincedead(System.currentTimeMillis());
         }
 
         for (Enemy enemy : map.getEnemy()) {

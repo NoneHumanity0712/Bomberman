@@ -65,6 +65,10 @@ public class Map {
         this.column = column;
     }
 
+    public void setBomber(Bomber bomber) {
+        this.bomber = bomber;
+    }
+
     public Bomber getBomber() {
         return bomber;
     }
