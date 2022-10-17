@@ -12,9 +12,9 @@ Task list:
 - [x] Create speed item
 - [x] Create enemy Oneal
 - [x] Create flame item
-- [ ] Make Bomber die when being bomb, meet enemies,...
+- [x] Make Bomber die when being bomb, meet enemies,...
+- [x] Make algorithm for Oneal to find Bomber (kinda)
 - [ ] Add sound effects
 - [ ] Create bomb item
 - [ ] Add new level
 - [ ] Move to new level when go through portal 
-- [ ] Make algorithm for Oneal to find Bomber
