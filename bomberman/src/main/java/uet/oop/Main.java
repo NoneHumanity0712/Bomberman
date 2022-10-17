@@ -65,7 +65,12 @@ public class Main extends Application implements HandleImage {
                 public void handle(long now) {
                     if (now - bombermanGame.getBefore() > 2e6) {
                         bombermanGame.handle();
-                        bombermanGame.update();
+                        try {
+                            bombermanGame.update();
+                        } catch (FileNotFoundException e) {
+
+                            e.printStackTrace();
+                        }
                         bombermanGame.drawScene();
                     }
                 }
