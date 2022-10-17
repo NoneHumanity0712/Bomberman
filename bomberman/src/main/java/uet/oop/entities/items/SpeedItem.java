@@ -23,6 +23,7 @@ public class SpeedItem extends Item{
     @Override
     public void beingReceived(Bomber bomber) {
         bomber.setSpeed(bomber.getSpeed() + speed_to_increase);
+        setReceived(true);
     }
 
     @Override

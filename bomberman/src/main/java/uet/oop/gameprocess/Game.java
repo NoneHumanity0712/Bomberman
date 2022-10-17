@@ -144,6 +144,22 @@ public class Game implements HandleImage {
                     render(gameCanvas.context, edge.getImage(), edge.getX(), edge.getY());
                 }
             }
+
+            for (Bomb flame : bomb.getRightFlames()) {
+                render(gameCanvas.context, flame.getImage(), flame.getX(), flame.getY());
+            }
+
+            for (Bomb flame : bomb.getDownFlames()) {
+                render(gameCanvas.context, flame.getImage(), flame.getX(), flame.getY());
+            }
+
+            for (Bomb flame : bomb.getLeftFlames()) {
+                render(gameCanvas.context, flame.getImage(), flame.getX(), flame.getY());
+            }
+
+            for (Bomb flame : bomb.getUpFlames()) {
+                render(gameCanvas.context, flame.getImage(), flame.getX(), flame.getY());
+            }
         }
     }
 
@@ -162,10 +178,12 @@ public class Game implements HandleImage {
 
     public void update() {
         bomber.update(gameMap);
+
         List<Enemy> toRemoveEnemies = new ArrayList<>();
         for (Enemy enemy : gameMap.getEnemy()) {
 
             enemy.update(gameMap);
+
             if (!enemy.isAlive()) {
                 if (System.currentTimeMillis() - enemy.getTimesincedead() > 100) {
                     toRemoveEnemies.add(enemy);
@@ -183,6 +201,18 @@ public class Game implements HandleImage {
             }
         }
         gameMap.getBombs().removeAll(toRemoveBombs);
+
+        List<Item> toRemoveItems = new ArrayList<>();
+        for (Item item : gameMap.getItems()) {
+            if (bomber.getX() == item.getX() && bomber.getY() == item.getY()){
+                item.beingReceived(bomber);
+            }
+
+            if (item.isReceived()) {
+                toRemoveItems.add(item);
+            }
+        }
+        gameMap.getItems().removeAll(toRemoveItems);
     }
 
     public void handle() {

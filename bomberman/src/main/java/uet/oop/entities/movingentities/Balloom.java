@@ -222,8 +222,6 @@ public class Balloom extends Enemy {
 
     @Override
     public void DEAD() {
-        setAlive(false);
-
         setImage(balloom_dead);
         
         setTimesincedead(System.currentTimeMillis());

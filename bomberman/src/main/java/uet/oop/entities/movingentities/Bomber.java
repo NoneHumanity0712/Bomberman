@@ -14,6 +14,8 @@ public class Bomber extends MovingEntity {
     private Image[] bomber_dead;
     private Image[][] bomber_images;
 
+    private int deadState;
+
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
@@ -43,6 +45,14 @@ public class Bomber extends MovingEntity {
 
     public int getBombRange() {
         return bombRange;
+    }
+
+    public void setDeadState(int deadState) {
+        this.deadState = deadState;
+    }
+
+    public int getDeadState() {
+        return deadState;
     }
 
     public Bomber() throws FileNotFoundException {

@@ -27,6 +27,7 @@ public class FlameItem extends Item{
     @Override
     public void beingReceived(Bomber bomber) {
         bomber.setBombRange(bomber.getBombRange() + range_to_increase);
+        setReceived(true);
     }
 
     @Override
