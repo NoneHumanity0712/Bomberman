@@ -4,11 +4,16 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.standard.MediaSize.JIS;
+
 import uet.oop.entities.Bomb;
-import uet.oop.entities.Portal;
+import uet.oop.entities.items.Item;
+import uet.oop.entities.items.Portal;
+import uet.oop.entities.items.SpeedItem;
 import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.Enemy;
+import uet.oop.entities.movingentities.Oneal;
 
 public class Map {
     private int row;
@@ -18,6 +23,8 @@ public class Map {
     private Bomber bomber;
     private List<Enemy> enemies;
     private List<Bomb> bombs;
+    private List<Item> items;
+
     private Portal portal;
 
     public Map() throws FileNotFoundException {
@@ -73,22 +80,35 @@ public class Map {
         return bombs;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public void setMap(char[][] map) throws FileNotFoundException {
         this.map = new char[this.row][this.column];
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.column; j++) {
-                if (map[i][j] == 'x') {
+                if (map[i][j] == 'x') { //portal
                     this.portal.setY(i);
                     this.portal.setX(j);
                     this.map[i][j] = '*';
-                } else if (map[i][j] == 'p') {
+                } else if (map[i][j] == 'p') { //bomber
                     this.bomber = new Bomber(j, i);
                     this.map[i][j] = ' ';
-                } else if (map[i][j] == '1') {
+                } else if (map[i][j] == '1') { //balloom
                     Balloom balloom = new Balloom(j, i);
                     enemies.add(balloom);
                     this.map[i][j] = ' ';
-                } else {
+                } else if (map[i][j] == '2'){ //oneal
+                    Oneal oneal = new Oneal(j, i);
+                    enemies.add(oneal);
+                    this.map[i][j] = ' ';
+                } else if (map[i][j] == 's'){
+                    SpeedItem speedItem = new SpeedItem(j, i);
+                    items.add(speedItem);
+                    this.map[i][j] = '*';
+                }
+                else {
                     this.map[i][j] = map[i][j];
                 }
             }

@@ -58,40 +58,35 @@ public class Oneal extends Enemy{
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
             oneal_images[0][i] = getImage("sprites/oneal_right" + i + ".png");
+            oneal_images[1][i] = getImage("sprites/oneal_left" + i + ".png");
         }
+
+        oneal_dead = getImage("sprites/oneal_dead.png");
     }
     
 
     @Override
     public void DEAD() {
-        // TODO Auto-generated method stub
-        super.DEAD();
+        
     }
 
     @Override
     public void MOVE_DOWN() {
-        // TODO Auto-generated method stub
-        super.MOVE_DOWN();
+        
     }
 
     @Override
     public void MOVE_LEFT() {
-        // TODO Auto-generated method stub
-        super.MOVE_LEFT();
+        
     }
 
     @Override
     public void MOVE_RIGHT() {
-        // TODO Auto-generated method stub
-        super.MOVE_RIGHT();
+        
     }
 
     @Override
     public void MOVE_UP() {
-        // TODO Auto-generated method stub
-        super.MOVE_UP();
+        
     }
-
-    
-    
 }
