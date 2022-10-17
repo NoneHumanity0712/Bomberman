@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import uet.oop.entities.Bomb;
+import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.Enemy;
@@ -110,12 +111,20 @@ public class Game implements HandleImage {
         }
     };
 
-    public void drawMovingEntities() {
+    public void drawItem() {
         if (!gameMap.getPortal().isHide()) {
             render(gameCanvas.context, gameMap.getPortal().getImage(), gameMap.getPortal().getX(),
                     gameMap.getPortal().getY());
         }
 
+        for (Item item : gameMap.getItems()) {
+            if (!item.isHide()) {
+                render(gameCanvas.context, item.getImage(), item.getX(), item.getY());
+            }
+        }
+    }
+
+    public void drawMovingEntities() {
         render(gameCanvas.context, bomber.getImage(), bomber.getOldX(), bomber.getOldY());
 
         for (Enemy enemy : gameMap.getEnemy()) {
@@ -140,9 +149,12 @@ public class Game implements HandleImage {
 
     public void drawScene() {
         gameCanvas.context.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+
         drawBackground();
         drawMap();
+        drawItem();
         drawMovingEntities();
+
         if (!gameMap.getBombs().isEmpty()) {
             drawBomb();
         }
@@ -153,11 +165,9 @@ public class Game implements HandleImage {
         List<Enemy> toRemoveEnemies = new ArrayList<>();
         for (Enemy enemy : gameMap.getEnemy()) {
 
-            if (enemy instanceof Balloom) {
-                enemy.update(gameMap);
-            }
+            enemy.update(gameMap);
             if (!enemy.isAlive()) {
-                if (System.currentTimeMillis() - enemy.getTimesincedead() > 1000) {
+                if (System.currentTimeMillis() - enemy.getTimesincedead() > 100) {
                     toRemoveEnemies.add(enemy);
                 }
             }
@@ -176,7 +186,7 @@ public class Game implements HandleImage {
     }
 
     public void handle() {
-        gameCanvas.setOnKeyPressed(e -> {
+        gameCanvas.setOnKeyReleased(e -> {
             switch (e.getCode()) {
                 case RIGHT:
                 case D:

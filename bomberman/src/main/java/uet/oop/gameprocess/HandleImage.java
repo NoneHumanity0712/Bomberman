@@ -61,7 +61,8 @@ public interface HandleImage {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, x*image.getWidth() * Entity.SCALE, y*image.getHeight() * Entity.SCALE, image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
+            context.drawImage(image, x * image.getWidth() * Entity.SCALE, y * image.getHeight() * Entity.SCALE,
+                    image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 
         context.restore();
@@ -71,7 +72,8 @@ public interface HandleImage {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, x*image.getWidth() * Entity.SCALE, y*image.getHeight() * Entity.SCALE, image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
+            context.drawImage(image, x * image.getWidth() * Entity.SCALE, y * image.getHeight() * Entity.SCALE,
+                    image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 
         context.restore();

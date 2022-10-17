@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.print.attribute.standard.MediaSize.JIS;
-
 import uet.oop.entities.Bomb;
+import uet.oop.entities.items.FlameItem;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.items.Portal;
 import uet.oop.entities.items.SpeedItem;
@@ -35,6 +34,7 @@ public class Map {
         this.portal = new Portal();
         this.bombs = new ArrayList<Bomb>();
         this.enemies = new ArrayList<Enemy>();
+        this.items = new ArrayList<Item>();
     };
 
     public Map(Map m) throws FileNotFoundException {
@@ -46,6 +46,7 @@ public class Map {
         this.portal = new Portal(m.portal);
         this.bombs = new ArrayList<>(m.getBombs());
         this.enemies = new ArrayList<Enemy>(m.getEnemy());
+        this.items = new ArrayList<>(m.getItems());
     }
 
     public void setRow(int row) {
@@ -106,6 +107,10 @@ public class Map {
                 } else if (map[i][j] == 's'){
                     SpeedItem speedItem = new SpeedItem(j, i);
                     items.add(speedItem);
+                    this.map[i][j] = '*';
+                } else if (map[i][j] == 'f'){
+                    FlameItem flameItem = new FlameItem(j, i);
+                    items.add(flameItem);
                     this.map[i][j] = '*';
                 }
                 else {
