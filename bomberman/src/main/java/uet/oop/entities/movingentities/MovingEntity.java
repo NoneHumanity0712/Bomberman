@@ -30,6 +30,16 @@ public abstract class MovingEntity extends Entity {
     private long timesincedead;
     private long timeBefore; //time before each move
 
+    private int deadState;
+    private long deadBeforeTime;
+
+    public long getDeadBeforeTime() {
+        return deadBeforeTime;
+    }
+
+    public void setDeadBeforeTime(long deadBeforeTime) {
+        this.deadBeforeTime = deadBeforeTime;
+    }
 
     public void setOldX(double oldX) {
         this.oldX = oldX;
@@ -133,6 +143,14 @@ public abstract class MovingEntity extends Entity {
 
     public void setTimeBefore(long timeBefore) {
         this.timeBefore = timeBefore;
+    }
+
+    public void setDeadState(int deadState) {
+        this.deadState = deadState;
+    }
+
+    public int getDeadState() {
+        return deadState;
     }
 
     public MovingEntity() {
@@ -260,10 +278,12 @@ public abstract class MovingEntity extends Entity {
 
         if (this instanceof Bomber && this.isAlive()){
             for (Enemy enemy : map.getEnemy()) {
-                if (this.getOldX() > Math.floor(enemy.getOldX()) && this.getOldX() <= Math.ceil(this.getOldX())
-                    && this.getOldY() > Math.floor(enemy.getOldY()) && this.getOldY() <= Math.ceil(this.getOldY())) {
+                if (this.getOldX() > Math.floor(enemy.getOldX()) && this.getOldX() <= Math.ceil(enemy.getOldX())
+                    && this.getOldY() > Math.floor(enemy.getOldY()) && this.getOldY() <= Math.ceil(enemy.getOldY())) {
+
                     this.setAlive(false);
                     this.setTimesincedead(System.currentTimeMillis());
+
                     System.out.println(this.getOldX() + " " + this.getOldY() +
                     " " + enemy.getOldX() + " " + enemy.getOldY());
                 }

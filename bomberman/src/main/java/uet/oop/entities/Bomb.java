@@ -331,21 +331,13 @@ public class Bomb extends Entity {
                             edges[i].setImage(edge_images[i][1]);
                     }
 
-                    for (Bomb rightFlame : rightFlames) {
-                        rightFlame.setImage(flame_images[0][1]);
-                    }
+                    rightFlames.forEach(rightFlame -> rightFlame.setImage(flame_images[0][1]));
 
-                    for (Bomb leftFlame : leftFlames) {
-                        leftFlame.setImage(flame_images[0][1]);
-                    }
+                    leftFlames.forEach(leftFlame -> leftFlame.setImage(flame_images[0][1]));
 
-                    for (Bomb upFlame : upFlames) {
-                        upFlame.setImage(flame_images[1][1]);
-                    }
+                    upFlames.forEach(upFlame -> upFlame.setImage(flame_images[1][1]));
 
-                    for (Bomb downFlame : downFlames) {
-                        downFlame.setImage(flame_images[1][1]);
-                    }
+                    downFlames.forEach(downFlame -> downFlame.setImage(flame_images[1][1]));
                 }
                 break;
             case 2:
@@ -361,21 +353,14 @@ public class Bomb extends Entity {
                             edges[i].setImage(edge_images[i][2]);
                     }
 
-                    for (Bomb rightFlame : rightFlames) {
-                        rightFlame.setImage(flame_images[0][2]);
-                    }
+                    rightFlames.forEach(rightFlame -> rightFlame.setImage(flame_images[0][2]));
 
-                    for (Bomb leftFlame : leftFlames) {
-                        leftFlame.setImage(flame_images[0][2]);
-                    }
+                    leftFlames.forEach(leftFlame -> leftFlame.setImage(flame_images[0][2]));
 
-                    for (Bomb upFlame : upFlames) {
-                        upFlame.setImage(flame_images[1][2]);
-                    }
+                    upFlames.forEach(upFlame -> upFlame.setImage(flame_images[1][2]));
 
-                    for (Bomb downFlame : downFlames) {
-                        downFlame.setImage(flame_images[1][2]);
-                    }
+                    downFlames.forEach(downFlame -> downFlame.setImage(flame_images[1][2]));
+
                 }
                 break;
             case 3:
@@ -391,21 +376,15 @@ public class Bomb extends Entity {
                             edges[i].setImage(edge_images[i][0]);
                     }
 
-                    for (Bomb rightFlame : rightFlames) {
-                        rightFlame.setImage(flame_images[0][0]);
-                    }
+                    rightFlames.forEach(rightFlame -> rightFlame.setImage(flame_images[0][0]));
 
-                    for (Bomb leftFlame : leftFlames) {
-                        leftFlame.setImage(flame_images[0][0]);
-                    }
+                    leftFlames.forEach(leftFlame -> leftFlame.setImage(flame_images[0][0]));
 
-                    for (Bomb upFlame : upFlames) {
-                        upFlame.setImage(flame_images[1][0]);
-                    }
+                    upFlames.forEach(upFlame -> upFlame.setImage(flame_images[1][0]));
 
-                    for (Bomb downFlame : downFlames) {
-                        downFlame.setImage(flame_images[1][0]);
-                    }
+                    downFlames.forEach(downFlame -> downFlame.setImage(flame_images[1][0]));
+
+                    
                 }
                 break;
         }
@@ -457,7 +436,7 @@ public class Bomb extends Entity {
             if (((double) x == enemy.getOldX() && (double) y == enemy.getOldY())
                     || (x == Math.ceil(enemy.getOldX()) && y == Math.ceil(enemy.getOldY()))) {
                 enemy.setAlive(false);
-                enemy.DEAD();
+                enemy.setTimesincedead(System.currentTimeMillis());
 
                 System.out.println("Bomb: " + this.getX() + ", " + this.getY() + "; Enemy: "
                         + enemy.getOldX() + ", "

@@ -182,11 +182,11 @@ public class Game implements HandleImage {
         bomber.update(gameMap);
 
         if (!bomber.isAlive()) {
-            if (System.currentTimeMillis() - bomber.getTimesincedead() > 1000) {
+            if (System.currentTimeMillis() - bomber.getTimesincedead() > 400) {
                 bomber = new Bomber(1, 1);
                 gameMap.setBomber(bomber);
             } else {
-                if (System.currentTimeMillis() - bomber.getDeadBeforeTime() > 250)
+                if (System.currentTimeMillis() - bomber.getDeadBeforeTime() > 100)
                     bomber.DEAD();
             }
         }
@@ -197,8 +197,11 @@ public class Game implements HandleImage {
             enemy.update(gameMap);
 
             if (!enemy.isAlive()) {
-                if (System.currentTimeMillis() - enemy.getTimesincedead() > 250) {
+                if (System.currentTimeMillis() - enemy.getTimesincedead() > 400) {
                     toRemoveEnemies.add(enemy);
+                } else {
+                    if (System.currentTimeMillis() - enemy.getDeadBeforeTime() > 100)
+                        enemy.DEAD();
                 }
             }
         }
@@ -242,6 +245,7 @@ public class Game implements HandleImage {
                             bomber.setMoving(true);
 
                             bomber.setTimeBefore(System.currentTimeMillis());
+                            System.out.println("Go Right");
                         }
                         break;
                     case DOWN:
@@ -255,6 +259,7 @@ public class Game implements HandleImage {
                             bomber.setMoving(true);
 
                             bomber.setTimeBefore(System.currentTimeMillis());
+                            System.out.println("Go Down");
                         }
                         break;
                     case LEFT:
@@ -268,6 +273,7 @@ public class Game implements HandleImage {
                             bomber.setMoving(true);
 
                             bomber.setTimeBefore(System.currentTimeMillis());
+                            System.out.println("Go Left");
                         }
                         break;
                     case UP:
@@ -281,16 +287,21 @@ public class Game implements HandleImage {
                             bomber.setMoving(true);
 
                             bomber.setTimeBefore(System.currentTimeMillis());
+                            System.out.println("Go Up");
                         }
                         break;
 
                     case ESCAPE:
                         QuitGame = true;
+                        System.out.println("Quit Game");
                         break;
+
                     case SPACE:
                         if (bomber.getBombs() > 0) {
                             Bomb bomb = new Bomb(bomber);
                             gameMap.getBombs().add(bomb);
+
+                            System.out.println("Place Bomb. Bombs remain: " + bomber.getBombs());
                         }
                         break;
                     default:

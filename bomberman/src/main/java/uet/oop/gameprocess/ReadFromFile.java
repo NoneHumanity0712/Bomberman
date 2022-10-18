@@ -1,5 +1,7 @@
 package uet.oop.gameprocess;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ReadFromFile {
@@ -40,18 +42,24 @@ public class ReadFromFile {
         return map_read;
     }
 
-    public void readFile(Scanner myReader) {
-        this.setLevel_read(myReader.nextInt());
-        this.setRow_read(myReader.nextInt());
-        this.setColumn_read(myReader.nextInt());
-        myReader.nextLine();
-        char[][] temp = new char[this.getRow_read()][this.getColumn_read()];
-        for (int i = 0; i < this.getRow_read(); i++) {
-            String s = myReader.nextLine();
-            for (int j = 0; j < s.length(); j++) {
-                temp[i][j] = s.charAt(j);
+    public void readFile(File input) throws FileNotFoundException {
+        Scanner myReader = new Scanner(input);
+
+        if (myReader.hasNext()) {
+            this.setLevel_read(myReader.nextInt());
+            this.setRow_read(myReader.nextInt());
+            this.setColumn_read(myReader.nextInt());
+            myReader.nextLine();
+            char[][] temp = new char[this.getRow_read()][this.getColumn_read()];
+            for (int i = 0; i < this.getRow_read(); i++) {
+                String s = myReader.nextLine();
+                for (int j = 0; j < s.length(); j++) {
+                    temp[i][j] = s.charAt(j);
+                }
             }
+            this.setMap_read(temp);
         }
-        this.setMap_read(temp);
+        
+        myReader.close();
     }
 }

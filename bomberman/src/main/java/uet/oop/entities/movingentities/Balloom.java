@@ -8,15 +8,20 @@ import uet.oop.gameprocess.Map;
 
 public class Balloom extends Enemy {
 
-    Image[][] balloom_images;
+    Image[][] balloom_images = new Image[2][3];
     Image balloom_dead;
 
     @Override
     public void setupImage() throws FileNotFoundException {
+        super.setupImage();
+
         for (int i = 0; i < 3; i++) {
+
             balloom_images[0][i] = getImage("sprites/balloom_right" + i + ".png");
+
             balloom_images[1][i] = getImage("sprites/balloom_left" + i + ".png");
         }
+
         balloom_dead = getImage("sprites/balloom_dead.png");
     }
 
@@ -24,14 +29,14 @@ public class Balloom extends Enemy {
         super();
         super.setType('1');
         super.setDirection(0);
-        
+
         setDelaytime(150);
         setSpeed(0.5);
         setStep(getSpeed() / 8);
 
-        balloom_images = new Image[2][3];
         setupImage();
         setImage(balloom_images[0][getStepCount() % 2]);
+        super.enemy_dead[0] = balloom_dead;
     }
 
     public Balloom(Balloom balloom) throws FileNotFoundException {
@@ -44,9 +49,9 @@ public class Balloom extends Enemy {
         setStep(getSpeed() / 8);
         setStepCount(0);
 
-        balloom_images = new Image[2][3];
         setupImage();
         setImage(balloom_images[0][getStepCount() % 2]);
+        super.enemy_dead[0] = balloom_dead;
     }
 
     public Balloom(int x, int y) throws FileNotFoundException {
@@ -58,10 +63,9 @@ public class Balloom extends Enemy {
         setStep(getSpeed() / 8);
         setStepCount(0);
 
-        balloom_images = new Image[2][3];
         setupImage();
         setImage(balloom_images[0][getStepCount() % 2]);
-
+        super.enemy_dead[0] = balloom_dead;
     }
 
     public void MOVE(Map map) {
@@ -207,12 +211,5 @@ public class Balloom extends Enemy {
                 break;
         }
         setTimebeforeeachstep(System.currentTimeMillis());
-    }
-
-    @Override
-    public void DEAD() {
-        setImage(balloom_dead);
-        
-        setTimesincedead(System.currentTimeMillis());
     }
 }
