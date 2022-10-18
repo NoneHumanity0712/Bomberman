@@ -17,12 +17,12 @@ public class Balloom extends Enemy {
 
         for (int i = 0; i < 3; i++) {
 
-            balloom_images[0][i] = getImage("sprites/balloom_right" + i + ".png");
+            balloom_images[0][i] = getImage("balloom_right" + i + ".png");
 
-            balloom_images[1][i] = getImage("sprites/balloom_left" + i + ".png");
+            balloom_images[1][i] = getImage("balloom_left" + i + ".png");
         }
 
-        balloom_dead = getImage("sprites/balloom_dead.png");
+        balloom_dead = getImage("balloom_dead.png");
     }
 
     public Balloom() throws FileNotFoundException {

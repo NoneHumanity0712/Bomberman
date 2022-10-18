@@ -59,6 +59,6 @@ public class Portal extends Entity{
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        portalImage = getImage("sprites/portal.png");
+        portalImage = getImage("portal.png");
     }
 }

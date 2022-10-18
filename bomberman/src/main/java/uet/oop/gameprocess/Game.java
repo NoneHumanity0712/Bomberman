@@ -41,9 +41,9 @@ public class Game implements HandleImage {
         GameOver = false;
         QuitGame = false;
 
-        setGrassImage(getImage("sprites/grass.png"));
-        setBrickImage(getImage("sprites/brick.png"));
-        setWallImage(getImage("sprites/wall.png"));
+        setGrassImage(getImage("grass.png"));
+        setBrickImage(getImage("brick.png"));
+        setWallImage(getImage("wall.png"));
     }
 
     public void setBrickImage(Image brickImage) {

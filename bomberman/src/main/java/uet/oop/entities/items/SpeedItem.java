@@ -17,7 +17,7 @@ public class SpeedItem extends Item{
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        speedItemImage = getImage("sprites/powerup_speed.png");
+        speedItemImage = getImage("powerup_speed.png");
     }
 
     @Override

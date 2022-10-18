@@ -17,15 +17,15 @@ public class Bomber extends MovingEntity {
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
-            bomber_images[0][i] = getImage("sprites/player_right_" + String.valueOf(i) + ".png");
-            bomber_images[1][i] = getImage("sprites/player_down_" + String.valueOf(i) + ".png");
-            bomber_images[2][i] = getImage("sprites/player_left_" + String.valueOf(i) + ".png");
-            bomber_images[3][i] = getImage("sprites/player_up_" + String.valueOf(i) + ".png");
+            bomber_images[0][i] = getImage("player_right_" + String.valueOf(i) + ".png");
+            bomber_images[1][i] = getImage("player_down_" + String.valueOf(i) + ".png");
+            bomber_images[2][i] = getImage("player_left_" + String.valueOf(i) + ".png");
+            bomber_images[3][i] = getImage("player_up_" + String.valueOf(i) + ".png");
         }
 
         bomber_dead = new Image[3];
         for (int i = 0; i < 3; i++) {
-            bomber_dead[i] = getImage("sprites/player_dead" + String.valueOf(i) + ".png");
+            bomber_dead[i] = getImage("player_dead" + String.valueOf(i) + ".png");
         }
     }
 

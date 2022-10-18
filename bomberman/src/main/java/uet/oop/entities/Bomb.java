@@ -99,18 +99,18 @@ public class Bomb extends Entity {
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
-            bomb_images[0][i] = getImage("sprites/bomb_" + i + ".png");
-            bomb_images[1][i] = getImage("sprites/bomb_exploded" + i + ".png");
+            bomb_images[0][i] = getImage("bomb_" + i + ".png");
+            bomb_images[1][i] = getImage("bomb_exploded" + i + ".png");
 
-            edge_images[0][i] = getImage("sprites/explosion_horizontal_right_last" + i + ".png");
-            edge_images[1][i] = getImage("sprites/explosion_vertical_down_last" + i + ".png");
-            edge_images[2][i] = getImage("sprites/explosion_horizontal_left_last" + i + ".png");
-            edge_images[3][i] = getImage("sprites/explosion_vertical_top_last" + i + ".png");
+            edge_images[0][i] = getImage("explosion_horizontal_right_last" + i + ".png");
+            edge_images[1][i] = getImage("explosion_vertical_down_last" + i + ".png");
+            edge_images[2][i] = getImage("explosion_horizontal_left_last" + i + ".png");
+            edge_images[3][i] = getImage("explosion_vertical_top_last" + i + ".png");
 
-            flame_images[0][i] = getImage("sprites/explosion_horizontal" + i + ".png");
-            flame_images[1][i] = getImage("sprites/explosion_vertical" + i + ".png");
+            flame_images[0][i] = getImage("explosion_horizontal" + i + ".png");
+            flame_images[1][i] = getImage("explosion_vertical" + i + ".png");
 
-            explodedbrickImage[i] = getImage("sprites/brick_exploded" + i + ".png");
+            explodedbrickImage[i] = getImage("brick_exploded" + i + ".png");
         }
     }
 

@@ -17,7 +17,7 @@ public class FlameItem extends Item{
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        flameItemImage = getImage("sprites/powerup_flames.png");
+        flameItemImage = getImage("powerup_flames.png");
     }
 
     public int getRange_to_increase() {

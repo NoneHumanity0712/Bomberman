@@ -63,11 +63,11 @@ public class Oneal extends Enemy {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            oneal_images[0][i] = getImage("sprites/oneal_right" + i + ".png");
-            oneal_images[1][i] = getImage("sprites/oneal_left" + i + ".png");
+            oneal_images[0][i] = getImage("oneal_right" + i + ".png");
+            oneal_images[1][i] = getImage("oneal_left" + i + ".png");
         }
 
-        oneal_dead = getImage("sprites/oneal_dead.png");
+        oneal_dead = getImage("oneal_dead.png");
     }
 
     @Override

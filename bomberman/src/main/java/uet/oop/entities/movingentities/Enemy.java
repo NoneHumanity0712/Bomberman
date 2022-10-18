@@ -30,7 +30,7 @@ public abstract class Enemy extends MovingEntity {
     public void setupImage() throws FileNotFoundException {
         enemy_dead = new Image[4];
         for (int i = 1; i < 4; i++) {
-            enemy_dead[i] = getImage("sprites/mob_dead" + i + ".png");
+            enemy_dead[i] = getImage("mob_dead" + i + ".png");
         }
     }
 

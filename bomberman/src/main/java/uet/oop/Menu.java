@@ -3,7 +3,7 @@ package uet.oop;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Menu extends Stage{
@@ -26,13 +26,13 @@ public class Menu extends Stage{
         quitButton.setLayoutY(300);
 
         buttons = new Group(startButton, quitButton);
-        Font font = new Font(21);
 
         buttons.getChildren().forEach(button -> {
-            ((Button) button).setPrefSize(200, 100);
-            ((Button) button).setFont(font);
+            ((Button) button).setPrefSize(200, 50);
+            ((Button) button).setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
+
         });
-        scene = new Scene(buttons, 500, 500);
+        scene = new Scene(buttons, 500, 500, Color.DARKSLATEGRAY);
 
         this.setScene(scene);
         this.setTitle("MENU");
