@@ -30,55 +30,71 @@ public class Main extends Application implements HandleImage {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        ReadFromFile maplevel1 = new ReadFromFile();
-        maplevel1.readFile(new File("src/main/java/uet/oop/level1.txt"));
+        Menu startMenu = new Menu();
+        startMenu.show();
 
-        Map map = new Map();
-        map.setRow(maplevel1.getRow_read());
-        map.setColumn(maplevel1.getColumn_read());
-        map.setMap(maplevel1.getMap_read());
+        startMenu.quitButton.setOnAction(e -> {
+            System.out.println("Quit Game");
+            Platform.exit();
+        });
 
-        GameCanvas canvas = new GameCanvas();
+        startMenu.startButton.setOnAction(e -> {
+            
+            startMenu.close();
 
-        Game bombermanGame = new Game(map, canvas);
-        bombermanGame.setLevel(maplevel1.getLevel_read());
+            ReadFromFile maplevel1 = new ReadFromFile();
+            try {
+                maplevel1.readFile(new File("src/main/java/uet/oop/level1.txt"));
 
-        Group root = new Group();
-        root.getChildren().add(canvas);
-
-        Scene scene = new Scene(root);
-
-        primaryStage.setTitle("BOMBERMAN");
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-
-            @Override
-            public void handle(long now) {
-                if (now - bombermanGame.getBefore() > 2e6) {
-
-                    bombermanGame.handle();
-                    try {
-                        bombermanGame.update();
-                    } catch (FileNotFoundException e) {
-
-                        e.printStackTrace();
+                Map map = new Map();
+                map.setRow(maplevel1.getRow_read());
+                map.setColumn(maplevel1.getColumn_read());
+                map.setMap(maplevel1.getMap_read());
+    
+                GameCanvas canvas = new GameCanvas();
+    
+                Game bombermanGame = new Game(map, canvas);
+                bombermanGame.setLevel(maplevel1.getLevel_read());
+    
+                Group root = new Group();
+                root.getChildren().add(canvas);
+    
+                Scene scene = new Scene(root);
+    
+                primaryStage.setTitle("BOMBERMAN");
+    
+                primaryStage.setScene(scene);
+    
+                primaryStage.show();
+    
+                AnimationTimer timer = new AnimationTimer() {
+    
+                    @Override
+                    public void handle(long now) {
+                        if (now - bombermanGame.getBefore() > 2e6) {
+    
+                            bombermanGame.handle();
+                            try {
+                                bombermanGame.update();
+                            } catch (FileNotFoundException e) {
+    
+                                e.printStackTrace();
+                            }
+                            bombermanGame.drawScene();
+    
+                            if (bombermanGame.isQuitGame()) {
+                                System.out.println("Quit Game");
+                                Platform.exit();
+                            }
+    
+                        }
                     }
-                    bombermanGame.drawScene();
-
-                    if (bombermanGame.isQuitGame()) {
-                        System.out.println("Quit Game");
-                        Platform.exit();
-                    }
-
-                }
+                };
+    
+                timer.start();
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
             }
-        };
-
-        timer.start();
+        });
     }
-
 }
