@@ -183,7 +183,6 @@ public class Oneal extends Enemy {
 
         else if (this.getX() > map.getBomber().getX()
                 && (legal_move(map, getY(), getX() - 1))) {
-            System.out.println("able to go");
 
             setDirection(2); // go left
             setOldX(getDoubleX());

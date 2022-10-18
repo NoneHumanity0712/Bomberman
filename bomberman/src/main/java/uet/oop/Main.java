@@ -69,7 +69,7 @@ public class Main extends Application implements HandleImage {
                             bombermanGame.update();
                         } catch (FileNotFoundException e) {
 
-                            e.printStackTrace();
+                             e.printStackTrace();
                         }
                         bombermanGame.drawScene();
                     }
