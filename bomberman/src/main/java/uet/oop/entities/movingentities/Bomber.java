@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 public class Bomber extends MovingEntity {
     private int bombs;
 
-    private final int delaytime = 20;
+    private final int delaytime = 25;
     private final int startSpeed = 1;
     private int bombRange = 1;
 
@@ -72,6 +72,7 @@ public class Bomber extends MovingEntity {
         setStepCount(0);
         setDeadState(0);
         setDelaytime(delaytime);
+        setTimeBefore(System.currentTimeMillis());
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
 
@@ -87,6 +88,7 @@ public class Bomber extends MovingEntity {
         setStepCount(0);
         setDeadState(0);
         setDelaytime(delaytime);
+        setTimeBefore(System.currentTimeMillis());
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
 
@@ -101,6 +103,7 @@ public class Bomber extends MovingEntity {
         setDeadState(0);
         setStepCount(0);
         setDelaytime(delaytime);
+        setTimeBefore(System.currentTimeMillis());
         setImage(bomber_images[getDirection()][getStepCount() % 2]);
     }
 

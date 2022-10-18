@@ -66,7 +66,6 @@ public class Balloom extends Enemy {
 
     public void MOVE(Map map) {
         if (!isAlive()) {
-            DEAD();
             return;
         }
 

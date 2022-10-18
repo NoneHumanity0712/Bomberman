@@ -195,13 +195,13 @@ public class Bomb extends Entity {
         edgeX[3] = this.getX();
         edgeY[3] = this.getY() - range;
 
-
         for (int i = 0; i < 4; i++) {
             if (edgeX[i] >= 0 && edgeX[i] < map.getColumn() && edgeY[i] >= 0 && edgeY[i] < map.getRow()) {
                 Bomb edge = new Bomb(edgeX[i], edgeY[i], 'b', place, explode, 0, time_since_placed, placedState,
                         explodedState);
                 edges[i] = edge;
-            } else edges[i] = null;
+            } else
+                edges[i] = null;
         }
 
         if (range > 1) {
@@ -215,7 +215,8 @@ public class Bomb extends Entity {
                             explodedState);
                     rightFlames.add(rightflame);
                 } else {
-                    if (edges[0] != null) edges[0].setX(x);
+                    if (edges[0] != null)
+                        edges[0].setX(x);
                     break;
                 }
             }
@@ -228,7 +229,8 @@ public class Bomb extends Entity {
                     Bomb down = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
                     downFlames.add(down);
                 } else {
-                    if (edges[1] != null) edges[1].setY(y);
+                    if (edges[1] != null)
+                        edges[1].setY(y);
                     break;
                 }
             }
@@ -242,7 +244,8 @@ public class Bomb extends Entity {
                             explodedState);
                     leftFlames.add(leftFlame);
                 } else {
-                    if (edges[2] != null) edges[2].setX(x);
+                    if (edges[2] != null)
+                        edges[2].setX(x);
                     break;
                 }
             }
@@ -256,7 +259,8 @@ public class Bomb extends Entity {
                             time_since_placed, placedState, explodedState);
                     upFlames.add(upFlame);
                 } else {
-                    if (edges[3] != null) edges[3].setY(y);
+                    if (edges[3] != null)
+                        edges[3].setY(y);
                 }
             }
         }
@@ -293,7 +297,8 @@ public class Bomb extends Entity {
                 tempBrickImage = explodedbrickImage[0];
 
                 for (int i = 0; i < edges.length; i++) {
-                    if (edges[i] != null) edges[i].setImage(edge_images[i][0]);
+                    if (edges[i] != null)
+                        edges[i].setImage(edge_images[i][0]);
                 }
 
                 for (Bomb rightFlame : rightFlames) {
@@ -322,7 +327,8 @@ public class Bomb extends Entity {
                     tempBrickImage = explodedbrickImage[1];
 
                     for (int i = 0; i < edges.length; i++) {
-                        if (edges[i] != null) edges[i].setImage(edge_images[i][1]);
+                        if (edges[i] != null)
+                            edges[i].setImage(edge_images[i][1]);
                     }
 
                     for (Bomb rightFlame : rightFlames) {
@@ -351,7 +357,8 @@ public class Bomb extends Entity {
                     tempBrickImage = explodedbrickImage[2];
 
                     for (int i = 0; i < edges.length; i++) {
-                        if (edges[i] != null) edges[i].setImage(edge_images[i][2]);
+                        if (edges[i] != null)
+                            edges[i].setImage(edge_images[i][2]);
                     }
 
                     for (Bomb rightFlame : rightFlames) {
@@ -380,7 +387,8 @@ public class Bomb extends Entity {
                     tempBrickImage = explodedbrickImage[0];
 
                     for (int i = 0; i < edges.length; i++) {
-                        if (edges[i] != null) edges[i].setImage(edge_images[i][0]);
+                        if (edges[i] != null)
+                            edges[i].setImage(edge_images[i][0]);
                     }
 
                     for (Bomb rightFlame : rightFlames) {
@@ -438,16 +446,22 @@ public class Bomb extends Entity {
             map.getMap()[y][x] = ' ';
         }
 
-        if (x == (int) map.getBomber().getOldX() && y == (int) map.getBomber().getOldY()
-            || x == (int) map.getBomber().getDoubleX() && y == (int) map.getBomber().getDoubleY()) {
+        if (((double) x == map.getBomber().getOldX() && (double) y == map.getBomber().getOldY())
+                || (x == Math.ceil(map.getBomber().getDoubleX()) && y == Math.ceil(map.getBomber().getDoubleY()))) {
             map.getBomber().setAlive(false);
             map.getBomber().setTimesincedead(System.currentTimeMillis());
         }
 
         for (Enemy enemy : map.getEnemy()) {
-            if (x == (int) enemy.getOldX() && y == (int) enemy.getOldY()
-            || x == (int) enemy.getDoubleX() && y == (int) enemy.getDoubleY()) {
+
+            if (((double) x == enemy.getOldX() && (double) y == enemy.getOldY())
+                    || (x == Math.ceil(enemy.getOldX()) && y == Math.ceil(enemy.getOldY()))) {
                 enemy.setAlive(false);
+                enemy.DEAD();
+
+                System.out.println("Bomb: " + this.getX() + ", " + this.getY() + "; Enemy: "
+                        + enemy.getOldX() + ", "
+                        + enemy.getOldY());
             }
         }
 
@@ -455,7 +469,7 @@ public class Bomb extends Entity {
             map.getPortal().APPEAR();
         }
 
-        if (range < 0) {
+        if (range == 0) {
             for (Bomb bomb : map.getBombs()) {
                 if (x == bomb.getX() && y == bomb.getY()) {
                     bomb.setExplode(true);
@@ -474,7 +488,8 @@ public class Bomb extends Entity {
 
         if (range > 0) {
             for (Bomb edge : edges) {
-                edge.Explode(map);
+                if (edge != null)
+                    edge.Explode(map);
             }
 
             for (Bomb rightFlame : rightFlames) {

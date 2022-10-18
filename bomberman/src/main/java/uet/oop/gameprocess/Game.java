@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
-import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.Enemy;
 
@@ -198,7 +197,7 @@ public class Game implements HandleImage {
             enemy.update(gameMap);
 
             if (!enemy.isAlive()) {
-                if (System.currentTimeMillis() - enemy.getTimesincedead() > 100) {
+                if (System.currentTimeMillis() - enemy.getTimesincedead() > 250) {
                     toRemoveEnemies.add(enemy);
                 }
             }
@@ -229,66 +228,76 @@ public class Game implements HandleImage {
     }
 
     public void handle() {
-        gameCanvas.setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case RIGHT:
-                case D:
-                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1)) {
-                        bomber.setDirection(0);
-                        bomber.setStepCount(0);
-                        bomber.setOldX(bomber.getDoubleX());
-                        bomber.setDoubleX(bomber.getDoubleX() + 1);
-                        bomber.setX((int) bomber.getDoubleX());
-                        bomber.setMoving(true);
-                    }
-                    break;
-                case DOWN:
-                case S:
-                    if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX())) {
-                        bomber.setDirection(1);
-                        bomber.setStepCount(0);
-                        bomber.setOldY(bomber.getDoubleY());
-                        bomber.setDoubleY(bomber.getDoubleY() + 1);
-                        bomber.setY((int) bomber.getDoubleY());
-                        bomber.setMoving(true);
-                    }
-                    break;
-                case LEFT:
-                case A:
-                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1)) {
-                        bomber.setDirection(2);
-                        bomber.setStepCount(0);
-                        bomber.setOldX(bomber.getDoubleX());
-                        bomber.setDoubleX(bomber.getDoubleX() - 1);
-                        bomber.setX((int) bomber.getDoubleX());
-                        bomber.setMoving(true);
-                    }
-                    break;
-                case UP:
-                case W:
-                    if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX())) {
-                        bomber.setDirection(3);
-                        bomber.setStepCount(0);
-                        bomber.setOldY(bomber.getDoubleY());
-                        bomber.setDoubleY(bomber.getDoubleY() - 1);
-                        bomber.setY((int) bomber.getDoubleY());
-                        bomber.setMoving(true);
-                    }
-                    break;
+        if (System.currentTimeMillis() - bomber.getTimeBefore() > 100) {
+            gameCanvas.setOnKeyPressed(e -> {
+                switch (e.getCode()) {
+                    case RIGHT:
+                    case D:
+                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1)) {
+                            bomber.setDirection(0);
+                            bomber.setStepCount(0);
+                            bomber.setOldX(bomber.getDoubleX());
+                            bomber.setDoubleX(bomber.getDoubleX() + 1);
+                            bomber.setX((int) bomber.getDoubleX());
+                            bomber.setMoving(true);
 
-                case ESCAPE:
-                    QuitGame = true;
-                    break;
-                case SPACE:
-                    if (bomber.getBombs() > 0) {
-                        Bomb bomb = new Bomb(bomber);
-                        gameMap.getBombs().add(bomb);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        });
+                            bomber.setTimeBefore(System.currentTimeMillis());
+                        }
+                        break;
+                    case DOWN:
+                    case S:
+                        if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX())) {
+                            bomber.setDirection(1);
+                            bomber.setStepCount(0);
+                            bomber.setOldY(bomber.getDoubleY());
+                            bomber.setDoubleY(bomber.getDoubleY() + 1);
+                            bomber.setY((int) bomber.getDoubleY());
+                            bomber.setMoving(true);
+
+                            bomber.setTimeBefore(System.currentTimeMillis());
+                        }
+                        break;
+                    case LEFT:
+                    case A:
+                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1)) {
+                            bomber.setDirection(2);
+                            bomber.setStepCount(0);
+                            bomber.setOldX(bomber.getDoubleX());
+                            bomber.setDoubleX(bomber.getDoubleX() - 1);
+                            bomber.setX((int) bomber.getDoubleX());
+                            bomber.setMoving(true);
+
+                            bomber.setTimeBefore(System.currentTimeMillis());
+                        }
+                        break;
+                    case UP:
+                    case W:
+                        if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX())) {
+                            bomber.setDirection(3);
+                            bomber.setStepCount(0);
+                            bomber.setOldY(bomber.getDoubleY());
+                            bomber.setDoubleY(bomber.getDoubleY() - 1);
+                            bomber.setY((int) bomber.getDoubleY());
+                            bomber.setMoving(true);
+
+                            bomber.setTimeBefore(System.currentTimeMillis());
+                        }
+                        break;
+
+                    case ESCAPE:
+                        QuitGame = true;
+                        break;
+                    case SPACE:
+                        if (bomber.getBombs() > 0) {
+                            Bomb bomb = new Bomb(bomber);
+                            gameMap.getBombs().add(bomb);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
         for (Enemy enemy : gameMap.getEnemy()) {
             long now = System.currentTimeMillis();
             if (now - enemy.getTimeBefore() > 2000) {

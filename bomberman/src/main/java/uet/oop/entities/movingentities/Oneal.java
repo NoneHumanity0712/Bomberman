@@ -16,7 +16,7 @@ public class Oneal extends Enemy {
         super.setDirection(0);
 
         setDelaytime(100);
-        setSpeed(0.75);
+        setSpeed(1);
         setStep(getSpeed() / 8);
         setStepCount(0);
 
@@ -31,7 +31,7 @@ public class Oneal extends Enemy {
         super.setDirection(0);
 
         setDelaytime(100);
-        setSpeed(0.75);
+        setSpeed(1);
         setStep(getSpeed() / 8);
         setStepCount(0);
 
@@ -46,7 +46,7 @@ public class Oneal extends Enemy {
         super.setDirection(0);
 
         setDelaytime(100);
-        setSpeed(0.75);
+        setSpeed(1);
         setStep(getSpeed() / 8);
         setStepCount(0);
 
@@ -167,7 +167,6 @@ public class Oneal extends Enemy {
     @Override
     public void MOVE(Map map) {
         if (!isAlive()) {
-            DEAD();
             return;
         }
 
