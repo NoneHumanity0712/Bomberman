@@ -10,12 +10,6 @@ import uet.oop.entities.movingentities.Bomber;
 
 public class GameCanvas extends Canvas {
 
-    final int numsOfRows = 15;
-    final int numsofCols = 25;
-
-    final int screenWidth = numsofCols * Entity.spriteSize;
-    final int screenHeight = numsOfRows * Entity.spriteSize;
-
     public GraphicsContext context;
 
     Bomber player;
@@ -26,26 +20,17 @@ public class GameCanvas extends Canvas {
 
     public GameCanvas(Node... children) throws FileNotFoundException {
         super();
-        this.setWidth(screenWidth * Entity.SCALE);
-        this.setHeight(screenHeight * Entity.SCALE);
         this.setFocusTraversable(true);
         context = this.getGraphicsContext2D();
     }
 
-    public GameCanvas() throws FileNotFoundException {
+    public GameCanvas(int screenWidth, int screenHeight) throws FileNotFoundException {
         super();
-        this.setWidth(screenWidth * Entity.SCALE);
-        this.setHeight(screenHeight * Entity.SCALE);
+        this.setWidth(screenWidth);
+        this.setHeight(screenHeight);
         this.setFocusTraversable(true);
         context = this.getGraphicsContext2D();
     }
 
-    public void render() {
-        context.save();
-
-        context.drawImage(player.getImage(), player.getOldX()*Entity.size, player.getOldY()*Entity.size, Entity.size, Entity.size);
-
-        context.restore();
-    }
 
 }

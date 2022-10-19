@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Menu extends Stage{
+public class StartStage extends Stage{
 
     public Button startButton;
     public Button quitButton;
@@ -15,11 +15,11 @@ public class Menu extends Stage{
 
     Scene scene;
 
-    public Menu() {
+    public StartStage() {
 
         startButton = new Button("START GAME");
         startButton.setLayoutX(150);
-        startButton.setLayoutY(100);
+        startButton.setLayoutY(150);
 
         quitButton = new Button("QUIT GAME");
         quitButton.setLayoutX(150);

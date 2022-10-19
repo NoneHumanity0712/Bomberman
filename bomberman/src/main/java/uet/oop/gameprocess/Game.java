@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Bomber;
@@ -20,7 +21,6 @@ public class Game implements HandleImage {
     private Map gameMap;
     private Bomber bomber;
 
-    public AnchorPane gamePane;
     public GameCanvas gameCanvas;
 
     private Image grassImage;
@@ -87,7 +87,9 @@ public class Game implements HandleImage {
     }
 
     private void drawBackground() {
-
+        gameCanvas.context.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+        gameCanvas.context.setFill(Color.DARKSLATEGRAY);
+        gameCanvas.context.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
     };
 
     public void drawMap() {
@@ -165,8 +167,6 @@ public class Game implements HandleImage {
     }
 
     public void drawScene() {
-        gameCanvas.context.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
-
         drawBackground();
         drawMap();
         drawItem();
