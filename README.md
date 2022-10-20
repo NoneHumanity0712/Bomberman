@@ -15,7 +15,7 @@ Task list:
 - [x] Make Bomber die when being bomb, meet enemies,...
 - [x] Make algorithm for Oneal to find Bomber (kinda)
 - [x] Add new level
-- [ ] Add sound effects
+- [x] Add sound effects
 - [ ] Create bomb item
 - [ ] Move to new level when go through portal 
 
