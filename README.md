@@ -18,3 +18,7 @@ Task list:
 - [ ] Create bomb item
 - [ ] Add new level
 - [ ] Move to new level when go through portal 
+
+Resources:
+- bomb ticking: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=37157">Pixabay</a>
+- bomb exploding: Sound Effect from <a href="https://assets.mixkit.co/sfx/preview/mixkit-8-bit-bomb-explosion-2811.mp3">mixkit</a>
