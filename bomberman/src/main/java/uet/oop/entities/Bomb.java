@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.Enemy;
@@ -29,6 +32,9 @@ public class Bomb extends Entity {
     private Image[][] flame_images;
     private Image[] explodedbrickImage = new Image[3];
     public Image tempBrickImage;
+
+    private MediaPlayer bomb_ticking;
+    private MediaPlayer bomb_exploding;
 
     private Bomb[] edges;
     private List<Bomb> rightFlames;
@@ -70,6 +76,7 @@ public class Bomb extends Entity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        setupSound();
 
         rightFlames = new ArrayList<>();
         downFlames = new ArrayList<>();
@@ -112,6 +119,11 @@ public class Bomb extends Entity {
 
             explodedbrickImage[i] = getImage("brick_exploded" + i + ".png");
         }
+    }
+
+    public void setupSound() {
+        bomb_ticking = new MediaPlayer(new Media(getClass().getResource("/sound/ticking-clock1.wav").toString()));
+        bomb_exploding = new MediaPlayer(new Media(getClass().getResource("/sound/bomb_exploded1.wav").toString()));
     }
 
     public int getRange() {
@@ -398,6 +410,7 @@ public class Bomb extends Entity {
                 if (now - timebeforeeachframe > 100) {
                     bomb_placing();
                 }
+                if (!bomb_ticking.getStatus().equals(Status.PLAYING)) bomb_ticking.play();
             } else {
                 explode = true;
                 place = false;
@@ -412,6 +425,7 @@ public class Bomb extends Entity {
                 }
             } else {
                 Explode(map);
+                if (!bomb_exploding.getStatus().equals(Status.PLAYING)) bomb_exploding.play();
                 explode = false;
             }
         }
