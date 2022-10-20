@@ -32,7 +32,7 @@ public class StartStage extends Stage{
             ((Button) button).setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
 
         });
-        scene = new Scene(buttons, 500, 500, Color.DARKSLATEGRAY);
+        scene = new Scene(buttons, 500, 500, Color.LINEN);
 
         this.setScene(scene);
         this.setTitle("MENU");

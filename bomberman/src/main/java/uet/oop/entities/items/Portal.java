@@ -11,9 +11,11 @@ public class Portal extends Entity{
 
     Image portalImage;
 
-    public Portal(){
+    public Portal() throws FileNotFoundException{
         activate = false;
         hide = true;
+
+        setupImage();
     };
 
     public Portal(int x, int y) throws FileNotFoundException{

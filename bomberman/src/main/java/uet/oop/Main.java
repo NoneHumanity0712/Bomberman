@@ -3,6 +3,8 @@ package uet.oop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -44,17 +46,28 @@ public class Main extends Application implements HandleImage {
             startMenu.close();
 
             ReadFromFile maplevel1 = new ReadFromFile();
+            ReadFromFile maplevel2 = new ReadFromFile();
             try {
                 maplevel1.readFile(new File("src/main/java/uet/oop/level1.txt"));
+                maplevel2.readFile(new File("src/main/java/uet/oop/level2.txt"));
 
-                Map map = new Map();
-                map.setRow(maplevel1.getRow_read());
-                map.setColumn(maplevel1.getColumn_read());
-                map.setMap(maplevel1.getMap_read());
+                Map map1 = new Map();
+                map1.setRow(maplevel1.getRow_read());
+                map1.setColumn(maplevel1.getColumn_read());
+                map1.setMap(maplevel1.getMap_read());
 
-                GameCanvas canvas = new GameCanvas(map.getColumn() * Entity.size + 100, map.getRow() * Entity.size + 100);
+                Map map2 = new Map();
+                map2.setRow(maplevel2.getRow_read());
+                map2.setColumn(maplevel2.getColumn_read());
+                map2.setMap(maplevel2.getMap_read());
 
-                Game bombermanGame = new Game(map, canvas);
+                List<Map> maps = new ArrayList<>();
+                maps.add(map1);
+                maps.add(map2);
+
+                GameCanvas canvas = new GameCanvas(map1.getColumn() * Entity.size + 100, map1.getRow() * Entity.size + 100);
+
+                Game bombermanGame = new Game(maps, canvas);
                 bombermanGame.setLevel(maplevel1.getLevel_read());
 
                 Group root = new Group();
@@ -91,33 +104,6 @@ public class Main extends Application implements HandleImage {
                 };
                 gameTimer.start();
 
-
-                // AnimationTimer timer = new AnimationTimer() {
-
-                // @Override
-                // public void handle(long now) {
-                // if (now - bombermanGame.getBefore() > 2e6 && !bombermanGame.isPauseGame()) {
-
-                // bombermanGame.handle();
-
-                // try {
-                // bombermanGame.update();
-                // } catch (FileNotFoundException e) {
-                // e.printStackTrace();
-                // }
-
-                // bombermanGame.drawScene();
-
-                // if (bombermanGame.isQuitGame()) {
-                // System.out.println("Quit Game");
-                // Platform.exit();
-                // }
-
-                // }
-                // }
-                // };
-
-                // timer.start();
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
             }

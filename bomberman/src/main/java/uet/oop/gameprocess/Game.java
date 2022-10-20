@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
@@ -17,6 +16,9 @@ public class Game implements HandleImage {
     private long score;
     private boolean GameOver;
     private boolean QuitGame;
+    private boolean passLevel;
+
+    private List<Map> maps;
 
     private Map gameMap;
     private Bomber bomber;
@@ -29,21 +31,29 @@ public class Game implements HandleImage {
 
     private long before;
 
-    public Game(Map map, GameCanvas canvas) throws FileNotFoundException {
-        this.gameMap = new Map(map);
+    public Game(List<Map> maps, GameCanvas canvas) throws FileNotFoundException {
+        this.maps = maps;
+        gameMap = maps.get(0);
         this.bomber = gameMap.getBomber();
 
         this.gameCanvas = canvas;
-        gameCanvas.setPlayer(bomber);
 
-        level = 1;
         score = 0;
         GameOver = false;
         QuitGame = false;
+        passLevel = true;
 
         setGrassImage(getImage("grass.png"));
         setBrickImage(getImage("brick.png"));
         setWallImage(getImage("wall.png"));
+    }
+
+    public long getScore() {
+        return score;
+    }
+
+    public void setScore(long score) {
+        this.score = score;
     }
 
     public void setBrickImage(Image brickImage) {
@@ -86,9 +96,18 @@ public class Game implements HandleImage {
         return before;
     }
 
+    public boolean isPassLevel() {
+        return passLevel;
+    }
+
+    public List<Map> getMaps() {
+        return maps;
+    }
+
     private void drawBackground() {
         gameCanvas.context.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
-        gameCanvas.context.setFill(Color.DARKSLATEGRAY);
+
+        gameCanvas.context.setFill(Color.LINEN);
         gameCanvas.context.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
     };
 
@@ -177,6 +196,15 @@ public class Game implements HandleImage {
         }
     };
 
+    public void toNextLevel() {
+        level = level + 1;
+        if (maps.size() >= level) {
+            gameMap = maps.get(level - 1);
+            passLevel = false;
+            bomber = gameMap.getBomber();
+        }
+    }
+
     public void update() throws FileNotFoundException {
 
         bomber.update(gameMap);
@@ -206,6 +234,10 @@ public class Game implements HandleImage {
             }
         }
         gameMap.getEnemy().removeAll(toRemoveEnemies);
+        if (this.gameMap.getEnemy().isEmpty()) {
+            passLevel = true;
+            gameMap.getPortal().ACTIVATE();
+        }
 
         List<Bomb> toRemoveBombs = new ArrayList<>();
         for (Bomb bomb : gameMap.getBombs()) {
@@ -228,15 +260,19 @@ public class Game implements HandleImage {
             }
         }
         gameMap.getItems().removeAll(toRemoveItems);
+
+        if (bomber.getX() == gameMap.getPortal().getX() && bomber.getY() == gameMap.getPortal().getY()
+                && gameMap.getPortal().isActivate()) {
+            toNextLevel();
+        }
     }
 
     public void handle() {
-        if (System.currentTimeMillis() - bomber.getTimeBefore() > 100) {
             gameCanvas.setOnKeyPressed(e -> {
                 switch (e.getCode()) {
                     case RIGHT:
                     case D:
-                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1)) {
+                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving()) {
                             bomber.setDirection(0);
                             bomber.setStepCount(0);
                             bomber.setOldX(bomber.getDoubleX());
@@ -250,7 +286,7 @@ public class Game implements HandleImage {
                         break;
                     case DOWN:
                     case S:
-                        if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX())) {
+                        if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX())&& !bomber.isMoving()) {
                             bomber.setDirection(1);
                             bomber.setStepCount(0);
                             bomber.setOldY(bomber.getDoubleY());
@@ -264,7 +300,7 @@ public class Game implements HandleImage {
                         break;
                     case LEFT:
                     case A:
-                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1)) {
+                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1)&& !bomber.isMoving()) {
                             bomber.setDirection(2);
                             bomber.setStepCount(0);
                             bomber.setOldX(bomber.getDoubleX());
@@ -278,7 +314,7 @@ public class Game implements HandleImage {
                         break;
                     case UP:
                     case W:
-                        if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX())) {
+                        if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving() ) {
                             bomber.setDirection(3);
                             bomber.setStepCount(0);
                             bomber.setOldY(bomber.getDoubleY());
@@ -308,7 +344,6 @@ public class Game implements HandleImage {
                         break;
                 }
             });
-        }
         for (Enemy enemy : gameMap.getEnemy()) {
             long now = System.currentTimeMillis();
             if (now - enemy.getTimeBefore() > 2000) {
