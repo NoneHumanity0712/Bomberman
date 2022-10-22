@@ -15,9 +15,9 @@ Task list:
 - [x] Make Bomber die when being bomb, meet enemies,...
 - [x] Make algorithm for Oneal to find Bomber (kinda)
 - [x] Add new level
-- [ ] Add sound effects
+- [x] Add sound effects
+- [x] Move to new level when go through portal 
 - [ ] Create bomb item
-- [ ] Move to new level when go through portal 
 
 Resources:
 - bomb ticking: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=37157">Pixabay</a>
