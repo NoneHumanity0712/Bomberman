@@ -278,8 +278,8 @@ public abstract class MovingEntity extends Entity {
 
         if (this instanceof Bomber && this.isAlive()){
             for (Enemy enemy : map.getEnemy()) {
-                if (this.getOldX() > Math.floor(enemy.getOldX()) && this.getOldX() <= Math.ceil(enemy.getOldX())
-                    && this.getOldY() > Math.floor(enemy.getOldY()) && this.getOldY() <= Math.ceil(enemy.getOldY())) {
+                if (this.getOldX() >= Math.floor(enemy.getOldX()) && this.getOldX() <= Math.ceil(enemy.getOldX())
+                    && this.getOldY() >= Math.floor(enemy.getOldY()) && this.getOldY() <= Math.ceil(enemy.getOldY())) {
 
                     this.setAlive(false);
                     this.setTimesincedead(System.currentTimeMillis());

@@ -47,23 +47,20 @@ public class Main extends Application implements HandleImage {
 
             ReadFromFile maplevel1 = new ReadFromFile();
             ReadFromFile maplevel2 = new ReadFromFile();
+            ReadFromFile maplevel3 = new ReadFromFile();
             try {
                 maplevel1.readFile(new File("src/main/java/uet/oop/level1.txt"));
                 maplevel2.readFile(new File("src/main/java/uet/oop/level2.txt"));
+                maplevel3.readFile(new File("src/main/java/uet/oop/level3.txt"));
 
-                Map map1 = new Map();
-                map1.setRow(maplevel1.getRow_read());
-                map1.setColumn(maplevel1.getColumn_read());
-                map1.setMap(maplevel1.getMap_read());
-
-                Map map2 = new Map();
-                map2.setRow(maplevel2.getRow_read());
-                map2.setColumn(maplevel2.getColumn_read());
-                map2.setMap(maplevel2.getMap_read());
+                Map map1 = new Map(maplevel1.getRow_read(), maplevel1.getColumn_read(), maplevel1.getMap_read());
+                Map map2 = new Map(maplevel2.getRow_read(), maplevel2.getColumn_read(), maplevel2.getMap_read());
+                Map map3 = new Map(maplevel3.getRow_read(), maplevel3.getColumn_read(), maplevel3.getMap_read());
 
                 List<Map> maps = new ArrayList<>();
                 maps.add(map1);
                 maps.add(map2);
+                maps.add(map3);
 
                 GameCanvas canvas = new GameCanvas(map1.getColumn() * Entity.size + 100, map1.getRow() * Entity.size + 100);
 

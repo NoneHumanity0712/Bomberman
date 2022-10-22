@@ -11,6 +11,7 @@ import uet.oop.entities.items.Portal;
 import uet.oop.entities.items.SpeedItem;
 import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
+import uet.oop.entities.movingentities.Doll;
 import uet.oop.entities.movingentities.Enemy;
 import uet.oop.entities.movingentities.Oneal;
 
@@ -47,6 +48,19 @@ public class Map {
         this.bombs = new ArrayList<>(m.getBombs());
         this.enemies = new ArrayList<Enemy>(m.getEnemy());
         this.items = new ArrayList<>(m.getItems());
+    }
+
+    public Map(int row, int column, char[][] map) throws FileNotFoundException {
+        this.row = row;
+        this.column = column;
+
+        this.bomber = new Bomber();
+        this.portal = new Portal();
+        this.bombs = new ArrayList<Bomb>();
+        this.enemies = new ArrayList<Enemy>();
+        this.items = new ArrayList<Item>();
+
+        setMap(map);
     }
 
     public void setRow(int row) {
@@ -93,32 +107,44 @@ public class Map {
         this.map = new char[this.row][this.column];
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.column; j++) {
-                if (map[i][j] == 'x') { //portal
-                    this.portal.setY(i);
-                    this.portal.setX(j);
-                    this.map[i][j] = '*';
-                } else if (map[i][j] == 'p') { //bomber
-                    this.bomber = new Bomber(j, i);
-                    this.map[i][j] = ' ';
-                } else if (map[i][j] == '1') { //balloom
-                    Balloom balloom = new Balloom(j, i);
-                    enemies.add(balloom);
-                    this.map[i][j] = ' ';
-                } else if (map[i][j] == '2'){ //oneal
-                    Oneal oneal = new Oneal(j, i);
-                    enemies.add(oneal);
-                    this.map[i][j] = ' ';
-                } else if (map[i][j] == 's'){
-                    SpeedItem speedItem = new SpeedItem(j, i);
-                    items.add(speedItem);
-                    this.map[i][j] = '*';
-                } else if (map[i][j] == 'f'){
-                    FlameItem flameItem = new FlameItem(j, i);
-                    items.add(flameItem);
-                    this.map[i][j] = '*';
-                }
-                else {
-                    this.map[i][j] = map[i][j];
+                switch (map[i][j]) {
+                    case 'x': // portal
+                        this.portal.setY(i);
+                        this.portal.setX(j);
+                        this.map[i][j] = '*';
+                        break;
+                    case 'p': // bomber
+                        this.bomber = new Bomber(j, i);
+                        this.map[i][j] = ' ';
+                        break;
+                    case '1': //ballom
+                        Balloom balloom = new Balloom(j, i);
+                        enemies.add(balloom);
+                        this.map[i][j] = ' ';
+                        break;
+                    case '2': //oneal
+                        Oneal oneal = new Oneal(j, i);
+                        enemies.add(oneal);
+                        this.map[i][j] = ' ';
+                        break;
+                    case '3': //doll
+                        Doll doll = new Doll(j, i);
+                        enemies.add(doll);
+                        this.map[i][j] = ' ';
+                        break;
+                    case 's': //speed item
+                        SpeedItem speedItem = new SpeedItem(j, i);
+                        items.add(speedItem);
+                        this.map[i][j] = '*';
+                        break;
+                    case 'f': //flame item
+                        FlameItem flameItem = new FlameItem(j, i);
+                        items.add(flameItem);
+                        this.map[i][j] = '*';
+                        break;
+                    default:
+                        this.map[i][j] = map[i][j];
+                        break;
                 }
             }
         }
