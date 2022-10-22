@@ -195,6 +195,14 @@ public abstract class MovingEntity extends Entity {
                     if (x == bomb.getX() && y == bomb.getY()) return false;
                 }
 
+                if (this instanceof Enemy) {
+                    for (Enemy enemy : map.getEnemy()) {
+                        if (x == enemy.getDoubleX() && y == enemy.getDoubleY()) {
+                            return false;
+                        }
+                    }
+                }
+
                 return true;
             }
         }

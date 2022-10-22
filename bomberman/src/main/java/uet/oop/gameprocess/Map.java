@@ -13,6 +13,7 @@ import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.Doll;
 import uet.oop.entities.movingentities.Enemy;
+import uet.oop.entities.movingentities.Minvo;
 import uet.oop.entities.movingentities.Oneal;
 
 public class Map {
@@ -130,6 +131,11 @@ public class Map {
                     case '3': //doll
                         Doll doll = new Doll(j, i);
                         enemies.add(doll);
+                        this.map[i][j] = ' ';
+                        break;
+                    case '4': //minvo
+                        Minvo minvo = new Minvo(j, i);
+                        enemies.add(minvo);
                         this.map[i][j] = ' ';
                         break;
                     case 's': //speed item

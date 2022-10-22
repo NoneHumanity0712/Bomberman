@@ -31,6 +31,7 @@ public abstract class Entity implements HandleImage{
      * p Bomber,
      * 1 Balloom,
      * 2 Oneal,
+     * 3 Doll,
      * b Bomb Item,
      * f Flame Item,
      * s Speed Item.

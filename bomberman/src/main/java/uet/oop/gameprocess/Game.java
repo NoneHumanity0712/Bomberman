@@ -8,8 +8,12 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
+import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
+import uet.oop.entities.movingentities.Doll;
 import uet.oop.entities.movingentities.Enemy;
+import uet.oop.entities.movingentities.Minvo;
+import uet.oop.entities.movingentities.Oneal;
 
 public class Game implements HandleImage {
     private int level;
@@ -346,7 +350,13 @@ public class Game implements HandleImage {
             });
         for (Enemy enemy : gameMap.getEnemy()) {
             long now = System.currentTimeMillis();
-            if (now - enemy.getTimeBefore() > 2000) {
+            if (now - enemy.getTimeBefore() > 1000 &&( enemy instanceof Doll || enemy instanceof Minvo)) {
+                enemy.MOVE(gameMap);
+            }
+            else if (now - enemy.getTimeBefore() > 1500 && enemy instanceof Oneal) {
+                enemy.MOVE(gameMap);
+            }
+            else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
                 enemy.MOVE(gameMap);
             }
 

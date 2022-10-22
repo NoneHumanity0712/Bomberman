@@ -7,7 +7,7 @@ import uet.oop.gameprocess.Map;
 
 public class Oneal extends Enemy {
 
-    Image[][] oneal_images;
+    Image[][] oneal_images = new Image[2][3];
     Image oneal_dead;
 
     public Oneal() throws FileNotFoundException {
@@ -20,15 +20,12 @@ public class Oneal extends Enemy {
         setStep(getSpeed() / 8);
         setStepCount(0);
 
-        oneal_images = new Image[2][3];
         setupImage();
         setImage(oneal_images[0][getStepCount() % 2]);
-        super.enemy_dead[0] = oneal_dead;
     }
 
     public Oneal(int x, int y) throws FileNotFoundException {
-        super(x, y);
-        super.setType('2');
+        super(x, y, '2');
         super.setDirection(0);
 
         setDelaytime(100);
@@ -36,10 +33,8 @@ public class Oneal extends Enemy {
         setStep(getSpeed() / 8);
         setStepCount(0);
 
-        oneal_images = new Image[2][3];
         setupImage();
         setImage(oneal_images[0][getStepCount() % 2]);
-        super.enemy_dead[0] = oneal_dead;
     }
 
     public Oneal(Oneal oneal) throws FileNotFoundException {
@@ -52,10 +47,8 @@ public class Oneal extends Enemy {
         setStep(getSpeed() / 8);
         setStepCount(0);
 
-        oneal_images = new Image[2][3];
         setupImage();
         setImage(oneal_images[0][getStepCount() % 2]);
-        super.enemy_dead[0] = oneal_dead;
     }
 
     @Override
@@ -68,6 +61,7 @@ public class Oneal extends Enemy {
         }
 
         oneal_dead = getImage("oneal_dead.png");
+        super.enemy_dead[0] = oneal_dead;
     }
 
     @Override
