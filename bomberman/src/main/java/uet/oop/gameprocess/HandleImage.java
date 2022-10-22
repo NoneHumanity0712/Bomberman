@@ -61,7 +61,8 @@ public interface HandleImage {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, 50 + x * image.getWidth() * Entity.SCALE, 50 + y * image.getHeight() * Entity.SCALE,
+            context.drawImage(image, 50 + x * image.getWidth() * Entity.SCALE,
+                    50 + y * image.getHeight() * Entity.SCALE,
                     image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 
@@ -72,7 +73,8 @@ public interface HandleImage {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, 50 + x * image.getWidth() * Entity.SCALE, 50 + y * image.getHeight() * Entity.SCALE,
+            context.drawImage(image, 50 + x * image.getWidth() * Entity.SCALE,
+                    50 + y * image.getHeight() * Entity.SCALE,
                     image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 

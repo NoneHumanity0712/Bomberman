@@ -159,7 +159,7 @@ public class Doll extends Enemy {
         if (!isAlive()) {
             return;
         }
-        
+
         switch (getDirection()) {
             case 0:
                 if (legal_move(map, getY(), getX() + 1)) {
@@ -189,7 +189,7 @@ public class Doll extends Enemy {
                     setX((int) getDoubleX());
                     setMoving(true);
                 } else
-                    setDirection((getDirection()  + new Random().nextInt(3) + 1) % 4);
+                    setDirection((getDirection() + new Random().nextInt(3) + 1) % 4);
                 break;
             case 3:
                 if (legal_move(map, getY() - 1, getX())) {

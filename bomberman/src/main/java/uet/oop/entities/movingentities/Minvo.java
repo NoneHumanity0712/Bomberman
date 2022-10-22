@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
-public class Minvo extends Enemy{
+public class Minvo extends Enemy {
 
     Image[][] minvo_images = new Image[2][3];
     Image minvo_dead;
@@ -30,20 +30,20 @@ public class Minvo extends Enemy{
 
         setDelaytime(100);
         setSpeed(2);
-        setStep(getSpeed()/8);
+        setStep(getSpeed() / 8);
         setStepCount(0);
 
         setupImage();
         setImage(minvo_images[0][0]);
     }
-    
+
     public Minvo(int x, int y) throws FileNotFoundException {
         super(x, y, '4');
         super.setDirection(0);
 
         setDelaytime(100);
         setSpeed(2);
-        setStep(getSpeed()/8);
+        setStep(getSpeed() / 8);
         setStepCount(0);
 
         setupImage();
@@ -57,7 +57,7 @@ public class Minvo extends Enemy{
 
         setDelaytime(100);
         setSpeed(2);
-        setStep(getSpeed()/8);
+        setStep(getSpeed() / 8);
         setStepCount(0);
 
         setupImage();
@@ -100,10 +100,10 @@ public class Minvo extends Enemy{
             setMoving(true);
 
         }
-        
+
         else if (this.getY() > map.getBomber().getY()
                 && (legal_move(map, getY() - 1, getX()))) {
-            setDirection(3); //go up
+            setDirection(3); // go up
             setOldY(getDoubleY());
             setDoubleY(getDoubleY() - 1);
             setY((int) getDoubleY());
@@ -112,7 +112,7 @@ public class Minvo extends Enemy{
         setTimeBefore(System.currentTimeMillis());
         setTimebeforeeachstep(System.currentTimeMillis());
     }
-    
+
     @Override
     public void STEP_DOWN() {
         switch (super.getStepCount()) {

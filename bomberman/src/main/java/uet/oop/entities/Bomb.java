@@ -396,7 +396,6 @@ public class Bomb extends Entity {
 
                     downFlames.forEach(downFlame -> downFlame.setImage(flame_images[1][0]));
 
-                    
                 }
                 break;
         }
@@ -410,7 +409,8 @@ public class Bomb extends Entity {
                 if (now - timebeforeeachframe > 100) {
                     bomb_placing();
                 }
-                if (!bomb_ticking.getStatus().equals(Status.PLAYING)) bomb_ticking.play();
+                if (!bomb_ticking.getStatus().equals(Status.PLAYING))
+                    bomb_ticking.play();
             } else {
                 explode = true;
                 place = false;
@@ -425,7 +425,8 @@ public class Bomb extends Entity {
                 }
             } else {
                 Explode(map);
-                if (!bomb_exploding.getStatus().equals(Status.PLAYING)) bomb_exploding.play();
+                if (!bomb_exploding.getStatus().equals(Status.PLAYING))
+                    bomb_exploding.play();
                 explode = false;
             }
         }

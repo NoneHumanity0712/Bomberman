@@ -59,7 +59,7 @@ public class ReadFromFile {
             }
             this.setMap_read(temp);
         }
-        
+
         myReader.close();
     }
 }

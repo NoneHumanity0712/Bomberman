@@ -272,91 +272,89 @@ public class Game implements HandleImage {
     }
 
     public void handle() {
-            gameCanvas.setOnKeyPressed(e -> {
-                switch (e.getCode()) {
-                    case RIGHT:
-                    case D:
-                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving()) {
-                            bomber.setDirection(0);
-                            bomber.setStepCount(0);
-                            bomber.setOldX(bomber.getDoubleX());
-                            bomber.setDoubleX(bomber.getDoubleX() + 1);
-                            bomber.setX((int) bomber.getDoubleX());
-                            bomber.setMoving(true);
+        gameCanvas.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case RIGHT:
+                case D:
+                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving()) {
+                        bomber.setDirection(0);
+                        bomber.setStepCount(0);
+                        bomber.setOldX(bomber.getDoubleX());
+                        bomber.setDoubleX(bomber.getDoubleX() + 1);
+                        bomber.setX((int) bomber.getDoubleX());
+                        bomber.setMoving(true);
 
-                            bomber.setTimeBefore(System.currentTimeMillis());
-                            System.out.println("Go Right");
-                        }
-                        break;
-                    case DOWN:
-                    case S:
-                        if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX())&& !bomber.isMoving()) {
-                            bomber.setDirection(1);
-                            bomber.setStepCount(0);
-                            bomber.setOldY(bomber.getDoubleY());
-                            bomber.setDoubleY(bomber.getDoubleY() + 1);
-                            bomber.setY((int) bomber.getDoubleY());
-                            bomber.setMoving(true);
+                        bomber.setTimeBefore(System.currentTimeMillis());
+                        System.out.println("Go Right");
+                    }
+                    break;
+                case DOWN:
+                case S:
+                    if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX()) && !bomber.isMoving()) {
+                        bomber.setDirection(1);
+                        bomber.setStepCount(0);
+                        bomber.setOldY(bomber.getDoubleY());
+                        bomber.setDoubleY(bomber.getDoubleY() + 1);
+                        bomber.setY((int) bomber.getDoubleY());
+                        bomber.setMoving(true);
 
-                            bomber.setTimeBefore(System.currentTimeMillis());
-                            System.out.println("Go Down");
-                        }
-                        break;
-                    case LEFT:
-                    case A:
-                        if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1)&& !bomber.isMoving()) {
-                            bomber.setDirection(2);
-                            bomber.setStepCount(0);
-                            bomber.setOldX(bomber.getDoubleX());
-                            bomber.setDoubleX(bomber.getDoubleX() - 1);
-                            bomber.setX((int) bomber.getDoubleX());
-                            bomber.setMoving(true);
+                        bomber.setTimeBefore(System.currentTimeMillis());
+                        System.out.println("Go Down");
+                    }
+                    break;
+                case LEFT:
+                case A:
+                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1) && !bomber.isMoving()) {
+                        bomber.setDirection(2);
+                        bomber.setStepCount(0);
+                        bomber.setOldX(bomber.getDoubleX());
+                        bomber.setDoubleX(bomber.getDoubleX() - 1);
+                        bomber.setX((int) bomber.getDoubleX());
+                        bomber.setMoving(true);
 
-                            bomber.setTimeBefore(System.currentTimeMillis());
-                            System.out.println("Go Left");
-                        }
-                        break;
-                    case UP:
-                    case W:
-                        if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving() ) {
-                            bomber.setDirection(3);
-                            bomber.setStepCount(0);
-                            bomber.setOldY(bomber.getDoubleY());
-                            bomber.setDoubleY(bomber.getDoubleY() - 1);
-                            bomber.setY((int) bomber.getDoubleY());
-                            bomber.setMoving(true);
+                        bomber.setTimeBefore(System.currentTimeMillis());
+                        System.out.println("Go Left");
+                    }
+                    break;
+                case UP:
+                case W:
+                    if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving()) {
+                        bomber.setDirection(3);
+                        bomber.setStepCount(0);
+                        bomber.setOldY(bomber.getDoubleY());
+                        bomber.setDoubleY(bomber.getDoubleY() - 1);
+                        bomber.setY((int) bomber.getDoubleY());
+                        bomber.setMoving(true);
 
-                            bomber.setTimeBefore(System.currentTimeMillis());
-                            System.out.println("Go Up");
-                        }
-                        break;
+                        bomber.setTimeBefore(System.currentTimeMillis());
+                        System.out.println("Go Up");
+                    }
+                    break;
 
-                    case ESCAPE:
-                        QuitGame = true;
-                        System.out.println("Quit Game");
-                        break;
+                case ESCAPE:
+                    QuitGame = true;
+                    System.out.println("Quit Game");
+                    break;
 
-                    case SPACE:
-                        if (bomber.getBombs() > 0) {
-                            Bomb bomb = new Bomb(bomber);
-                            gameMap.getBombs().add(bomb);
+                case SPACE:
+                    if (bomber.getBombs() > 0) {
+                        Bomb bomb = new Bomb(bomber);
+                        gameMap.getBombs().add(bomb);
 
-                            System.out.println("Place Bomb. Bombs remain: " + bomber.getBombs());
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });
+                        System.out.println("Place Bomb. Bombs remain: " + bomber.getBombs());
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
         for (Enemy enemy : gameMap.getEnemy()) {
             long now = System.currentTimeMillis();
-            if (now - enemy.getTimeBefore() > 1000 &&( enemy instanceof Doll || enemy instanceof Minvo)) {
+            if (now - enemy.getTimeBefore() > 1000 && (enemy instanceof Doll || enemy instanceof Minvo)) {
                 enemy.MOVE(gameMap);
-            }
-            else if (now - enemy.getTimeBefore() > 1500 && enemy instanceof Oneal) {
+            } else if (now - enemy.getTimeBefore() > 1500 && enemy instanceof Oneal) {
                 enemy.MOVE(gameMap);
-            }
-            else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
+            } else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
                 enemy.MOVE(gameMap);
             }
 

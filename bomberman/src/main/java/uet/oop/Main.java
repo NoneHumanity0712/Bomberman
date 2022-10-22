@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+
 import uet.oop.entities.Entity;
 import uet.oop.gameprocess.Game;
 import uet.oop.gameprocess.GameCanvas;
@@ -36,9 +37,13 @@ public class Main extends Application implements HandleImage {
         StartStage startMenu = new StartStage();
         startMenu.show();
 
-        startMenu.quitButton.setOnAction(e -> {
-            System.out.println("Quit Game");
+        startMenu.exitButton.setOnAction(e -> {
+            System.out.println("Exit");
             Platform.exit();
+        });
+
+        startMenu.howtoplayButton.setOnAction(e -> {
+            startMenu.howtoplay();
         });
 
         startMenu.startButton.setOnAction(e -> {
@@ -62,7 +67,8 @@ public class Main extends Application implements HandleImage {
                 maps.add(map2);
                 maps.add(map3);
 
-                GameCanvas canvas = new GameCanvas(map1.getColumn() * Entity.size + 100, map1.getRow() * Entity.size + 100);
+                GameCanvas canvas = new GameCanvas(map1.getColumn() * Entity.size + 100,
+                        map1.getRow() * Entity.size + 100);
 
                 Game bombermanGame = new Game(maps, canvas);
                 bombermanGame.setLevel(maplevel1.getLevel_read());

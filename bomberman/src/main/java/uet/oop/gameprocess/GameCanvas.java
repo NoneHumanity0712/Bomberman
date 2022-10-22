@@ -24,5 +24,4 @@ public class GameCanvas extends Canvas {
         context = this.getGraphicsContext2D();
     }
 
-
 }

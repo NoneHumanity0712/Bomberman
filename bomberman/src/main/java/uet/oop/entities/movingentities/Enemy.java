@@ -9,15 +9,15 @@ public abstract class Enemy extends MovingEntity {
 
     Image[] enemy_dead;
 
-    public Enemy() throws FileNotFoundException{
+    public Enemy() throws FileNotFoundException {
         super();
     };
 
-    public Enemy(int x, int y) throws FileNotFoundException{
+    public Enemy(int x, int y) throws FileNotFoundException {
         super(x, y);
     }
 
-    public Enemy(int x, int y, char type) throws FileNotFoundException{
+    public Enemy(int x, int y, char type) throws FileNotFoundException {
         super(x, y, type);
     }
 
@@ -38,22 +38,22 @@ public abstract class Enemy extends MovingEntity {
 
     @Override
     public void STEP_RIGHT() {
-        
+
     }
 
     @Override
     public void STEP_LEFT() {
-        
+
     }
 
     @Override
     public void STEP_UP() {
-        
+
     }
 
     @Override
     public void STEP_DOWN() {
-        
+
     }
 
     @Override

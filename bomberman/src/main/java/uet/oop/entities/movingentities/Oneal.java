@@ -192,10 +192,10 @@ public class Oneal extends Enemy {
             setMoving(true);
 
         }
-        
+
         else if (this.getY() > map.getBomber().getY()
                 && (legal_move(map, getY() - 1, getX()))) {
-            setDirection(3); //go up
+            setDirection(3); // go up
             setOldY(getDoubleY());
             setDoubleY(getDoubleY() - 1);
             setY((int) getDoubleY());

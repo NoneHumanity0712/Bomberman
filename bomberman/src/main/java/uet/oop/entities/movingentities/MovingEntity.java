@@ -28,7 +28,7 @@ public abstract class MovingEntity extends Entity {
     private long timebeforeeachstep;
     private long delaytime;
     private long timesincedead;
-    private long timeBefore; //time before each move
+    private long timeBefore; // time before each move
 
     private int deadState;
     private long deadBeforeTime;
@@ -120,7 +120,7 @@ public abstract class MovingEntity extends Entity {
     public void setTimesincedead(long timesincedead) {
         this.timesincedead = timesincedead;
     }
-    
+
     public long getTimebeforeeachstep() {
         return timebeforeeachstep;
     }
@@ -159,7 +159,7 @@ public abstract class MovingEntity extends Entity {
 
         oldX = getDoubleX();
         oldY = getDoubleY();
-        
+
         alive = true;
     };
 
@@ -190,9 +190,10 @@ public abstract class MovingEntity extends Entity {
     public boolean legal_move(Map map, int y, int x) {
         if (y >= 0 && y < map.getRow() && x >= 0 && x < map.getColumn()) {
             if (map.getMap()[y][x] == ' ') {
-                
+
                 for (Bomb bomb : map.getBombs()) {
-                    if (x == bomb.getX() && y == bomb.getY()) return false;
+                    if (x == bomb.getX() && y == bomb.getY())
+                        return false;
                 }
 
                 if (this instanceof Enemy) {
@@ -284,16 +285,17 @@ public abstract class MovingEntity extends Entity {
             }
         }
 
-        if (this instanceof Bomber && this.isAlive()){
+        if (this instanceof Bomber && this.isAlive()) {
             for (Enemy enemy : map.getEnemy()) {
                 if (this.getOldX() >= Math.floor(enemy.getOldX()) && this.getOldX() <= Math.ceil(enemy.getOldX())
-                    && this.getOldY() >= Math.floor(enemy.getOldY()) && this.getOldY() <= Math.ceil(enemy.getOldY())) {
+                        && this.getOldY() >= Math.floor(enemy.getOldY())
+                        && this.getOldY() <= Math.ceil(enemy.getOldY())) {
 
                     this.setAlive(false);
                     this.setTimesincedead(System.currentTimeMillis());
 
                     System.out.println(this.getOldX() + " " + this.getOldY() +
-                    " " + enemy.getOldX() + " " + enemy.getOldY());
+                            " " + enemy.getOldX() + " " + enemy.getOldY());
                 }
             }
         }

@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import uet.oop.gameprocess.HandleImage;
 
-public abstract class Entity implements HandleImage{
+public abstract class Entity implements HandleImage {
     public final static int spriteSize = 16; // in pixel
 
     public final static int SCALE = 3;

@@ -118,32 +118,32 @@ public class Map {
                         this.bomber = new Bomber(j, i);
                         this.map[i][j] = ' ';
                         break;
-                    case '1': //ballom
+                    case '1': // ballom
                         Balloom balloom = new Balloom(j, i);
                         enemies.add(balloom);
                         this.map[i][j] = ' ';
                         break;
-                    case '2': //oneal
+                    case '2': // oneal
                         Oneal oneal = new Oneal(j, i);
                         enemies.add(oneal);
                         this.map[i][j] = ' ';
                         break;
-                    case '3': //doll
+                    case '3': // doll
                         Doll doll = new Doll(j, i);
                         enemies.add(doll);
                         this.map[i][j] = ' ';
                         break;
-                    case '4': //minvo
+                    case '4': // minvo
                         Minvo minvo = new Minvo(j, i);
                         enemies.add(minvo);
                         this.map[i][j] = ' ';
                         break;
-                    case 's': //speed item
+                    case 's': // speed item
                         SpeedItem speedItem = new SpeedItem(j, i);
                         items.add(speedItem);
                         this.map[i][j] = '*';
                         break;
-                    case 'f': //flame item
+                    case 'f': // flame item
                         FlameItem flameItem = new FlameItem(j, i);
                         items.add(flameItem);
                         this.map[i][j] = '*';
