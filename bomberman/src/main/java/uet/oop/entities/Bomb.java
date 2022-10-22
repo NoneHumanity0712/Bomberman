@@ -443,6 +443,7 @@ public class Bomb extends Entity {
         if (((double) x == map.getBomber().getOldX() && (double) y == map.getBomber().getOldY())
                 || (x == Math.ceil(map.getBomber().getDoubleX()) && y == Math.ceil(map.getBomber().getDoubleY()))) {
             map.getBomber().setAlive(false);
+            map.getBomber().setMoving(false);
             map.getBomber().setTimesincedead(System.currentTimeMillis());
         }
 
@@ -451,6 +452,7 @@ public class Bomb extends Entity {
             if (((double) x == enemy.getOldX() && (double) y == enemy.getOldY())
                     || (x == Math.ceil(enemy.getOldX()) && y == Math.ceil(enemy.getOldY()))) {
                 enemy.setAlive(false);
+                enemy.setMoving(false);
                 enemy.setTimesincedead(System.currentTimeMillis());
 
                 System.out.println("Bomb: " + this.getX() + ", " + this.getY() + "; Enemy: "

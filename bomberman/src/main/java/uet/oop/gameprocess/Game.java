@@ -4,8 +4,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Balloom;
@@ -45,11 +49,15 @@ public class Game implements HandleImage {
         score = 0;
         GameOver = false;
         QuitGame = false;
-        passLevel = true;
+        passLevel = false;
 
         setGrassImage(getImage("grass.png"));
         setBrickImage(getImage("brick.png"));
         setWallImage(getImage("wall.png"));
+    }
+
+    public void setBomber(Bomber bomber) {
+        this.bomber = bomber;
     }
 
     public long getScore() {
@@ -104,8 +112,20 @@ public class Game implements HandleImage {
         return passLevel;
     }
 
+    public void setPassLevel(boolean passLevel) {
+        this.passLevel = passLevel;
+    }
+
     public List<Map> getMaps() {
         return maps;
+    }
+
+    public Map getGameMap() {
+        return gameMap;
+    }
+
+    public void setGameMap(Map gameMap) {
+        this.gameMap = gameMap;
     }
 
     private void drawBackground() {
@@ -200,15 +220,6 @@ public class Game implements HandleImage {
         }
     };
 
-    public void toNextLevel() {
-        level = level + 1;
-        if (maps.size() >= level) {
-            gameMap = maps.get(level - 1);
-            passLevel = false;
-            bomber = gameMap.getBomber();
-        }
-    }
-
     public void update() throws FileNotFoundException {
 
         bomber.update(gameMap);
@@ -239,7 +250,6 @@ public class Game implements HandleImage {
         }
         gameMap.getEnemy().removeAll(toRemoveEnemies);
         if (this.gameMap.getEnemy().isEmpty()) {
-            passLevel = true;
             gameMap.getPortal().ACTIVATE();
         }
 
@@ -265,9 +275,10 @@ public class Game implements HandleImage {
         }
         gameMap.getItems().removeAll(toRemoveItems);
 
-        if (bomber.getX() == gameMap.getPortal().getX() && bomber.getY() == gameMap.getPortal().getY()
+        if (bomber.getOldX() == (double) gameMap.getPortal().getX()
+                && bomber.getOldY() == (double) gameMap.getPortal().getY()
                 && gameMap.getPortal().isActivate()) {
-            toNextLevel();
+            passLevel = true;
         }
     }
 

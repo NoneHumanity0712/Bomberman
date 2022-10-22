@@ -8,6 +8,9 @@ import java.util.List;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.paint.Color;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -22,6 +25,8 @@ import uet.oop.gameprocess.ReadFromFile;
 
 public class Main extends Application implements HandleImage {
 
+    Game bombermanGame;
+    GameLoopTimer gameTimer;
     /**
      * launch game.
      * 
@@ -70,7 +75,7 @@ public class Main extends Application implements HandleImage {
                 GameCanvas canvas = new GameCanvas(map1.getColumn() * Entity.size + 100,
                         map1.getRow() * Entity.size + 100);
 
-                Game bombermanGame = new Game(maps, canvas);
+                bombermanGame = new Game(maps, canvas);
                 bombermanGame.setLevel(maplevel1.getLevel_read());
 
                 Group root = new Group();
@@ -84,7 +89,7 @@ public class Main extends Application implements HandleImage {
 
                 primaryStage.show();
 
-                GameLoopTimer gameTimer = new GameLoopTimer() {
+                gameTimer = new GameLoopTimer() {
 
                     @Override
                     public void tick(float secondsSinceLastFrame) {
@@ -98,6 +103,11 @@ public class Main extends Application implements HandleImage {
 
                         bombermanGame.drawScene();
 
+                        if (bombermanGame.isPassLevel()){
+                            this.pause();
+                            toNextLevel();
+                        }
+
                         if (bombermanGame.isQuitGame()) {
                             System.out.println("Quit Game");
                             Platform.exit();
@@ -110,6 +120,40 @@ public class Main extends Application implements HandleImage {
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
             }
+        });
+    }
+
+    public void toNextLevel() {
+        try {
+            bombermanGame.update();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        bombermanGame.drawScene();
+
+
+        Button toNextLevel = new Button("Next Level");
+        toNextLevel.setPrefSize(150, 50);
+        toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
+
+        Stage subStage = new Stage();
+
+        Scene subScene = new Scene(toNextLevel, 300, 200, Color.BLUEVIOLET);
+        subStage.setScene(subScene);
+
+        subStage.show();
+
+        toNextLevel.setOnAction(e -> {
+            subStage.close();
+
+            bombermanGame.setLevel(bombermanGame.getLevel() + 1);
+            if (bombermanGame.getMaps().size() >= bombermanGame.getLevel()){
+                bombermanGame.setGameMap(bombermanGame.getMaps().get(bombermanGame.getLevel()));
+                bombermanGame.setPassLevel(false);
+                bombermanGame.setBomber(bombermanGame.getGameMap().getBomber());
+            }
+
+            gameTimer.play();
         });
     }
 }

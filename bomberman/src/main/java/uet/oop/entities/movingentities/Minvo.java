@@ -15,12 +15,10 @@ public class Minvo extends Enemy {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            minvo_images[0][i] = getImage("minvo_right" + i + ".png");
-            minvo_images[1][i] = getImage("minvo_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("minvo_right" + i + ".png");
+            super.enemy_images[1][i] = getImage("minvo_left" + i + ".png");
         }
-
-        minvo_dead = getImage("minvo_dead.png");
-        super.enemy_dead[0] = minvo_dead;
+        super.enemy_dead[0] = getImage("minvo_dead.png");
     }
 
     public Minvo() throws FileNotFoundException {
@@ -34,7 +32,7 @@ public class Minvo extends Enemy {
         setStepCount(0);
 
         setupImage();
-        setImage(minvo_images[0][0]);
+        setImage(enemy_images[0][0]);
     }
 
     public Minvo(int x, int y) throws FileNotFoundException {
@@ -47,7 +45,7 @@ public class Minvo extends Enemy {
         setStepCount(0);
 
         setupImage();
-        setImage(minvo_images[0][0]);
+        setImage(enemy_images[0][0]);
     }
 
     public Minvo(Enemy enemy) throws FileNotFoundException {
@@ -61,7 +59,7 @@ public class Minvo extends Enemy {
         setStepCount(0);
 
         setupImage();
-        setImage(minvo_images[0][0]);
+        setImage(enemy_images[0][0]);
     }
 
     @Override
@@ -113,95 +111,4 @@ public class Minvo extends Enemy {
         setTimebeforeeachstep(System.currentTimeMillis());
     }
 
-    @Override
-    public void STEP_DOWN() {
-        switch (super.getStepCount()) {
-            case 0:
-                setStepCount(1);
-                setImage(minvo_images[0][0]);
-                break;
-            case 1:
-                setStepCount(2);
-                setImage(minvo_images[0][1]);
-                break;
-            case 2:
-                setStepCount(3);
-                setImage(minvo_images[0][2]);
-                break;
-            case 3:
-                setStepCount(0);
-                setImage(minvo_images[0][0]);
-                break;
-        }
-        setTimebeforeeachstep(System.currentTimeMillis());
-    }
-
-    @Override
-    public void STEP_LEFT() {
-        switch (super.getStepCount()) {
-            case 0:
-                setStepCount(1);
-                setImage(minvo_images[1][0]);
-                break;
-            case 1:
-                setStepCount(2);
-                setImage(minvo_images[1][1]);
-                break;
-            case 2:
-                setStepCount(3);
-                setImage(minvo_images[1][2]);
-                break;
-            case 3:
-                setStepCount(0);
-                setImage(minvo_images[1][0]);
-                break;
-        }
-        setTimebeforeeachstep(System.currentTimeMillis());
-    }
-
-    @Override
-    public void STEP_RIGHT() {
-        switch (super.getStepCount()) {
-            case 0:
-                setStepCount(1);
-                setImage(minvo_images[0][0]);
-                break;
-            case 1:
-                setStepCount(2);
-                setImage(minvo_images[0][1]);
-                break;
-            case 2:
-                setStepCount(3);
-                setImage(minvo_images[0][2]);
-                break;
-            case 3:
-                setStepCount(0);
-                setImage(minvo_images[0][0]);
-                break;
-        }
-        setTimebeforeeachstep(System.currentTimeMillis());
-    }
-
-    @Override
-    public void STEP_UP() {
-        switch (super.getStepCount()) {
-            case 0:
-                setStepCount(1);
-                setImage(minvo_images[1][0]);
-                break;
-            case 1:
-                setStepCount(2);
-                setImage(minvo_images[1][1]);
-                break;
-            case 2:
-                setStepCount(3);
-                setImage(minvo_images[1][2]);
-                break;
-            case 3:
-                setStepCount(0);
-                setImage(minvo_images[1][0]);
-                break;
-        }
-        setTimebeforeeachstep(System.currentTimeMillis());
-    }
 }
