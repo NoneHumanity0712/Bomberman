@@ -6,10 +6,11 @@ import javafx.scene.image.Image;
 
 public class Bomber extends MovingEntity {
     private int bombs;
+    private int lifes;
 
     private final int delaytime = 20;
     private final int startSpeed = 1;
-    private int bombRange = 1;
+    private int bombRange = 2;
 
     private Image[] bomber_dead;
     private Image[][] bomber_images;
@@ -45,10 +46,36 @@ public class Bomber extends MovingEntity {
         return bombRange;
     }
 
+    public int getLifes() {
+        return lifes;
+    }
+
+    public void setLifes(int lifes) {
+        this.lifes = lifes;
+    }
+
+    public void setPosition(int x, int y) {
+        this.setX(x);
+        this.setOldX(x);
+        this.setDoubleX(x);
+
+        this.setY(y);
+        this.setOldY(y);
+        this.setDoubleY(y);
+
+        setImage(bomber_images[0][0]);
+        setAlive(true);
+
+        if (getBombRange() > 1) {
+            setBombRange(getBombRange() - 1);
+        }
+    }
+
     public Bomber() throws FileNotFoundException {
         super(1, 1, 'p');
         super.setDirection(0);
         bombs = 50;
+        lifes = 5;
 
         bomber_images = new Image[4][3];
         setupImage();
@@ -65,6 +92,7 @@ public class Bomber extends MovingEntity {
         super(x, y, 'p');
         super.setDirection(0);
         bombs = 50;
+        lifes = 5;
 
         bomber_images = new Image[4][3];
         setupImage();
@@ -80,6 +108,7 @@ public class Bomber extends MovingEntity {
     public Bomber(Bomber bomber) throws FileNotFoundException {
         super(bomber.getX(), bomber.getY(), 'p');
         bombs = 50;
+        lifes = 5;
 
         bomber_images = new Image[4][3];
         setupImage();

@@ -9,8 +9,8 @@ import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -27,6 +27,7 @@ public class Main extends Application implements HandleImage {
 
     Game bombermanGame;
     GameLoopTimer gameTimer;
+
     /**
      * launch game.
      * 
@@ -93,24 +94,29 @@ public class Main extends Application implements HandleImage {
 
                     @Override
                     public void tick(float secondsSinceLastFrame) {
-                        bombermanGame.handle();
+                        if (!bombermanGame.isGameOver()) {
+                            bombermanGame.handle();
 
-                        try {
-                            bombermanGame.update();
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                            try {
+                                bombermanGame.update();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
 
-                        bombermanGame.drawScene();
+                            bombermanGame.drawScene();
 
-                        if (bombermanGame.isPassLevel()){
+                            if (bombermanGame.isPassLevel()) {
+                                this.pause();
+                                toNextLevel();
+                            }
+
+                            if (bombermanGame.isQuitGame()) {
+                                System.out.println("Quit Game");
+                                Platform.exit();
+                            }
+                        } else {
                             this.pause();
-                            toNextLevel();
-                        }
-
-                        if (bombermanGame.isQuitGame()) {
-                            System.out.println("Quit Game");
-                            Platform.exit();
+                            gameOver();
                         }
                     }
 
@@ -123,6 +129,22 @@ public class Main extends Application implements HandleImage {
         });
     }
 
+    public void gameOver() {
+        Text text = new Text("GAME OVER");
+        text.setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
+        text.setX(150);
+        text.setY(70);
+
+        Group root = new Group();
+        root.getChildren().addAll(text);
+
+        Stage subStage = new Stage();
+        Scene subScene = new Scene(root, 400, 150);
+
+        subStage.setScene(subScene);
+        subStage.show();
+    }
+
     public void toNextLevel() {
         try {
             bombermanGame.update();
@@ -131,29 +153,31 @@ public class Main extends Application implements HandleImage {
         }
         bombermanGame.drawScene();
 
+        if (bombermanGame.getMaps().size() >= bombermanGame.getLevel()) {
 
-        Button toNextLevel = new Button("Next Level");
-        toNextLevel.setPrefSize(150, 50);
-        toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
+            Button toNextLevel = new Button("Next Level");
+            toNextLevel.setPrefSize(150, 50);
+            toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
 
-        Stage subStage = new Stage();
+            Stage subStage = new Stage();
 
-        Scene subScene = new Scene(toNextLevel, 300, 200, Color.BLUEVIOLET);
-        subStage.setScene(subScene);
+            Group root = new Group(toNextLevel);
 
-        subStage.show();
+            Scene subScene = new Scene(root, 300, 200, Color.BLUEVIOLET);
+            subStage.setScene(subScene);
 
-        toNextLevel.setOnAction(e -> {
-            subStage.close();
+            subStage.show();
 
-            bombermanGame.setLevel(bombermanGame.getLevel() + 1);
-            if (bombermanGame.getMaps().size() >= bombermanGame.getLevel()){
-                bombermanGame.setGameMap(bombermanGame.getMaps().get(bombermanGame.getLevel()));
+            toNextLevel.setOnAction(e -> {
+                subStage.close();
+
+                bombermanGame.setLevel(bombermanGame.getLevel() + 1);
+                bombermanGame.setGameMap(bombermanGame.getMaps().get(bombermanGame.getLevel() - 1));
                 bombermanGame.setPassLevel(false);
-                bombermanGame.setBomber(bombermanGame.getGameMap().getBomber());
-            }
-
-            gameTimer.play();
-        });
+                bombermanGame.getGameMap().setBomber(bombermanGame.getBomber());
+                bombermanGame.getBomber().setPosition(1, 1);
+                gameTimer.play();
+            });
+        }
     }
 }

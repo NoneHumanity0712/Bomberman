@@ -10,7 +10,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Bomber;
-import uet.oop.entities.movingentities.Enemy;
+import uet.oop.entities.movingentities.enemies.Enemy;
 import uet.oop.gameprocess.Map;
 
 public class Bomb extends Entity {
@@ -23,9 +23,6 @@ public class Bomb extends Entity {
 
     private int placedState;
     private int explodedState;
-
-    private int[] edgeX = new int[4];
-    private int[] edgeY = new int[4];
 
     private Image[][] bomb_images;
     private Image[][] edge_images;
@@ -191,91 +188,73 @@ public class Bomb extends Entity {
     }
 
     public void setupEdge(Map map) {
-        // right edge
-        edgeX[0] = this.getX() + range;
-        edgeY[0] = this.getY();
 
-        // down edge
-        edgeX[1] = this.getX();
-        edgeY[1] = this.getY() + range;
-
-        // left edge
-        edgeX[2] = this.getX() - range;
-        edgeY[2] = this.getY();
-
-        // up edge
-        edgeX[3] = this.getX();
-        edgeY[3] = this.getY() - range;
-
-        for (int i = 0; i < 4; i++) {
-            if (edgeX[i] >= 0 && edgeX[i] < map.getColumn() && edgeY[i] >= 0 && edgeY[i] < map.getRow()) {
-                Bomb edge = new Bomb(edgeX[i], edgeY[i], 'b', place, explode, 0, time_since_placed, placedState,
-                        explodedState);
-                edges[i] = edge;
-            } else
-                edges[i] = null;
-        }
-
-        if (range > 1) {
-
-            for (int i = 0; i < range - 1; i++) {
-                int x = this.getX() + 1 + i;
-                int y = this.getY();
-
-                if (checkflame(map, x, y)) {
-                    Bomb rightflame = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState,
-                            explodedState);
-                    rightFlames.add(rightflame);
-                } else {
-                    if (edges[0] != null)
-                        edges[0].setX(x);
-                    break;
-                }
-            }
-
-            for (int i = 0; i < range - 1; i++) {
-                int x = this.getX();
-                int y = this.getY() + 1 + i;
-
-                if (checkflame(map, x, y)) {
-                    Bomb down = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
-                    downFlames.add(down);
-                } else {
-                    if (edges[1] != null)
-                        edges[1].setY(y);
-                    break;
-                }
-            }
-
-            for (int i = 0; i < range - 1; i++) {
-                int x = this.getX() - 1 - i;
-                int y = this.getY();
-
-                if (checkflame(map, x, y)) {
-                    Bomb leftFlame = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState,
-                            explodedState);
-                    leftFlames.add(leftFlame);
-                } else {
-                    if (edges[2] != null)
-                        edges[2].setX(x);
-                    break;
-                }
-            }
-
-            for (int i = 0; i < range - 1; i++) {
-                int x = this.getX();
-                int y = this.getY() - 1 - i;
-
-                if (checkflame(map, x, y)) {
-                    Bomb upFlame = new Bomb(this.getX(), this.getY() - 1 - i, 'b', place, explode, 0,
-                            time_since_placed, placedState, explodedState);
-                    upFlames.add(upFlame);
-                } else {
-                    if (edges[3] != null)
-                        edges[3].setY(y);
-                }
+        int x = this.getX();
+        int y = this.getY();
+        for (int i = 0; i < range; i++) {
+            x = this.getX() + 1 + i;
+            if (checkflame(map, x, y) && x < this.getX() + range) {
+                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                        time_since_placed, placedState, explodedState);
+                rightFlames.add(flame);
+            } else {
+                break;
             }
         }
+        if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {      
+            edges[0] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+        }
+
+        x = this.getX();
+        y = this.getY();
+        for (int i = 0; i < range; i++) {
+            y = this.getY() + 1 + i;
+            if (checkflame(map, x, y) && y < this.getY() + range) {
+                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                        time_since_placed, placedState, explodedState);
+                downFlames.add(flame);
+            } else {
+                break;
+            }
+        }
+        if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
+            edges[1] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+        }
+
+        x = this.getX();
+        y = this.getY();
+        for (int i = 0; i < range; i++) {
+            x = this.getX() - 1 - i;
+            if (checkflame(map, x, y) && x > this.getX() - range) {
+                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                        time_since_placed, placedState, explodedState);
+                leftFlames.add(flame);
+            } else {
+                break;
+            }
+        }
+        if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
+            edges[2] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+        }
+
+        x = this.getX();
+        y = this.getY();
+        for (int i = 0; i < range; i++) {
+            y = this.getY() - 1 - i;
+            if (checkflame(map, x, y) && y > this.getY() - range) {
+                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                        time_since_placed, placedState, explodedState);
+                upFlames.add(flame);
+            } else {
+                break;
+            }
+        }
+        if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
+
+            edges[3] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+            System.out.println("edge");
+        }
+
     }
 
     public void bomb_placing() {
@@ -442,6 +421,8 @@ public class Bomb extends Entity {
 
         if (((double) x == map.getBomber().getOldX() && (double) y == map.getBomber().getOldY())
                 || (x == Math.ceil(map.getBomber().getDoubleX()) && y == Math.ceil(map.getBomber().getDoubleY()))) {
+
+            map.getBomber().setLifes(map.getBomber().getLifes() - 1);
             map.getBomber().setAlive(false);
             map.getBomber().setMoving(false);
             map.getBomber().setTimesincedead(System.currentTimeMillis());

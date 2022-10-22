@@ -4,20 +4,16 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
-import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
-import uet.oop.entities.movingentities.Doll;
-import uet.oop.entities.movingentities.Enemy;
-import uet.oop.entities.movingentities.Minvo;
-import uet.oop.entities.movingentities.Oneal;
+import uet.oop.entities.movingentities.enemies.Balloom;
+import uet.oop.entities.movingentities.enemies.Doll;
+import uet.oop.entities.movingentities.enemies.Enemy;
+import uet.oop.entities.movingentities.enemies.Minvo;
+import uet.oop.entities.movingentities.enemies.Oneal;
 
 public class Game implements HandleImage {
     private int level;
@@ -58,6 +54,10 @@ public class Game implements HandleImage {
 
     public void setBomber(Bomber bomber) {
         this.bomber = bomber;
+    }
+
+    public Bomber getBomber() {
+        return bomber;
     }
 
     public long getScore() {
@@ -226,8 +226,12 @@ public class Game implements HandleImage {
 
         if (!bomber.isAlive()) {
             if (System.currentTimeMillis() - bomber.getTimesincedead() > 400) {
-                bomber = new Bomber(1, 1);
-                gameMap.setBomber(bomber);
+                if (bomber.getLifes() >= 0) {
+                    System.out.println("Lifes left: " + bomber.getLifes());
+                    bomber.setPosition(1, 1);
+                } else{
+                    GameOver = true;
+                }
             } else {
                 if (System.currentTimeMillis() - bomber.getDeadBeforeTime() > 100)
                     bomber.DEAD();
@@ -287,7 +291,7 @@ public class Game implements HandleImage {
             switch (e.getCode()) {
                 case RIGHT:
                 case D:
-                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving()) {
+                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving() && bomber.isAlive()) {
                         bomber.setDirection(0);
                         bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
@@ -301,7 +305,7 @@ public class Game implements HandleImage {
                     break;
                 case DOWN:
                 case S:
-                    if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX()) && !bomber.isMoving()) {
+                    if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX()) && !bomber.isMoving()  && bomber.isAlive()) {
                         bomber.setDirection(1);
                         bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());
@@ -315,7 +319,7 @@ public class Game implements HandleImage {
                     break;
                 case LEFT:
                 case A:
-                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1) && !bomber.isMoving()) {
+                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1) && !bomber.isMoving()  && bomber.isAlive()) {
                         bomber.setDirection(2);
                         bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
@@ -329,7 +333,7 @@ public class Game implements HandleImage {
                     break;
                 case UP:
                 case W:
-                    if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving()) {
+                    if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving()  && bomber.isAlive()) {
                         bomber.setDirection(3);
                         bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());

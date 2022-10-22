@@ -1,65 +1,66 @@
-package uet.oop.entities.movingentities;
+package uet.oop.entities.movingentities.enemies;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
-public class Minvo extends Enemy {
+public class Oneal extends Enemy {
 
-    Image[][] minvo_images = new Image[2][3];
-    Image minvo_dead;
+    Image[][] oneal_images = new Image[2][3];
+    Image oneal_dead;
+
+    public Oneal() throws FileNotFoundException {
+        super();
+        super.setType('2');
+        super.setDirection(0);
+
+        setDelaytime(100);
+        setSpeed(1);
+        setStep(getSpeed() / 8);
+        setStepCount(0);
+
+        setupImage();
+        setImage(enemy_images[0][0]);
+    }
+
+    public Oneal(int x, int y) throws FileNotFoundException {
+        super(x, y, '2');
+        super.setDirection(0);
+
+        setDelaytime(100);
+        setSpeed(1);
+        setStep(getSpeed() / 8);
+        setStepCount(0);
+
+        setupImage();
+        setImage(enemy_images[0][0]);
+    }
+
+    public Oneal(Oneal oneal) throws FileNotFoundException {
+        super(oneal);
+        super.setType('2');
+        super.setDirection(0);
+
+        setDelaytime(100);
+        setSpeed(1);
+        setStep(getSpeed() / 8);
+        setStepCount(0);
+
+        setupImage();
+        setImage(enemy_images[0][0]);
+    }
 
     @Override
     public void setupImage() throws FileNotFoundException {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            super.enemy_images[0][i] = getImage("minvo_right" + i + ".png");
-            super.enemy_images[1][i] = getImage("minvo_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("oneal_right" + i + ".png");
+            super.enemy_images[1][i] = getImage("oneal_left" + i + ".png");
         }
-        super.enemy_dead[0] = getImage("minvo_dead.png");
-    }
 
-    public Minvo() throws FileNotFoundException {
-        super();
-        super.setType('4');
-        super.setDirection(0);
-
-        setDelaytime(100);
-        setSpeed(2);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
-    public Minvo(int x, int y) throws FileNotFoundException {
-        super(x, y, '4');
-        super.setDirection(0);
-
-        setDelaytime(100);
-        setSpeed(2);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
-    public Minvo(Enemy enemy) throws FileNotFoundException {
-        super(enemy);
-        super.setType('4');
-        super.setDirection(0);
-
-        setDelaytime(100);
-        setSpeed(2);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
+        super.enemy_dead[0] = getImage("oneal_dead.png");
     }
 
     @Override
@@ -110,5 +111,4 @@ public class Minvo extends Enemy {
         setTimeBefore(System.currentTimeMillis());
         setTimebeforeeachstep(System.currentTimeMillis());
     }
-
 }

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import javafx.scene.canvas.GraphicsContext;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.Entity;
+import uet.oop.entities.movingentities.enemies.Enemy;
 import uet.oop.gameprocess.Map;
 
 public abstract class MovingEntity extends Entity {
@@ -292,6 +293,7 @@ public abstract class MovingEntity extends Entity {
                         && this.getOldY() <= Math.ceil(enemy.getOldY())) {
 
                     this.setAlive(false);
+                    ((Bomber) this).setLifes(((Bomber) this).getLifes() - 1);
                     this.setTimesincedead(System.currentTimeMillis());
 
                     System.out.println(this.getOldX() + " " + this.getOldY() +

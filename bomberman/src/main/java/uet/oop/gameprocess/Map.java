@@ -9,12 +9,12 @@ import uet.oop.entities.items.FlameItem;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.items.Portal;
 import uet.oop.entities.items.SpeedItem;
-import uet.oop.entities.movingentities.Balloom;
 import uet.oop.entities.movingentities.Bomber;
-import uet.oop.entities.movingentities.Doll;
-import uet.oop.entities.movingentities.Enemy;
-import uet.oop.entities.movingentities.Minvo;
-import uet.oop.entities.movingentities.Oneal;
+import uet.oop.entities.movingentities.enemies.Balloom;
+import uet.oop.entities.movingentities.enemies.Doll;
+import uet.oop.entities.movingentities.enemies.Enemy;
+import uet.oop.entities.movingentities.enemies.Minvo;
+import uet.oop.entities.movingentities.enemies.Oneal;
 
 public class Map {
     private int row;
