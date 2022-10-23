@@ -157,6 +157,8 @@ public class Main extends Application implements HandleImage {
 
             Button toNextLevel = new Button("Next Level");
             toNextLevel.setPrefSize(150, 50);
+            toNextLevel.setLayoutX(75);
+            toNextLevel.setLayoutY(75);
             toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
 
             Stage subStage = new Stage();
@@ -176,6 +178,7 @@ public class Main extends Application implements HandleImage {
                 bombermanGame.setPassLevel(false);
                 bombermanGame.getGameMap().setBomber(bombermanGame.getBomber());
                 bombermanGame.getBomber().setPosition(1, 1);
+                bombermanGame.getBomber().setBombs(bombermanGame.getBomber().getBombs() + 15);
                 gameTimer.play();
             });
         }

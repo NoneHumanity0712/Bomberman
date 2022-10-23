@@ -74,7 +74,7 @@ public class Bomber extends MovingEntity {
     public Bomber() throws FileNotFoundException {
         super(1, 1, 'p');
         super.setDirection(0);
-        bombs = 50;
+        bombs = 20;
         lifes = 5;
 
         bomber_images = new Image[4][3];
@@ -91,7 +91,7 @@ public class Bomber extends MovingEntity {
     public Bomber(int x, int y) throws FileNotFoundException {
         super(x, y, 'p');
         super.setDirection(0);
-        bombs = 50;
+        bombs = 20;
         lifes = 5;
 
         bomber_images = new Image[4][3];
@@ -107,7 +107,7 @@ public class Bomber extends MovingEntity {
 
     public Bomber(Bomber bomber) throws FileNotFoundException {
         super(bomber.getX(), bomber.getY(), 'p');
-        bombs = 50;
+        bombs = 20;
         lifes = 5;
 
         bomber_images = new Image[4][3];
