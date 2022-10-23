@@ -3,7 +3,6 @@ package uet.oop.entities.movingentities.enemies;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
 public class Doll extends Enemy {
@@ -17,19 +16,6 @@ public class Doll extends Enemy {
         }
 
         super.enemy_dead[0] = getImage("doll_dead.png");
-    }
-
-    public Doll(int x, int y) throws FileNotFoundException {
-        super(x, y, '3');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(1);
-        setStep(getSpeed() / 8);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
     }
 
     public Doll() throws FileNotFoundException {
@@ -46,9 +32,8 @@ public class Doll extends Enemy {
         setImage(enemy_images[0][0]);
     }
 
-    public Doll(Doll enemy) throws FileNotFoundException {
-        super(enemy);
-        super.setType('3');
+    public Doll(int x, int y) throws FileNotFoundException {
+        super(x, y, '3');
         super.setDirection(0);
         super.setAbleToPassWall(false);
 

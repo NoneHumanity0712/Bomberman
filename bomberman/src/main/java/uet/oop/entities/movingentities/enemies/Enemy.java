@@ -1,8 +1,9 @@
-package uet.oop.entities.movingentities;
+package uet.oop.entities.movingentities.enemies;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
+import uet.oop.entities.movingentities.MovingEntity;
 import uet.oop.gameprocess.Map;
 
 public abstract class Enemy extends MovingEntity {

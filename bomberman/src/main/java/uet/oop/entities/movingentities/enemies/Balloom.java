@@ -35,21 +35,6 @@ public class Balloom extends Enemy {
         setImage(enemy_images[0][0]);
     }
 
-    public Balloom(Balloom balloom) throws FileNotFoundException {
-        super(balloom);
-        super.setType('1');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(0.5);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
     public Balloom(int x, int y) throws FileNotFoundException {
         super(x, y, '1');
         super.setDirection(0);

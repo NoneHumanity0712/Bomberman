@@ -1,7 +1,8 @@
-package uet.oop;
+package uet.oop.demogame;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import uet.oop.PassLevelStage;
 
 public class demo extends Application{
 

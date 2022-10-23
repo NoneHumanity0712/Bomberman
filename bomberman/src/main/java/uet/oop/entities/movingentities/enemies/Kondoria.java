@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
-public class Kondoria extends Enemy{
+public class Kondoria extends Enemy {
     
     Image[][] kondoria_images = new Image[2][3];
     Image kondoria_dead;
@@ -48,18 +48,6 @@ public class Kondoria extends Enemy{
         setImage(enemy_images[0][0]);
     }
 
-    public Kondoria(Kondoria enemy) throws FileNotFoundException {
-        super(enemy);
-        super.setDirection(0);
-        super.setAbleToPassWall(true);
-
-        setDelaytime(200);
-        setSpeed(1);
-        setStep(getSpeed()/8);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
 
     @Override
     public void MOVE(Map map) {

@@ -39,21 +39,6 @@ public class Oneal extends Enemy {
         setImage(enemy_images[0][0]);
     }
 
-    public Oneal(Oneal oneal) throws FileNotFoundException {
-        super(oneal);
-        super.setType('2');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(1);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
     @Override
     public void setupImage() throws FileNotFoundException {
         super.setupImage();

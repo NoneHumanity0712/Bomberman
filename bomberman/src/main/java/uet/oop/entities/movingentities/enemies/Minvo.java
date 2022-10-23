@@ -46,21 +46,6 @@ public class Minvo extends Enemy {
         setImage(enemy_images[0][0]);
     }
 
-    public Minvo(Enemy enemy) throws FileNotFoundException {
-        super(enemy);
-        super.setType('4');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(2);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
     @Override
     public void MOVE(Map map) {
         if (!isAlive()) {
