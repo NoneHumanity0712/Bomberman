@@ -10,7 +10,7 @@ public class Bomber extends MovingEntity {
 
     private final int delaytime = 20;
     private final int startSpeed = 1;
-    private int bombRange = 2;
+    private int bombRange = 1;
 
     private Image[] bomber_dead;
     private Image[][] bomber_images;
@@ -18,15 +18,15 @@ public class Bomber extends MovingEntity {
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
-            bomber_images[0][i] = getImage("player_right_" + String.valueOf(i) + ".png");
-            bomber_images[1][i] = getImage("player_down_" + String.valueOf(i) + ".png");
-            bomber_images[2][i] = getImage("player_left_" + String.valueOf(i) + ".png");
-            bomber_images[3][i] = getImage("player_up_" + String.valueOf(i) + ".png");
+            bomber_images[0][i] = getImage("player_right_" + i + ".png");
+            bomber_images[1][i] = getImage("player_down_" + i + ".png");
+            bomber_images[2][i] = getImage("player_left_" + i + ".png");
+            bomber_images[3][i] = getImage("player_up_" + i + ".png");
         }
 
         bomber_dead = new Image[3];
         for (int i = 0; i < 3; i++) {
-            bomber_dead[i] = getImage("player_dead" + String.valueOf(i) + ".png");
+            bomber_dead[i] = getImage("player_dead" + i + ".png");
         }
     }
 

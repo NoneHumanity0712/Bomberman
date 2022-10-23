@@ -131,7 +131,7 @@ public class Game implements HandleImage {
     private void drawBackground() {
         gameCanvas.context.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
-        gameCanvas.context.setFill(Color.LINEN);
+        gameCanvas.context.setFill(Color.valueOf("EAEAEA"));
         gameCanvas.context.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
     };
 
@@ -220,6 +220,15 @@ public class Game implements HandleImage {
         }
     };
 
+    public void toNextLevel() {
+        setLevel(getLevel() + 1);
+        setGameMap(getMaps().get(getLevel() - 1));
+        setPassLevel(false);
+        getGameMap().setBomber(getBomber());
+        bomber.setPosition(1, 1);
+        bomber.setBombs(bomber.getBombs() + 15);
+    }
+
     public void update() throws FileNotFoundException {
 
         bomber.update(gameMap);
@@ -249,6 +258,20 @@ public class Game implements HandleImage {
                 } else {
                     if (System.currentTimeMillis() - enemy.getDeadBeforeTime() > 100)
                         enemy.DEAD();
+                        switch (enemy.getClass().toString()) {
+                            case "Balloom":
+                                setScore(getScore() + 100);
+                                break;
+                            case "Oneal":
+                                setScore(getScore() + 200);
+                                break;
+                            case "Doll":
+                                setScore(getScore() + 400);
+                                break;
+                            case "Minvo":
+                                setScore(getScore() + 800);
+                                break;
+                        }
                 }
             }
         }

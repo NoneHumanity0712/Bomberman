@@ -56,28 +56,22 @@ public class Main extends Application implements HandleImage {
             System.out.println("Start Game");
             startMenu.close();
 
-            ReadFromFile maplevel1 = new ReadFromFile();
-            ReadFromFile maplevel2 = new ReadFromFile();
-            ReadFromFile maplevel3 = new ReadFromFile();
+            ReadFromFile[] maplevels = new ReadFromFile[3];
             try {
-                maplevel1.readFile(new File("src/main/java/uet/oop/level1.txt"));
-                maplevel2.readFile(new File("src/main/java/uet/oop/level2.txt"));
-                maplevel3.readFile(new File("src/main/java/uet/oop/level3.txt"));
-
-                Map map1 = new Map(maplevel1.getRow_read(), maplevel1.getColumn_read(), maplevel1.getMap_read());
-                Map map2 = new Map(maplevel2.getRow_read(), maplevel2.getColumn_read(), maplevel2.getMap_read());
-                Map map3 = new Map(maplevel3.getRow_read(), maplevel3.getColumn_read(), maplevel3.getMap_read());
-
                 List<Map> maps = new ArrayList<>();
-                maps.add(map1);
-                maps.add(map2);
-                maps.add(map3);
 
-                GameCanvas canvas = new GameCanvas(map1.getColumn() * Entity.size + 100,
-                        map1.getRow() * Entity.size + 100);
+                for (int i = 0; i < 3; i++) {
+                    maplevels[i] = new ReadFromFile();
+                    maplevels[i].readFile(new File("src/main/java/uet/oop/level" + String.valueOf(i + 1) + ".txt"));
+                    Map map = new Map(maplevels[i].getRow_read(), maplevels[i].getColumn_read(), maplevels[i].getMap_read());
+                    maps.add(map);
+                }
+
+                GameCanvas canvas = new GameCanvas(maps.get(0).getColumn() * Entity.size + 100,
+                    maps.get(0).getRow() * Entity.size + 100);
 
                 bombermanGame = new Game(maps, canvas);
-                bombermanGame.setLevel(maplevel1.getLevel_read());
+                bombermanGame.setLevel(maplevels[0].getLevel_read());
 
                 Group root = new Group();
                 root.getChildren().add(canvas);
@@ -173,12 +167,7 @@ public class Main extends Application implements HandleImage {
             toNextLevel.setOnAction(e -> {
                 subStage.close();
 
-                bombermanGame.setLevel(bombermanGame.getLevel() + 1);
-                bombermanGame.setGameMap(bombermanGame.getMaps().get(bombermanGame.getLevel() - 1));
-                bombermanGame.setPassLevel(false);
-                bombermanGame.getGameMap().setBomber(bombermanGame.getBomber());
-                bombermanGame.getBomber().setPosition(1, 1);
-                bombermanGame.getBomber().setBombs(bombermanGame.getBomber().getBombs() + 15);
+                bombermanGame.toNextLevel();
                 gameTimer.play();
             });
         }

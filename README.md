@@ -1,12 +1,12 @@
 # OOP's game repository using *Java* by Lê Hoàng Minh Hà.
 
-## <a href="https://en.wikipedia.org/wiki/Bomberman">Game: Bomberman</a>
+## [Game: Bomberman](https://en.wikipedia.org/wiki/Bomberman "Wikipedia: Bomberman")
 
 ![Bomberman Logo](https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Bomberman_series_logo.png/375px-Bomberman_series_logo.png)
 
 Bomberman is a video game franchise originally developed by Hudson Soft and currently owned by Konami. The original game, also known as Bakudan Otoko, was released in Japan in July 1983.
 
-### <a href="https://strategywiki.org/wiki/Bomberman">Gameplay:</a>
+### [Gameplay:](https://strategywiki.org/wiki/Bomberman "Gameplay")
 ![Bomber](https://cdn.wikimg.net/en/strategywiki/images/2/27/Bomberman_White.png)
 -  Bomberman begins the game with ability to produce one bomb at a time with an explosion range of one square. Power-ups can be collected to increase both the number of bombs he can drop, and the range of the explosions.
 - Bomberman starts each round in the upper left corner of every stage.
@@ -17,21 +17,21 @@ The number of bombs that Bomberman can deploy at one time, and the range of the 
 - If Bomberman bombs the exit, or if he runs out of time, it's game over.
 - Bombs ordinarily detonate on their own after a set amount of time. One power-up gives Bomberman the ability to detonate the bombs at will.
 
-### <a href=https://strategywiki.org/wiki/Bomberman/How_to_play>Controls</a>:
+### [Controls:](https://strategywiki.org/wiki/Bomberman "Controls")
 - Right/Down/Left/Up Arrow: Move bomberman in one of the four directions.
 - Space Button: Place bomb at bomberman's current location.
 - Escape Button: Exit game.
 
-### <a href=https://strategywiki.org/wiki/Bomberman/How_to_play>Enemies:</a>
+### [Enemies:](https://strategywiki.org/wiki/Bomberman/How_to_play "Enemies")
 Enemy | Name | Points | Speed | Smart | Wallpass
 :---: | :---: | :---: | :---: | :---: | :---: 
-![Ballom](https://cdn.wikimg.net/en/strategywiki/images/6/61/Bomberman_Balloom.png) | Ballom | 100 | Slow | Low | No
+![Ballom](https://cdn.wikimg.net/en/strategywiki/images/6/61/Bomberman_Balloom.png) | Balloom | 100 | Slow | Low | No
 ![Oneal](https://cdn.wikimg.net/en/strategywiki/images/8/85/Bomberman_Oneal.png) | Oneal | 200 | Normal | Normal | No
 ![Doll](https://cdn.wikimg.net/en/strategywiki/images/f/f0/Bomberman_Doll.png) | Doll | 400 | Normal | Low | No
 ![Minvo](https://cdn.wikimg.net/en/strategywiki/images/f/fe/Bomberman_Minvo.png) | Minvo | 800 | Fast | Normal | No
 ![Kondoria](https://cdn.wikimg.net/en/strategywiki/images/3/3e/Bomberman_Kondoria.png) | Kondoria | 1000 | Slow | High | Yes
 
-### <a href=https://strategywiki.org/wiki/Bomberman/How_to_play>Power-up Items:</a>
+### [Power-up Items:](https://strategywiki.org/wiki/Bomberman/How_to_play "Power-ups")
 Item | Name | Description
 :---: | :---: | ---
 ![Flames](https://cdn.wikimg.net/en/strategywiki/images/a/aa/Bomberman_Flames.png) | Flame Item | Increases explosion range from the bomb in four directions by 1 square.
