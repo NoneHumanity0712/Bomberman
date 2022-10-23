@@ -1,9 +1,8 @@
-package uet.oop.entities.movingentities.enemies;
+package uet.oop.entities.movingentities;
 
 import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
-import uet.oop.entities.movingentities.MovingEntity;
 import uet.oop.gameprocess.Map;
 
 public abstract class Enemy extends MovingEntity {
@@ -14,10 +13,6 @@ public abstract class Enemy extends MovingEntity {
     public Enemy() throws FileNotFoundException {
         super();
     };
-
-    public Enemy(int x, int y) throws FileNotFoundException {
-        super(x, y);
-    }
 
     public Enemy(int x, int y, char type) throws FileNotFoundException {
         super(x, y, type);
