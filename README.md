@@ -1,12 +1,14 @@
 # OOP's game repository using *Java* by Lê Hoàng Minh Hà.
 
-## Game: Bomberman
+## <a href="https://en.wikipedia.org/wiki/Bomberman">Game: Bomberman</a>
 
 ![Bomberman Logo](https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Bomberman_series_logo.png/375px-Bomberman_series_logo.png)
-Bomberman is a video game franchise originally developed by Hudson Soft and currently owned by Konami. The original game, also known as Bakudan Otoko, was released in Japan in July 1983. <a href="https://en.wikipedia.org/wiki/Bomberman">Bomberman (Wikipedia)</a>
+
+Bomberman is a video game franchise originally developed by Hudson Soft and currently owned by Konami. The original game, also known as Bakudan Otoko, was released in Japan in July 1983.
 
 ### <a href="https://strategywiki.org/wiki/Bomberman">Gameplay:</a>
-- ![Bomber](https://cdn.wikimg.net/en/strategywiki/images/2/27/Bomberman_White.png) Bomberman begins the game with ability to produce one bomb at a time with an explosion range of one square. Power-ups can be collected to increase both the number of bombs he can drop, and the range of the explosions.
+![Bomber](https://cdn.wikimg.net/en/strategywiki/images/2/27/Bomberman_White.png)
+-  Bomberman begins the game with ability to produce one bomb at a time with an explosion range of one square. Power-ups can be collected to increase both the number of bombs he can drop, and the range of the explosions.
 - Bomberman starts each round in the upper left corner of every stage.
 - Bomberman must first destroy every enemy in the stage, and second locate the exit and escape to the next stage.
 - Bomberman can destroy enemies and walls with bombs. Bombs can also harm Bomberman unless he has a special power-up.
@@ -31,11 +33,11 @@ Enemy | Name | Points | Speed | Smart | Wallpass
 
 ### <a href=https://strategywiki.org/wiki/Bomberman/How_to_play>Power-up Items:</a>
 Item | Name | Description
-:---: | :---: | :---:
+:---: | :---: | ---
 ![Flames](https://cdn.wikimg.net/en/strategywiki/images/a/aa/Bomberman_Flames.png) | Flame Item | Increases explosion range from the bomb in four directions by 1 square.
 ![Speed](https://cdn.wikimg.net/en/strategywiki/images/4/40/Bomberman_Speed.png) | Speed Item | Increases movement speed.
 ![Bombs](https://cdn.wikimg.net/en/strategywiki/images/e/e4/Bomberman_Bombs.png) | Bomb Item | Increases the amount of bombs dropped at a time by 1; collectible multiple times.
-![Wallpass](https://cdn.wikimg.net/en/strategywiki/images/7/71/Bomberman_Wallpass.png) | Wallpass Item | Gives the ability to pass through bricks, just like the enemies that have it such as Kondoria, Ovapi, and Pontan.
+![Wallpass](https://cdn.wikimg.net/en/strategywiki/images/7/71/Bomberman_Wallpass.png) | Wallpass Item | Gives the ability to pass through bricks, just like the enemies that have it such as Kondoria.
 
 ## Resources:
 - bomb ticking: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=37157">Pixabay</a>
