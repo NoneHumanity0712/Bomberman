@@ -14,7 +14,6 @@ Bomberman is a video game franchise originally developed by Hudson Soft and curr
 - Bomberman can destroy enemies and walls with bombs. Bombs can also harm Bomberman unless he has a special power-up.
 The number of bombs that Bomberman can deploy at one time, and the range of the explosions can be increased through power-ups.
 - Bomberman losses one life if he is touched by an enemy, or if he is caught in a bomb explosion.
-- If Bomberman bombs the exit, or if he runs out of time, it's game over.
 - Bombs ordinarily detonate on their own after a set amount of time. One power-up gives Bomberman the ability to detonate the bombs at will.
 
 ### <a href=https://strategywiki.org/wiki/Bomberman/How_to_play>Controls</a>:
@@ -60,3 +59,5 @@ Item | Name | Description
 - [x] Add sound effects
 - [x] Move to new level when go through portal 
 - [ ] Create bomb item
+- [ ] Create wallpass item
+- [ ] Create enemy Kondoria
