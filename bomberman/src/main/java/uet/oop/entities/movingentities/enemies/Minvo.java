@@ -25,6 +25,7 @@ public class Minvo extends Enemy {
         super();
         super.setType('4');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(2);
@@ -38,6 +39,7 @@ public class Minvo extends Enemy {
     public Minvo(int x, int y) throws FileNotFoundException {
         super(x, y, '4');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(2);
@@ -52,6 +54,7 @@ public class Minvo extends Enemy {
         super(enemy);
         super.setType('4');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(2);

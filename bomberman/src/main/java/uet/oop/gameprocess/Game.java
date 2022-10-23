@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Bomber;
@@ -34,6 +36,8 @@ public class Game implements HandleImage {
     private Image brickImage;
 
     private long before;
+
+    Font font = Font.font("Consolas", FontWeight.BOLD, 24);
 
     public Game(List<Map> maps, GameCanvas canvas) throws FileNotFoundException {
         this.maps = maps;
@@ -133,6 +137,13 @@ public class Game implements HandleImage {
 
         gameCanvas.context.setFill(Color.valueOf("EAEAEA"));
         gameCanvas.context.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+
+        gameCanvas.context.setFill(Color.valueOf("38393D"));
+        gameCanvas.context.setFont(font);
+
+        gameCanvas.context.fillText("Score:" + String.valueOf(score), 48 * 5, 80);
+        gameCanvas.context.fillText("Bombs:" + String.valueOf(bomber.getBombs()), 48 * 10, 80);
+        gameCanvas.context.fillText("Lifes:" + String.valueOf(bomber.getLifes()), 48 * 15, 80);
     };
 
     public void drawMap() {
@@ -227,6 +238,8 @@ public class Game implements HandleImage {
         getGameMap().setBomber(getBomber());
         bomber.setPosition(1, 1);
         bomber.setBombs(bomber.getBombs() + 15);
+        setScore(0);
+        bomber.setLifes(5);
     }
 
     public void update() throws FileNotFoundException {
@@ -238,7 +251,7 @@ public class Game implements HandleImage {
                 if (bomber.getLifes() >= 0) {
                     System.out.println("Lifes left: " + bomber.getLifes());
                     bomber.setPosition(1, 1);
-                } else{
+                } else {
                     GameOver = true;
                 }
             } else {
@@ -255,23 +268,24 @@ public class Game implements HandleImage {
             if (!enemy.isAlive()) {
                 if (System.currentTimeMillis() - enemy.getTimesincedead() > 400) {
                     toRemoveEnemies.add(enemy);
+                    switch (enemy.getClass().getSimpleName()) {
+                        case "Balloom":
+                            setScore(getScore() + 100);
+                            break;
+                        case "Oneal":
+                            setScore(getScore() + 200);
+                            break;
+                        case "Doll":
+                            setScore(getScore() + 400);
+                            break;
+                        case "Minvo":
+                            setScore(getScore() + 800);
+                            break;
+                    }
+                    System.out.println("Score: " + getScore() + ". Enemy: " + enemy.getClass().getSimpleName());
                 } else {
                     if (System.currentTimeMillis() - enemy.getDeadBeforeTime() > 100)
                         enemy.DEAD();
-                        switch (enemy.getClass().toString()) {
-                            case "Balloom":
-                                setScore(getScore() + 100);
-                                break;
-                            case "Oneal":
-                                setScore(getScore() + 200);
-                                break;
-                            case "Doll":
-                                setScore(getScore() + 400);
-                                break;
-                            case "Minvo":
-                                setScore(getScore() + 800);
-                                break;
-                        }
                 }
             }
         }
@@ -314,7 +328,8 @@ public class Game implements HandleImage {
             switch (e.getCode()) {
                 case RIGHT:
                 case D:
-                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving() && bomber.isAlive()) {
+                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() + 1) && !bomber.isMoving()
+                            && bomber.isAlive()) {
                         bomber.setDirection(0);
                         bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
@@ -328,7 +343,8 @@ public class Game implements HandleImage {
                     break;
                 case DOWN:
                 case S:
-                    if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX()) && !bomber.isMoving()  && bomber.isAlive()) {
+                    if (bomber.legal_move(gameMap, bomber.getY() + 1, bomber.getX()) && !bomber.isMoving()
+                            && bomber.isAlive()) {
                         bomber.setDirection(1);
                         bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());
@@ -342,7 +358,8 @@ public class Game implements HandleImage {
                     break;
                 case LEFT:
                 case A:
-                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1) && !bomber.isMoving()  && bomber.isAlive()) {
+                    if (bomber.legal_move(gameMap, bomber.getY(), bomber.getX() - 1) && !bomber.isMoving()
+                            && bomber.isAlive()) {
                         bomber.setDirection(2);
                         bomber.setStepCount(0);
                         bomber.setOldX(bomber.getDoubleX());
@@ -356,7 +373,8 @@ public class Game implements HandleImage {
                     break;
                 case UP:
                 case W:
-                    if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving()  && bomber.isAlive()) {
+                    if (bomber.legal_move(gameMap, bomber.getY() - 1, bomber.getX()) && !bomber.isMoving()
+                            && bomber.isAlive()) {
                         bomber.setDirection(3);
                         bomber.setStepCount(0);
                         bomber.setOldY(bomber.getDoubleY());

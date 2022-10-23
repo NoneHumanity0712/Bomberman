@@ -29,6 +29,7 @@ public class Balloom extends Enemy {
         super();
         super.setType('1');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(150);
         setSpeed(0.5);
@@ -42,6 +43,7 @@ public class Balloom extends Enemy {
         super(balloom);
         super.setType('1');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(0.5);
@@ -55,6 +57,7 @@ public class Balloom extends Enemy {
     public Balloom(int x, int y) throws FileNotFoundException {
         super(x, y, '1');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(0.5);

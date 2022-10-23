@@ -9,6 +9,8 @@ import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.application.Application;
@@ -62,12 +64,12 @@ public class Main extends Application implements HandleImage {
 
                 for (int i = 0; i < 3; i++) {
                     maplevels[i] = new ReadFromFile();
-                    maplevels[i].readFile(new File("src/main/java/uet/oop/level" + String.valueOf(i + 1) + ".txt"));
+                    maplevels[i].readFile(new File("src/main/resources/levels/level" + String.valueOf(i + 1) + ".txt"));
                     Map map = new Map(maplevels[i].getRow_read(), maplevels[i].getColumn_read(), maplevels[i].getMap_read());
                     maps.add(map);
                 }
 
-                GameCanvas canvas = new GameCanvas(maps.get(0).getColumn() * Entity.size + 100,
+                GameCanvas canvas = new GameCanvas(maps.get(0).getColumn() * Entity.size,
                     maps.get(0).getRow() * Entity.size + 100);
 
                 bombermanGame = new Game(maps, canvas);
@@ -147,21 +149,25 @@ public class Main extends Application implements HandleImage {
         }
         bombermanGame.drawScene();
 
-        if (bombermanGame.getMaps().size() >= bombermanGame.getLevel()) {
+        if (bombermanGame.getMaps().size() >= bombermanGame.getLevel() + 1) {
+            Image passlevelImage = new Image("file:src/main/resources/banners/nextlevel.png");
+            ImageView passlevelView = new ImageView(passlevelImage);
 
             Button toNextLevel = new Button("Next Level");
-            toNextLevel.setPrefSize(150, 50);
+            toNextLevel.setPrefSize(150, 30);
             toNextLevel.setLayoutX(75);
-            toNextLevel.setLayoutY(75);
-            toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 21 Consolas;");
+            toNextLevel.setLayoutY(150);
+            toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 18 Consolas;");
+
+            Text score = new Text(75, 120, "Score: " + bombermanGame.getScore());
+            score.setStyle("-fx-text-fill: #38393D; -fx-font: 14 Consolas;");
+
+            Group root = new Group(passlevelView, toNextLevel, score);
+
+            Scene subScene = new Scene(root, 300, 200, Color.valueOf("EAEAEA"));
 
             Stage subStage = new Stage();
-
-            Group root = new Group(toNextLevel);
-
-            Scene subScene = new Scene(root, 300, 200, Color.BLUEVIOLET);
             subStage.setScene(subScene);
-
             subStage.show();
 
             toNextLevel.setOnAction(e -> {

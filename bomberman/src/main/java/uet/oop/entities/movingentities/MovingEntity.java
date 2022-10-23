@@ -25,6 +25,7 @@ public abstract class MovingEntity extends Entity {
 
     private boolean moving;
     private boolean alive;
+    private boolean ableToPassWall;
 
     private long timebeforeeachstep;
     private long delaytime;
@@ -154,6 +155,14 @@ public abstract class MovingEntity extends Entity {
         return deadState;
     }
 
+    public boolean isAbleToPassWall() {
+        return ableToPassWall;
+    }
+
+    public void setAbleToPassWall(boolean ableToPassWall) {
+        this.ableToPassWall = ableToPassWall;
+    }
+
     public MovingEntity() {
         super();
         stepCount = 0;
@@ -205,6 +214,8 @@ public abstract class MovingEntity extends Entity {
                     }
                 }
 
+                return true;
+            } else if (map.getMap()[y][x] == '*' && isAbleToPassWall()) {
                 return true;
             }
         }

@@ -65,6 +65,7 @@ public class Bomber extends MovingEntity {
 
         setImage(bomber_images[0][0]);
         setAlive(true);
+        super.setAbleToPassWall(false);
 
         if (getBombRange() > 1) {
             setBombRange(getBombRange() - 1);
@@ -74,6 +75,8 @@ public class Bomber extends MovingEntity {
     public Bomber() throws FileNotFoundException {
         super(1, 1, 'p');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
+
         bombs = 20;
         lifes = 5;
 
@@ -91,6 +94,8 @@ public class Bomber extends MovingEntity {
     public Bomber(int x, int y) throws FileNotFoundException {
         super(x, y, 'p');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
+
         bombs = 20;
         lifes = 5;
 
@@ -107,6 +112,8 @@ public class Bomber extends MovingEntity {
 
     public Bomber(Bomber bomber) throws FileNotFoundException {
         super(bomber.getX(), bomber.getY(), 'p');
+        super.setAbleToPassWall(false);
+
         bombs = 20;
         lifes = 5;
 

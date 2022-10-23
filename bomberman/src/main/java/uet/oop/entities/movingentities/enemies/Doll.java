@@ -26,6 +26,7 @@ public class Doll extends Enemy {
     public Doll(int x, int y) throws FileNotFoundException {
         super(x, y, '3');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(1);
@@ -39,6 +40,7 @@ public class Doll extends Enemy {
         super();
         super.setType('3');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(1);
@@ -52,6 +54,7 @@ public class Doll extends Enemy {
         super(enemy);
         super.setType('3');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(1);

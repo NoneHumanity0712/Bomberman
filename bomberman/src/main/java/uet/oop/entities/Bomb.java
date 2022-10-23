@@ -252,7 +252,6 @@ public class Bomb extends Entity {
         if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
 
             edges[3] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
-            System.out.println("edge");
         }
 
     }

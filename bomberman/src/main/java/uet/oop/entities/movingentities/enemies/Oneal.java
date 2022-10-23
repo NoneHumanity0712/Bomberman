@@ -14,6 +14,7 @@ public class Oneal extends Enemy {
         super();
         super.setType('2');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(1);
@@ -27,6 +28,7 @@ public class Oneal extends Enemy {
     public Oneal(int x, int y) throws FileNotFoundException {
         super(x, y, '2');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(1);
@@ -41,6 +43,7 @@ public class Oneal extends Enemy {
         super(oneal);
         super.setType('2');
         super.setDirection(0);
+        super.setAbleToPassWall(false);
 
         setDelaytime(100);
         setSpeed(1);
