@@ -8,10 +8,6 @@ import java.util.List;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -150,28 +146,12 @@ public class Main extends Application implements HandleImage {
         bombermanGame.drawScene();
 
         if (bombermanGame.getMaps().size() >= bombermanGame.getLevel() + 1) {
-            Image passlevelImage = new Image("file:src/main/resources/banners/nextlevel.png");
-            ImageView passlevelView = new ImageView(passlevelImage);
+            
+            PassLevelStage passLevelStage = new PassLevelStage("Score: " + bombermanGame.getScore());
+            passLevelStage.show();
 
-            Button toNextLevel = new Button("Next Level");
-            toNextLevel.setPrefSize(150, 30);
-            toNextLevel.setLayoutX(75);
-            toNextLevel.setLayoutY(150);
-            toNextLevel.setStyle("-fx-text-fill: #38393D; -fx-font: 18 Consolas;");
-
-            Text score = new Text(75, 120, "Score: " + bombermanGame.getScore());
-            score.setStyle("-fx-text-fill: #38393D; -fx-font: 14 Consolas;");
-
-            Group root = new Group(passlevelView, toNextLevel, score);
-
-            Scene subScene = new Scene(root, 300, 200, Color.valueOf("EAEAEA"));
-
-            Stage subStage = new Stage();
-            subStage.setScene(subScene);
-            subStage.show();
-
-            toNextLevel.setOnAction(e -> {
-                subStage.close();
+            passLevelStage.toNextLevel.setOnAction(e -> {
+                passLevelStage.close();
 
                 bombermanGame.toNextLevel();
                 gameTimer.play();

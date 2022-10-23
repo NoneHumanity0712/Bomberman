@@ -20,16 +20,19 @@ public abstract class Item extends Entity{
     public Item() {
         super();
         received = false;
+        hide = true;
     }
 
     public Item(int x, int y) {
         super(x, y);
         received = false;
+        hide = true;
     }
 
     public Item(int x, int y, char type) {
         super(x, y, type);
         received = false;
+        hide = true;
     }
 
     @Override

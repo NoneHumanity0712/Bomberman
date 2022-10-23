@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 
 public class Bomber extends MovingEntity {
     private int bombs;
+    private int maxBombs;
     private int lifes;
 
     private final int delaytime = 20;
@@ -54,6 +55,14 @@ public class Bomber extends MovingEntity {
         this.lifes = lifes;
     }
 
+    public void setMaxBombs(int maxBombs) {
+        this.maxBombs = maxBombs;
+    }
+
+    public int getMaxBombs() {
+        return maxBombs;
+    }
+
     public void setPosition(int x, int y) {
         this.setX(x);
         this.setOldX(x);
@@ -65,11 +74,11 @@ public class Bomber extends MovingEntity {
 
         setImage(bomber_images[0][0]);
         setAlive(true);
+        setAbleToPassWall(false);
         super.setAbleToPassWall(false);
 
-        if (getBombRange() > 1) {
-            setBombRange(getBombRange() - 1);
-        }
+        setBombRange(1);
+        setMaxBombs(1);
     }
 
     public Bomber() throws FileNotFoundException {
@@ -78,6 +87,7 @@ public class Bomber extends MovingEntity {
         super.setAbleToPassWall(false);
 
         bombs = 20;
+        maxBombs = 1;
         lifes = 5;
 
         bomber_images = new Image[4][3];
@@ -97,6 +107,7 @@ public class Bomber extends MovingEntity {
         super.setAbleToPassWall(false);
 
         bombs = 20;
+        maxBombs = 1;
         lifes = 5;
 
         bomber_images = new Image[4][3];
@@ -115,6 +126,7 @@ public class Bomber extends MovingEntity {
         super.setAbleToPassWall(false);
 
         bombs = 20;
+        maxBombs = 1;
         lifes = 5;
 
         bomber_images = new Image[4][3];

@@ -306,7 +306,7 @@ public class Game implements HandleImage {
 
         List<Item> toRemoveItems = new ArrayList<>();
         for (Item item : gameMap.getItems()) {
-            if (bomber.getX() == item.getX() && bomber.getY() == item.getY()) {
+            if (bomber.getX() == item.getX() && bomber.getY() == item.getY() && !item.isHide()) {
                 item.beingReceived(bomber);
             }
 
@@ -393,7 +393,7 @@ public class Game implements HandleImage {
                     break;
 
                 case SPACE:
-                    if (bomber.getBombs() > 0) {
+                    if (bomber.getBombs() > 0 && gameMap.getMap()[bomber.getY()][bomber.getX()] == ' ' && gameMap.getBombs().size() < bomber.getMaxBombs()) {
                         Bomb bomb = new Bomb(bomber);
                         gameMap.getBombs().add(bomb);
 

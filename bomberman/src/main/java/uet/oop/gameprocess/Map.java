@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uet.oop.entities.Bomb;
+import uet.oop.entities.items.BombsItem;
 import uet.oop.entities.items.FlameItem;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.items.Portal;
 import uet.oop.entities.items.SpeedItem;
+import uet.oop.entities.items.WallpassItem;
 import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.enemies.Balloom;
 import uet.oop.entities.movingentities.enemies.Doll;
@@ -146,6 +148,16 @@ public class Map {
                     case 'f': // flame item
                         FlameItem flameItem = new FlameItem(j, i);
                         items.add(flameItem);
+                        this.map[i][j] = '*';
+                        break;
+                    case 'w': //wallpass item
+                        WallpassItem wallpassItem = new WallpassItem(j, i);
+                        items.add(wallpassItem);
+                        this.map[i][j] = '*';
+                        break;
+                    case 'n': //bombs item
+                        BombsItem bombsItem = new BombsItem(j, i);
+                        items.add(bombsItem);
                         this.map[i][j] = '*';
                         break;
                     default:

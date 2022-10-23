@@ -58,6 +58,6 @@ Item | Name | Description
 - [x] Add new level
 - [x] Add sound effects
 - [x] Move to new level when go through portal 
-- [ ] Create bomb item
-- [ ] Create wallpass item
+- [x] Create bombs item
+- [x] Create wallpass item
 - [ ] Create enemy Kondoria
