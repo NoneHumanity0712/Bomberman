@@ -14,6 +14,7 @@ import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.enemies.Balloom;
 import uet.oop.entities.movingentities.enemies.Doll;
 import uet.oop.entities.movingentities.enemies.Enemy;
+import uet.oop.entities.movingentities.enemies.Kondoria;
 import uet.oop.entities.movingentities.enemies.Minvo;
 import uet.oop.entities.movingentities.enemies.Oneal;
 
@@ -248,7 +249,7 @@ public class Game implements HandleImage {
 
         if (!bomber.isAlive()) {
             if (System.currentTimeMillis() - bomber.getTimesincedead() > 400) {
-                if (bomber.getLifes() >= 0) {
+                if (bomber.getLifes() > 0) {
                     System.out.println("Lifes left: " + bomber.getLifes());
                     bomber.setPosition(1, 1);
                 } else {
@@ -411,6 +412,8 @@ public class Game implements HandleImage {
             } else if (now - enemy.getTimeBefore() > 1500 && enemy instanceof Oneal) {
                 enemy.MOVE(gameMap);
             } else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
+                enemy.MOVE(gameMap);
+            } else if (now - enemy.getTimeBefore() > 2500 && enemy instanceof Kondoria){
                 enemy.MOVE(gameMap);
             }
 

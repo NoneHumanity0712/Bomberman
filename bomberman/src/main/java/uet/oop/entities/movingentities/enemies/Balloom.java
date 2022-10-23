@@ -3,13 +3,9 @@ package uet.oop.entities.movingentities.enemies;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
 public class Balloom extends Enemy {
-
-    Image[][] balloom_images = new Image[2][3];
-    Image balloom_dead;
 
     @Override
     public void setupImage() throws FileNotFoundException {

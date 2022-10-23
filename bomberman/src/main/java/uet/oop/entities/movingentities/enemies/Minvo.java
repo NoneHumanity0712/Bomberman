@@ -2,13 +2,9 @@ package uet.oop.entities.movingentities.enemies;
 
 import java.io.FileNotFoundException;
 
-import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
 public class Minvo extends Enemy {
-
-    Image[][] minvo_images = new Image[2][3];
-    Image minvo_dead;
 
     @Override
     public void setupImage() throws FileNotFoundException {

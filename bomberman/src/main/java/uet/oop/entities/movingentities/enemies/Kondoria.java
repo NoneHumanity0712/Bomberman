@@ -5,65 +5,60 @@ import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
-public class Oneal extends Enemy {
-
-    Image[][] oneal_images = new Image[2][3];
-    Image oneal_dead ;
-
-    public Oneal() throws FileNotFoundException {
-        super();
-        super.setType('2');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(1);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
-    public Oneal(int x, int y) throws FileNotFoundException {
-        super(x, y, '2');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(1);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
-    public Oneal(Oneal oneal) throws FileNotFoundException {
-        super(oneal);
-        super.setType('2');
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(1);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
+public class Kondoria extends Enemy{
+    
+    Image[][] kondoria_images = new Image[2][3];
+    Image kondoria_dead;
 
     @Override
     public void setupImage() throws FileNotFoundException {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            super.enemy_images[0][i] = getImage("oneal_right" + i + ".png");
-            super.enemy_images[1][i] = getImage("oneal_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("kondoria_right" + i + ".png");
+            super.enemy_images[1][i] = getImage("kondoria_left" + i + ".png");
         }
+        super.enemy_dead[0] = getImage("kondoria_dead.png");
+    }
 
-        super.enemy_dead[0] = getImage("oneal_dead.png");
+    public Kondoria() throws FileNotFoundException {
+		super();
+        super.setType('5');
+        super.setDirection(0);
+        super.setAbleToPassWall(true);
+
+        setDelaytime(200);
+        setSpeed(1);
+        setStep(getSpeed()/8);
+
+        setupImage();
+        setImage(enemy_images[0][0]);
+	}
+
+	public Kondoria(int x, int y) throws FileNotFoundException {
+        super(x, y, '5');
+        super.setDirection(0);
+        super.setAbleToPassWall(true);
+
+        setDelaytime(200);
+        setSpeed(1);
+        setStep(getSpeed()/8);
+
+        setupImage();
+        setImage(enemy_images[0][0]);
+    }
+
+    public Kondoria(Kondoria enemy) throws FileNotFoundException {
+        super(enemy);
+        super.setDirection(0);
+        super.setAbleToPassWall(true);
+
+        setDelaytime(200);
+        setSpeed(1);
+        setStep(getSpeed()/8);
+
+        setupImage();
+        setImage(enemy_images[0][0]);
     }
 
     @Override
@@ -114,4 +109,5 @@ public class Oneal extends Enemy {
         setTimeBefore(System.currentTimeMillis());
         setTimebeforeeachstep(System.currentTimeMillis());
     }
+    
 }

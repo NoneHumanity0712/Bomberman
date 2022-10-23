@@ -7,10 +7,6 @@ import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
 public class Doll extends Enemy {
-
-    Image[][] doll_images = new Image[2][3];
-    Image doll_dead;
-
     @Override
     public void setupImage() throws FileNotFoundException {
         super.setupImage();

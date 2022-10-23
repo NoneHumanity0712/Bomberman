@@ -15,6 +15,7 @@ import uet.oop.entities.movingentities.Bomber;
 import uet.oop.entities.movingentities.enemies.Balloom;
 import uet.oop.entities.movingentities.enemies.Doll;
 import uet.oop.entities.movingentities.enemies.Enemy;
+import uet.oop.entities.movingentities.enemies.Kondoria;
 import uet.oop.entities.movingentities.enemies.Minvo;
 import uet.oop.entities.movingentities.enemies.Oneal;
 
@@ -138,6 +139,11 @@ public class Map {
                     case '4': // minvo
                         Minvo minvo = new Minvo(j, i);
                         enemies.add(minvo);
+                        this.map[i][j] = ' ';
+                        break;
+                    case '5': //kondoria
+                        Kondoria kondoria = new Kondoria(j, i);
+                        enemies.add(kondoria);
                         this.map[i][j] = ' ';
                         break;
                     case 's': // speed item
