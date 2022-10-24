@@ -22,8 +22,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 bomberman/target/
-Designs/how_to_play.ai
-Designs/startmenu.ai
 bomberman/src/main/resources/fonts/Pixel_NES.otf
 bomberman/src/main/resources/fonts/Pixel_NES.ttf
-Designs/next_level.ai
+/Designs
