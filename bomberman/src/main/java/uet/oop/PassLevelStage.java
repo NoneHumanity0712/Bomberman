@@ -44,6 +44,7 @@ public class PassLevelStage extends Stage implements HandleImage{
         passlevelScene = new Scene(root, 300, 200, Color.valueOf("EAEAEA"));
 
         this.setScene(passlevelScene);
+        this.setTitle("Pass Level");
         this.getIcons().add(getImage("logo.png", "banners"));
     }
 }

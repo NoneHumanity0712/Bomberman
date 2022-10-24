@@ -19,7 +19,7 @@ public class WinStage extends Stage implements HandleImage{
     Scene wingameScene;
 
     public WinStage() throws FileNotFoundException {
-        winGameImage = getImage("banners", "win_game.png");
+        winGameImage = getImage("win_game.png", "banners");
         winGameView = new ImageView(winGameImage);
 
         replay = new Button("REPLAY");
@@ -34,6 +34,6 @@ public class WinStage extends Stage implements HandleImage{
 
         this.setScene(wingameScene);
         this.getIcons().add(getImage("logo.png", "banners"));
-
+        this.setTitle("You Win!");
     }
 }

@@ -71,7 +71,7 @@ public class Main extends Application implements HandleImage {
         try {
             List<Map> maps = new ArrayList<>();
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1; i++) {
                 ReadFromFile maplevel = new ReadFromFile();
                 maplevel.readFile(new File("src/main/resources/levels/level" + String.valueOf(i + 1) + ".txt"));
                 maplevels.add(maplevel);
@@ -128,7 +128,7 @@ public class Main extends Application implements HandleImage {
                         }
                     } else {
                         this.pause();
-                        
+
                         try {
                             gameOver(primaryStage);
                         } catch (FileNotFoundException e) {
@@ -225,6 +225,10 @@ public class Main extends Application implements HandleImage {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
+            });
+
+            winStage.setOnCloseRequest(e -> {
+                Platform.exit();
             });
         }
     }
