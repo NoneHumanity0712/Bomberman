@@ -68,11 +68,10 @@ Item | Name | Description
 ## Images:
 
 ### Start Stage:
-![image](https://user-images.githubusercontent.com/40814521/197460395-71324b80-0800-4bfa-a56b-ad0ce6704ce6.png)
+![start menu](https://user-images.githubusercontent.com/40814521/197494411-7aad929f-f8fa-4727-98ab-4351490e68ee.png "Start Menu")
 
 ### How To Play:
-![image](https://user-images.githubusercontent.com/40814521/197460512-60eee6e2-66be-432f-be8a-954d8e097b20.png)
-![image](https://user-images.githubusercontent.com/40814521/197460535-5a7c1dea-83da-4580-a6c7-e4dfb5ec3f1e.png)
+![how to play](https://user-images.githubusercontent.com/40814521/197495438-49575f47-0d22-4618-a72f-d9a7cc04bfce.png "How To Play")
 
 ### Game:
-![image](https://user-images.githubusercontent.com/40814521/197460587-23060894-9b6f-4ace-acb8-8097e99dbc5b.png)
+![demo](https://user-images.githubusercontent.com/40814521/197496875-0f1951e9-e74d-4d04-9cb4-7fc8475ba7dd.gif "Playing level 1")
