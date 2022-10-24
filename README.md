@@ -48,7 +48,7 @@ Item | Name | Description
 ## UML Diagrams:
 
 ### Game Process: 
-![gameprocess](https://user-images.githubusercontent.com/40814521/197439658-54623043-b48f-4d98-9778-05fd357139fd.png)
+![gameprocess](https://user-images.githubusercontent.com/40814521/197457685-e5fffcb6-6905-445d-8b56-72a28cb0d59c.png)
 
 ### Entities:
 ![entities](https://user-images.githubusercontent.com/40814521/197439754-9c5d4c33-209d-40d6-a505-8d1902f2db2f.png)
