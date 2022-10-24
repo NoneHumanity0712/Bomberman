@@ -68,7 +68,7 @@ Item | Name | Description
 ## Images:
 
 ### Start Stage:
-![start menu](https://user-images.githubusercontent.com/40814521/197494411-7aad929f-f8fa-4727-98ab-4351490e68ee.png "Start Menu")
+![start menu](https://user-images.githubusercontent.com/40814521/197535344-a0e3c033-30da-4c07-8e2f-5404e2ceb4d8.png "Start Menu")
 
 ### How To Play:
 ![how to play](https://user-images.githubusercontent.com/40814521/197495438-49575f47-0d22-4618-a72f-d9a7cc04bfce.png "How To Play")
