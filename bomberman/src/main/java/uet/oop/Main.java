@@ -66,7 +66,7 @@ public class Main extends Application implements HandleImage {
         try {
             List<Map> maps = new ArrayList<>();
 
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 5; i++) {
                 ReadFromFile maplevel = new ReadFromFile();
                 maplevel.readFile(new File("src/main/resources/levels/level" + String.valueOf(i + 1) + ".txt"));
                 maplevels.add(maplevel);
