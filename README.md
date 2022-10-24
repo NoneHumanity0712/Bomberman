@@ -1,4 +1,6 @@
-# OOP's game repository using *Java* by Lê Hoàng Minh Hà.
+# Lê Hoàng Minh Hà's OOP game repository
+> Program language: *Java*.
+> Course: INT2204 40
 
 ## [Game: Bomberman](https://en.wikipedia.org/wiki/Bomberman "Wikipedia: Bomberman")
 
@@ -63,22 +65,13 @@ Item | Name | Description
 ### Items:
 ![items](https://user-images.githubusercontent.com/40814521/197439871-19073407-61ad-4c77-9ab3-2a9560c4b0a2.png)
 
+## Images:
 
-### Task list:
-- [x] Draw map
-- [x] Make bomber moves using right/down/left/up arrow button
-- [x] Bomber can place bomb
-- [x] Bomb can kill enemy, destroy brick, explode automatically 2 seconds after being placed, activate other bomb in exploded range
-- [x] Create enemy Balloom and make Balloom moves automatically, disappear after being killed
-- [x] Create portal, make portal appears when the brick is exploded
-- [x] Create speed item
-- [x] Create enemy Oneal
-- [x] Create flame item
-- [x] Make Bomber die when being bomb, meet enemies,...
-- [x] Make algorithm for Oneal to find Bomber (kinda)
-- [x] Add new level
-- [x] Add sound effects
-- [x] Move to new level when go through portal 
-- [x] Create bombs item
-- [x] Create wallpass item
-- [x] Create enemy Kondoria
+### Start Stage:
+![start menu](https://user-images.githubusercontent.com/40814521/197494411-7aad929f-f8fa-4727-98ab-4351490e68ee.png "Start Menu")
+
+### How To Play:
+![how to play](https://user-images.githubusercontent.com/40814521/197495438-49575f47-0d22-4618-a72f-d9a7cc04bfce.png "How To Play")
+
+### Game:
+![demo](https://user-images.githubusercontent.com/40814521/197496875-0f1951e9-e74d-4d04-9cb4-7fc8475ba7dd.gif "Playing level 1")
