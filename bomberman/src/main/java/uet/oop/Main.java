@@ -131,6 +131,8 @@ public class Main extends Application implements HandleImage {
     }
 
     public void gameOver(Stage primaryStage) {
+        MediaPlayer gameover = new MediaPlayer(new Media(getClass().getResource("/sound/gameover.mp3").toString()));
+
         Image gameoverImage = new Image("file:src/main/resources/banners/gameover.png");
         ImageView gameoverView = new ImageView(gameoverImage);
 
@@ -147,6 +149,7 @@ public class Main extends Application implements HandleImage {
 
         subStage.setScene(subScene);
         subStage.show();
+        gameover.play();
 
         replay.setOnAction(e -> {
             try {

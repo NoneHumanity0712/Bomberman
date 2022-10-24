@@ -44,6 +44,7 @@ Item | Name | Description
 - receiving power-up items: Sound Effect from [mixkit](https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-casino-notification-211.mp3)
 - next level: Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=14575">Pixabay</a>
 - win game: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6185">Pixabay</a>
+- game over: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6008">Pixabay</a>
 
 ## UML Diagrams:
 
