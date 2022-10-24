@@ -41,6 +41,7 @@ public class Main extends Application implements HandleImage {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        primaryStage.getIcons().add(getImage("logo.png", "banners"));
 
         StartStage startMenu = new StartStage();
         startMenu.show();
@@ -51,7 +52,11 @@ public class Main extends Application implements HandleImage {
         });
 
         startMenu.howtoplayButton.setOnAction(e -> {
-            startMenu.howtoplay();
+            try {
+                startMenu.howtoplay();
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            }
         });
 
         startMenu.startButton.setOnAction(e -> {
@@ -109,7 +114,12 @@ public class Main extends Application implements HandleImage {
 
                         if (bombermanGame.isPassLevel()) {
                             this.pause();
-                            toNextLevel(primaryStage);
+
+                            try {
+                                toNextLevel(primaryStage);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         }
 
                         if (bombermanGame.isQuitGame()) {
@@ -118,7 +128,12 @@ public class Main extends Application implements HandleImage {
                         }
                     } else {
                         this.pause();
-                        gameOver(primaryStage);
+                        
+                        try {
+                            gameOver(primaryStage);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
@@ -130,10 +145,10 @@ public class Main extends Application implements HandleImage {
         }
     }
 
-    public void gameOver(Stage primaryStage) {
+    public void gameOver(Stage primaryStage) throws FileNotFoundException {
         MediaPlayer gameover = new MediaPlayer(new Media(getClass().getResource("/sound/gameover.mp3").toString()));
 
-        Image gameoverImage = new Image("file:src/main/resources/banners/gameover.png");
+        Image gameoverImage = getImage("gameover.png", "banners");
         ImageView gameoverView = new ImageView(gameoverImage);
 
         Button replay = new Button("REPLAY");
@@ -148,6 +163,7 @@ public class Main extends Application implements HandleImage {
         Scene subScene = new Scene(root, gameoverImage.getWidth(), gameoverImage.getHeight());
 
         subStage.setScene(subScene);
+        subStage.getIcons().add(getImage("logo.png", "banners"));
         subStage.show();
         gameover.play();
 
@@ -168,7 +184,7 @@ public class Main extends Application implements HandleImage {
         });
     }
 
-    public void toNextLevel(Stage primaryStage) {
+    public void toNextLevel(Stage primaryStage) throws FileNotFoundException {
         try {
             bombermanGame.update();
         } catch (FileNotFoundException e) {

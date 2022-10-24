@@ -14,8 +14,8 @@ import javafx.scene.paint.Color;
 import uet.oop.entities.Entity;
 
 public interface HandleImage {
-    default Image getImage(String filename) throws FileNotFoundException {
-        FileInputStream input = new FileInputStream("src/main/resources/sprites/" + filename);
+    default Image getImage(String filename, String foldername) throws FileNotFoundException {
+        FileInputStream input = new FileInputStream("src/main/resources/" + foldername + "/" + filename);
         Image image = new Image(input);
         image = makeTransparent(image);
         return image;

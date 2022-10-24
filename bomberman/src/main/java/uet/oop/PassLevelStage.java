@@ -1,5 +1,7 @@
 package uet.oop;
 
+import java.io.FileNotFoundException;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,8 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import uet.oop.gameprocess.HandleImage;
 
-public class PassLevelStage extends Stage {
+public class PassLevelStage extends Stage implements HandleImage{
 
     Image passlevelImage;
     ImageView passlevelView;
@@ -19,8 +22,8 @@ public class PassLevelStage extends Stage {
     Group root;
     Scene passlevelScene;
 
-    public PassLevelStage(String scores) {
-        passlevelImage = new Image("file:src/main/resources/banners/nextlevel.png");
+    public PassLevelStage(String scores) throws FileNotFoundException {
+        passlevelImage = getImage("nextlevel.png", "banners");
         passlevelView = new ImageView(passlevelImage);
 
         toNextLevel = new Button("Next Level");
@@ -41,5 +44,6 @@ public class PassLevelStage extends Stage {
         passlevelScene = new Scene(root, 300, 200, Color.valueOf("EAEAEA"));
 
         this.setScene(passlevelScene);
+        this.getIcons().add(getImage("logo.png", "banners"));
     }
 }

@@ -11,15 +11,14 @@ public class Kondoria extends Enemy {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            super.enemy_images[0][i] = getImage("kondoria_right" + i + ".png");
-            super.enemy_images[1][i] = getImage("kondoria_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("kondoria_right" + i + ".png", "sprites");
+            super.enemy_images[1][i] = getImage("kondoria_left" + i + ".png", "sprites");
         }
-        super.enemy_dead[0] = getImage("kondoria_dead.png");
+        super.enemy_dead[0] = getImage("kondoria_dead.png", "sprites");
     }
 
     public Kondoria() throws FileNotFoundException {
 		super();
-        super.setType('5');
         super.setDirection(0);
         super.setAbleToPassWall(true);
 
@@ -32,7 +31,7 @@ public class Kondoria extends Enemy {
 	}
 
 	public Kondoria(int x, int y) throws FileNotFoundException {
-        super(x, y, '5');
+        super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(true);
 

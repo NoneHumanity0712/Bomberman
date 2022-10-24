@@ -12,13 +12,13 @@ public class FlameItem extends Item{
     private final int range_to_increase = 1;
 
     public FlameItem(int x, int y) throws FileNotFoundException {
-        super(x, y, 'f');
+        super(x, y);
         setupImage();
     }
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        flameItemImage = getImage("powerup_flames.png");
+        flameItemImage = getImage("powerup_flames.png", "sprites");
     }
 
     public int getRange_to_increase() {

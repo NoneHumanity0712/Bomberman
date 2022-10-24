@@ -1,5 +1,7 @@
 package uet.oop;
 
+import java.io.FileNotFoundException;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,8 +13,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import uet.oop.gameprocess.HandleImage;
 
-public class StartStage extends Stage {
+public class StartStage extends Stage implements HandleImage{
 
     public Button startButton;
     public Button exitButton;
@@ -28,9 +31,8 @@ public class StartStage extends Stage {
     Stage subStage;
     Scene subScene;
 
-    public StartStage() {
-
-        Image image = new Image("file:src/main/resources/banners/startmenu.png");
+    public StartStage() throws FileNotFoundException {
+        Image image = getImage("startmenu.png", "banners");
         ImageView imageView = new ImageView(image);
 
         startButton = new Button("Start Game");
@@ -58,12 +60,14 @@ public class StartStage extends Stage {
 
         this.setScene(scene);
         this.setTitle("MENU");
+
+        this.getIcons().add(getImage("logo.png", "banners"));
     }
 
-    public void howtoplay() {
+    public void howtoplay() throws FileNotFoundException {
         Stage subStage = new Stage();
 
-        Image howtoplay_image = new Image("file:src/main/resources/banners/how_to_play.png");
+        Image howtoplay_image = getImage("how_to_play.png", "banners");
         ImageView howtoplayImageView = new ImageView(howtoplay_image);
 
         Button backButton = new Button("Back");
@@ -86,6 +90,7 @@ public class StartStage extends Stage {
 
         Scene subScene = new Scene(howtoplayPane, 520, 700, Color.valueOf("EAEAEA"));
         subStage.setScene(subScene);
+        subStage.getIcons().add(getImage("logo.png", "banners"));
         subStage.show();
 
         backButton.setOnAction(e -> {

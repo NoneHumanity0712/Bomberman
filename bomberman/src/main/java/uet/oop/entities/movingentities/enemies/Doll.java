@@ -11,16 +11,15 @@ public class Doll extends Enemy {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            super.enemy_images[0][i] = getImage("doll_right" + i + ".png");
-            super.enemy_images[1][i] = getImage("doll_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("doll_right" + i + ".png", "sprites");
+            super.enemy_images[1][i] = getImage("doll_left" + i + ".png", "sprites");
         }
 
-        super.enemy_dead[0] = getImage("doll_dead.png");
+        super.enemy_dead[0] = getImage("doll_dead.png", "sprites");
     }
 
     public Doll() throws FileNotFoundException {
         super();
-        super.setType('3');
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -33,7 +32,7 @@ public class Doll extends Enemy {
     }
 
     public Doll(int x, int y) throws FileNotFoundException {
-        super(x, y, '3');
+        super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(false);
 

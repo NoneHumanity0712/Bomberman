@@ -7,7 +7,6 @@ import uet.oop.gameprocess.Map;
 public class Oneal extends Enemy {
     public Oneal() throws FileNotFoundException {
         super();
-        super.setType('2');
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -21,7 +20,7 @@ public class Oneal extends Enemy {
     }
 
     public Oneal(int x, int y) throws FileNotFoundException {
-        super(x, y, '2');
+        super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -39,11 +38,11 @@ public class Oneal extends Enemy {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            super.enemy_images[0][i] = getImage("oneal_right" + i + ".png");
-            super.enemy_images[1][i] = getImage("oneal_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("oneal_right" + i + ".png", "sprites");
+            super.enemy_images[1][i] = getImage("oneal_left" + i + ".png", "sprites");
         }
 
-        super.enemy_dead[0] = getImage("oneal_dead.png");
+        super.enemy_dead[0] = getImage("oneal_dead.png", "sprites");
     }
 
     @Override

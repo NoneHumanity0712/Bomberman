@@ -52,9 +52,9 @@ public class Game implements HandleImage {
         QuitGame = false;
         passLevel = false;
 
-        setGrassImage(getImage("grass.png"));
-        setBrickImage(getImage("brick.png"));
-        setWallImage(getImage("wall.png"));
+        setGrassImage(getImage("grass.png", "sprites"));
+        setBrickImage(getImage("brick.png", "sprites"));
+        setWallImage(getImage("wall.png", "sprites"));
     }
 
     public void setBomber(Bomber bomber) {

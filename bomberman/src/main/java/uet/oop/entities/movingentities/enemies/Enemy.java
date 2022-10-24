@@ -15,12 +15,12 @@ public abstract class Enemy extends MovingEntity {
         super();
     };
 
-    public Enemy(int x, int y, char type) throws FileNotFoundException {
-        super(x, y, type);
+    public Enemy(int x, int y) throws FileNotFoundException {
+        super(x, y);
     }
 
     public Enemy(Enemy enemy) throws FileNotFoundException {
-        super(enemy.getX(), enemy.getY(), enemy.getType());
+        super(enemy.getX(), enemy.getY());
         super.setDirection(enemy.getDirection());
     }
 
@@ -28,7 +28,7 @@ public abstract class Enemy extends MovingEntity {
     public void setupImage() throws FileNotFoundException {
         enemy_dead = new Image[4];
         for (int i = 1; i < 4; i++) {
-            enemy_dead[i] = getImage("mob_dead" + i + ".png");
+            enemy_dead[i] = getImage("mob_dead" + i + ".png", "sprites");
         }
     }
 

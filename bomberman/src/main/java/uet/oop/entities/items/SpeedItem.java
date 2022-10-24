@@ -12,13 +12,13 @@ public class SpeedItem extends Item{
     private final double speed_to_increase = 0.5;
 
     public SpeedItem(int x, int y) throws FileNotFoundException {
-        super(x, y, 's');
+        super(x, y);
         setupImage();
     }
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        speedItemImage = getImage("powerup_speed.png");
+        speedItemImage = getImage("powerup_speed.png", "sprites");
     }
 
     @Override

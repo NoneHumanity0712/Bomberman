@@ -19,15 +19,15 @@ public class Bomber extends MovingEntity {
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
-            bomber_images[0][i] = getImage("player_right_" + i + ".png");
-            bomber_images[1][i] = getImage("player_down_" + i + ".png");
-            bomber_images[2][i] = getImage("player_left_" + i + ".png");
-            bomber_images[3][i] = getImage("player_up_" + i + ".png");
+            bomber_images[0][i] = getImage("player_right_" + i + ".png", "sprites");
+            bomber_images[1][i] = getImage("player_down_" + i + ".png", "sprites");
+            bomber_images[2][i] = getImage("player_left_" + i + ".png", "sprites");
+            bomber_images[3][i] = getImage("player_up_" + i + ".png", "sprites");
         }
 
         bomber_dead = new Image[3];
         for (int i = 0; i < 3; i++) {
-            bomber_dead[i] = getImage("player_dead" + i + ".png");
+            bomber_dead[i] = getImage("player_dead" + i + ".png", "sprites");
         }
     }
 
@@ -82,7 +82,7 @@ public class Bomber extends MovingEntity {
     }
 
     public Bomber() throws FileNotFoundException {
-        super(1, 1, 'p');
+        super(1, 1);
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -102,7 +102,7 @@ public class Bomber extends MovingEntity {
     }
 
     public Bomber(int x, int y) throws FileNotFoundException {
-        super(x, y, 'p');
+        super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -122,7 +122,7 @@ public class Bomber extends MovingEntity {
     }
 
     public Bomber(Bomber bomber) throws FileNotFoundException {
-        super(bomber.getX(), bomber.getY(), 'p');
+        super(bomber.getX(), bomber.getY());
         super.setAbleToPassWall(false);
 
         bombs = 20;

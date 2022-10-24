@@ -23,7 +23,7 @@ public class BombsItem extends Item{
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        bombsItemImage = getImage("powerup_bombs.png");
+        bombsItemImage = getImage("powerup_bombs.png", "sprites");
     }
 
     @Override

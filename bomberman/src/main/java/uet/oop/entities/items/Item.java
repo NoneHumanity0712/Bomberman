@@ -33,12 +33,6 @@ public abstract class Item extends Entity{
         hide = true;
     }
 
-    public Item(int x, int y, char type) {
-        super(x, y, type);
-        received = false;
-        hide = true;
-    }
-
     protected void setupSound() {
         beingreceived = new MediaPlayer(new Media(getClass().getResource("/sound/receive_item.wav").toString()));
     }

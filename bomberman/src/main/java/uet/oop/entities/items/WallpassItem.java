@@ -18,7 +18,7 @@ public class WallpassItem extends Item{
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        wallpassItemImage = getImage("powerup_wallpass.png");
+        wallpassItemImage = getImage("powerup_wallpass.png", "sprites");
     }
 
     @Override

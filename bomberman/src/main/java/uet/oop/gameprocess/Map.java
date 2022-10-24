@@ -20,16 +20,16 @@ import uet.oop.entities.movingentities.enemies.Minvo;
 import uet.oop.entities.movingentities.enemies.Oneal;
 
 public class Map {
-    private int row;
-    private int column;
-    private char[][] map;
+    private int row; // numbers of row
+    private int column; // numbers of column
+    private char[][] map; // 2D char array to save non-moving enetities: grass, brick, wall
 
-    private Bomber bomber;
-    private List<Enemy> enemies;
-    private List<Bomb> bombs;
-    private List<Item> items;
+    private Bomber bomber; // bomber
+    private List<Enemy> enemies; // enemies
+    private List<Bomb> bombs; // bombs
+    private List<Item> items; // power-up items
 
-    private Portal portal;
+    private Portal portal; // portal
 
     public Map() throws FileNotFoundException {
         this.row = 1;
@@ -107,6 +107,12 @@ public class Map {
         return items;
     }
 
+    /**
+     * set up map from a 2D char array:
+     *
+     * @param map 2D char array from external file
+     * @throws FileNotFoundException when the file is not found
+     */
     public void setMap(char[][] map) throws FileNotFoundException {
         this.map = new char[this.row][this.column];
         for (int i = 0; i < this.row; i++) {
@@ -141,7 +147,7 @@ public class Map {
                         enemies.add(minvo);
                         this.map[i][j] = ' ';
                         break;
-                    case '5': //kondoria
+                    case '5': // kondoria
                         Kondoria kondoria = new Kondoria(j, i);
                         enemies.add(kondoria);
                         this.map[i][j] = ' ';
@@ -156,12 +162,12 @@ public class Map {
                         items.add(flameItem);
                         this.map[i][j] = '*';
                         break;
-                    case 'w': //wallpass item
+                    case 'w': // wallpass item
                         WallpassItem wallpassItem = new WallpassItem(j, i);
                         items.add(wallpassItem);
                         this.map[i][j] = '*';
                         break;
-                    case 'n': //bombs item
+                    case 'n': // bombs item
                         BombsItem bombsItem = new BombsItem(j, i);
                         items.add(bombsItem);
                         this.map[i][j] = '*';
@@ -174,51 +180,18 @@ public class Map {
         }
     }
 
-    /**
-     * Mô tả cấu trúc tệp cấu hình màn chơi:
-     * 1/ Dòng đầu tiên bao gồm 3 số nguyên L, R, C:
-     * L - số thứ tự màn chơi,
-     * R - số hàng của bản đồ,
-     * C - số cột của bản đồ.
-     * 
-     * 2/ R dòng tiếp theo, mỗi dòng có C kí tự. Mỗi kí tự đại diện cho một đối
-     * tượng trên bản đồ:
-     * Tiles:
-     * # - Wall,
-     * - Brick,
-     * x - Portal.
-     * 
-     * Character:
-     * p - Bomber,
-     * 1 - Balloon,
-     * 2 - Oneal.
-     * 
-     * Items:
-     * b - Bomb Item,
-     * f - Flame Item,
-     * s - Speed Item.
-     * 
-     * Kí tự khác các kí tự trên - Grass
-     * 
-     * @return 2d array map
-     */
     public char[][] getMap() {
         return map;
     }
 
+    /**
+     * set up map from input File
+     * @param inputFile File
+     * @throws FileNotFoundException 
+     */
     public void setMapFromFile(ReadFromFile inputFile) throws FileNotFoundException {
         this.setRow(inputFile.getRow_read());
         this.setColumn(inputFile.getColumn_read());
         this.setMap(inputFile.getMap_read());
-    }
-
-    public void printMap() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                System.out.print(map[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println();
     }
 }

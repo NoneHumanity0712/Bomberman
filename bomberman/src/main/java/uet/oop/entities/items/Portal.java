@@ -19,7 +19,7 @@ public class Portal extends Entity{
     };
 
     public Portal(int x, int y) throws FileNotFoundException{
-        super(x, y, 'x');
+        super(x, y);
         activate = false;
         hide = true;
 
@@ -27,7 +27,7 @@ public class Portal extends Entity{
     }
 
     public Portal(Portal portal) throws FileNotFoundException {
-        super(portal.getX(), portal.getY(), 'x');
+        super(portal.getX(), portal.getY());
         activate = false;
         hide = true;
 
@@ -61,6 +61,6 @@ public class Portal extends Entity{
 
     @Override
     public void setupImage() throws FileNotFoundException {
-        portalImage = getImage("portal.png");
+        portalImage = getImage("portal.png", "sprites");
     }
 }

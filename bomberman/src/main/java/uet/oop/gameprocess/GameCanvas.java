@@ -12,15 +12,18 @@ public class GameCanvas extends Canvas {
 
     public GameCanvas(Node... children) throws FileNotFoundException {
         super();
+
         this.setFocusTraversable(true);
         context = this.getGraphicsContext2D();
     }
 
     public GameCanvas(int screenWidth, int screenHeight) throws FileNotFoundException {
         super();
+
         this.setWidth(screenWidth);
         this.setHeight(screenHeight);
         this.setFocusTraversable(true);
+        
         context = this.getGraphicsContext2D();
     }
 

@@ -32,9 +32,13 @@ public abstract class Entity implements HandleImage {
      * 1 Balloom,
      * 2 Oneal,
      * 3 Doll,
+     * 4 Minvo,
+     * 5 Kondoria,
      * b Bomb Item,
      * f Flame Item,
-     * s Speed Item.
+     * s Speed Item,
+     * n Bombs Item,
+     * w Wallpass Item
      * 
      * @throws FileNotFoundException
      */
@@ -52,8 +56,6 @@ public abstract class Entity implements HandleImage {
         render(context, image, x, y);
     }
 
-    private char type;
-
     public void setX(int x) {
         this.x = x;
     }
@@ -70,26 +72,12 @@ public abstract class Entity implements HandleImage {
         return y;
     }
 
-    public void setType(char type) {
-        this.type = type;
-    }
-
-    public char getType() {
-        return type;
-    }
-
     public Entity() {
     };
 
     public Entity(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public Entity(int x, int y, char type) {
-        this.x = x;
-        this.y = y;
-        this.type = type;
     }
 
     public Entity(Entity e) {

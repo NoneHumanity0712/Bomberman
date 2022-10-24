@@ -11,15 +11,14 @@ public class Minvo extends Enemy {
         super.setupImage();
 
         for (int i = 0; i < 3; i++) {
-            super.enemy_images[0][i] = getImage("minvo_right" + i + ".png");
-            super.enemy_images[1][i] = getImage("minvo_left" + i + ".png");
+            super.enemy_images[0][i] = getImage("minvo_right" + i + ".png", "sprites");
+            super.enemy_images[1][i] = getImage("minvo_left" + i + ".png", "sprites");
         }
-        super.enemy_dead[0] = getImage("minvo_dead.png");
+        super.enemy_dead[0] = getImage("minvo_dead.png", "sprites");
     }
 
     public Minvo() throws FileNotFoundException {
         super();
-        super.setType('4');
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -33,7 +32,7 @@ public class Minvo extends Enemy {
     }
 
     public Minvo(int x, int y) throws FileNotFoundException {
-        super(x, y, '4');
+        super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(false);
 

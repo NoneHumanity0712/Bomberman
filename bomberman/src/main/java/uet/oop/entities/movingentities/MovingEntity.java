@@ -184,19 +184,7 @@ public abstract class MovingEntity extends Entity {
 
         alive = true;
     }
-
-    public MovingEntity(int x, int y, char type) {
-        super(x, y, type);
-        doubleX = (double) x;
-        doubleY = (double) y;
-        stepCount = 0;
-
-        oldX = getDoubleX();
-        oldY = getDoubleY();
-
-        alive = true;
-    }
-
+    
     public boolean legal_move(Map map, int y, int x) {
         if (y >= 0 && y < map.getRow() && x >= 0 && x < map.getColumn()) {
             if (map.getMap()[y][x] == ' ') {

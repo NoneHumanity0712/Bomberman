@@ -13,17 +13,16 @@ public class Balloom extends Enemy {
 
         for (int i = 0; i < 3; i++) {
 
-            super.enemy_images[0][i] = getImage("balloom_right" + i + ".png");
+            super.enemy_images[0][i] = getImage("balloom_right" + i + ".png", "sprites");
 
-            super.enemy_images[1][i] = getImage("balloom_left" + i + ".png");
+            super.enemy_images[1][i] = getImage("balloom_left" + i + ".png", "sprites");
         }
 
-        super.enemy_dead[0] = getImage("balloom_dead.png");
+        super.enemy_dead[0] = getImage("balloom_dead.png", "sprites");
     }
 
     public Balloom() throws FileNotFoundException {
         super();
-        super.setType('1');
         super.setDirection(0);
         super.setAbleToPassWall(false);
 
@@ -36,7 +35,7 @@ public class Balloom extends Enemy {
     }
 
     public Balloom(int x, int y) throws FileNotFoundException {
-        super(x, y, '1');
+        super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(false);
 

@@ -41,9 +41,21 @@ public class Bomb extends Entity {
 
     private long timebeforeeachframe;
 
-    public Bomb(int x, int y, char type, boolean place, boolean explode, int range, long time_since_placed,
+    /**
+     * Create flame from bomb.
+     * 
+     * @param x                 x-coordinate of the flame
+     * @param y                 y-coordinate of the flame
+     * @param place             is bomb placed?
+     * @param explode           is bomb exploded?
+     * @param range             = 0
+     * @param time_since_placed time since placed
+     * @param placedState       to draw placed images -> make animation
+     * @param explodedState     to draw exploded images -> make animation
+     */
+    public Bomb(int x, int y, boolean place, boolean explode, int range, long time_since_placed,
             int placedState, int explodedState) {
-        super(x, y, type);
+        super(x, y);
         this.place = place;
         this.explode = explode;
         this.range = range;
@@ -52,8 +64,13 @@ public class Bomb extends Entity {
         this.explodedState = explodedState;
     }
 
+    /**
+     * Create the bomb (center) from a bomber position
+     * 
+     * @param bomber
+     */
     public Bomb(Bomber bomber) {
-        super(bomber.getX(), bomber.getY(), 'b');
+        super(bomber.getX(), bomber.getY());
         bomber.setBombs(bomber.getBombs() - 1);
 
         edges = new Bomb[4];
@@ -103,18 +120,18 @@ public class Bomb extends Entity {
     @Override
     public void setupImage() throws FileNotFoundException {
         for (int i = 0; i < 3; i++) {
-            bomb_images[0][i] = getImage("bomb_" + i + ".png");
-            bomb_images[1][i] = getImage("bomb_exploded" + i + ".png");
+            bomb_images[0][i] = getImage("bomb_" + i + ".png", "sprites");
+            bomb_images[1][i] = getImage("bomb_exploded" + i + ".png", "sprites");
 
-            edge_images[0][i] = getImage("explosion_horizontal_right_last" + i + ".png");
-            edge_images[1][i] = getImage("explosion_vertical_down_last" + i + ".png");
-            edge_images[2][i] = getImage("explosion_horizontal_left_last" + i + ".png");
-            edge_images[3][i] = getImage("explosion_vertical_top_last" + i + ".png");
+            edge_images[0][i] = getImage("explosion_horizontal_right_last" + i + ".png", "sprites");
+            edge_images[1][i] = getImage("explosion_vertical_down_last" + i + ".png", "sprites");
+            edge_images[2][i] = getImage("explosion_horizontal_left_last" + i + ".png", "sprites");
+            edge_images[3][i] = getImage("explosion_vertical_top_last" + i + ".png", "sprites");
 
-            flame_images[0][i] = getImage("explosion_horizontal" + i + ".png");
-            flame_images[1][i] = getImage("explosion_vertical" + i + ".png");
+            flame_images[0][i] = getImage("explosion_horizontal" + i + ".png", "sprites");
+            flame_images[1][i] = getImage("explosion_vertical" + i + ".png", "sprites");
 
-            explodedbrickImage[i] = getImage("brick_exploded" + i + ".png");
+            explodedbrickImage[i] = getImage("brick_exploded" + i + ".png", "sprites");
         }
     }
 
@@ -167,10 +184,23 @@ public class Bomb extends Entity {
         return upFlames;
     }
 
+    /**
+     * To make bomb exlosing animation: 500ms from explosion
+     * 
+     * @param time_since_exploded
+     */
     public void setTime_since_exploded(long time_since_exploded) {
         this.time_since_exploded = time_since_exploded;
     }
 
+    /**
+     * chcek if able to place a flame at this position
+     * 
+     * @param map check map entities
+     * @param x   x-coordinate of the postion
+     * @param y   y-coordinate of the postion
+     * @return true if able to place
+     */
     private boolean checkflame(Map map, int x, int y) {
         if (x < 0 || x >= map.getColumn() || y < 0 || y >= map.getRow())
             return false;
@@ -187,6 +217,11 @@ public class Bomb extends Entity {
         return true;
     }
 
+    /**
+     * set up the bomb flame and edge (the end of the flame)
+     * 
+     * @param map Map
+     */
     public void setupEdge(Map map) {
 
         int x = this.getX();
@@ -194,15 +229,15 @@ public class Bomb extends Entity {
         for (int i = 0; i < range; i++) {
             x = this.getX() + 1 + i;
             if (checkflame(map, x, y) && x < this.getX() + range) {
-                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                Bomb flame = new Bomb(x, y, place, explode, 0,
                         time_since_placed, placedState, explodedState);
                 rightFlames.add(flame);
             } else {
                 break;
             }
         }
-        if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {      
-            edges[0] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+        if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
+            edges[0] = new Bomb(x, y, place, explode, 0, time_since_placed, placedState, explodedState);
         }
 
         x = this.getX();
@@ -210,7 +245,7 @@ public class Bomb extends Entity {
         for (int i = 0; i < range; i++) {
             y = this.getY() + 1 + i;
             if (checkflame(map, x, y) && y < this.getY() + range) {
-                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                Bomb flame = new Bomb(x, y, place, explode, 0,
                         time_since_placed, placedState, explodedState);
                 downFlames.add(flame);
             } else {
@@ -218,7 +253,7 @@ public class Bomb extends Entity {
             }
         }
         if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
-            edges[1] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+            edges[1] = new Bomb(x, y, place, explode, 0, time_since_placed, placedState, explodedState);
         }
 
         x = this.getX();
@@ -226,7 +261,7 @@ public class Bomb extends Entity {
         for (int i = 0; i < range; i++) {
             x = this.getX() - 1 - i;
             if (checkflame(map, x, y) && x > this.getX() - range) {
-                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                Bomb flame = new Bomb(x, y, place, explode, 0,
                         time_since_placed, placedState, explodedState);
                 leftFlames.add(flame);
             } else {
@@ -234,7 +269,7 @@ public class Bomb extends Entity {
             }
         }
         if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
-            edges[2] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+            edges[2] = new Bomb(x, y, place, explode, 0, time_since_placed, placedState, explodedState);
         }
 
         x = this.getX();
@@ -242,7 +277,7 @@ public class Bomb extends Entity {
         for (int i = 0; i < range; i++) {
             y = this.getY() - 1 - i;
             if (checkflame(map, x, y) && y > this.getY() - range) {
-                Bomb flame = new Bomb(x, y, 'b', place, explode, 0,
+                Bomb flame = new Bomb(x, y, place, explode, 0,
                         time_since_placed, placedState, explodedState);
                 upFlames.add(flame);
             } else {
@@ -251,11 +286,14 @@ public class Bomb extends Entity {
         }
         if (x >= 0 && x < map.getColumn() && y >= 0 && y < map.getRow()) {
 
-            edges[3] = new Bomb(x, y, 'b', place, explode, 0, time_since_placed, placedState, explodedState);
+            edges[3] = new Bomb(x, y, place, explode, 0, time_since_placed, placedState, explodedState);
         }
 
     }
 
+    /**
+     * bomb placing animation
+     */
     public void bomb_placing() {
         switch (getPlacedState()) {
             case 0:
@@ -410,6 +448,10 @@ public class Bomb extends Entity {
         }
     }
 
+    /**
+     * bomb exloding 
+     * @param map Map
+     */
     public void Explode(Map map) {
         int x = this.getX();
         int y = this.getY();
@@ -418,6 +460,7 @@ public class Bomb extends Entity {
             map.getMap()[y][x] = ' ';
         }
 
+        // if bomber in the explosion range
         if (((double) x == map.getBomber().getOldX() && (double) y == map.getBomber().getOldY())
                 || (x == Math.ceil(map.getBomber().getDoubleX()) && y == Math.ceil(map.getBomber().getDoubleY()))) {
 
@@ -427,6 +470,7 @@ public class Bomb extends Entity {
             map.getBomber().setTimesincedead(System.currentTimeMillis());
         }
 
+        // if enemies in the explosion range
         for (Enemy enemy : map.getEnemy()) {
 
             if (((double) x == enemy.getOldX() && (double) y == enemy.getOldY())
@@ -441,10 +485,12 @@ public class Bomb extends Entity {
             }
         }
 
-        if (x == map.getPortal().getX() && y == map.getPortal().getY()) {
+        // if portal in the explosion range
+        if (x == map.getPortal().getX() && y == map.getPortal().getY() && map.getPortal().isHide()) {
             map.getPortal().APPEAR();
         }
 
+        // the flame
         if (range == 0) {
             for (Bomb bomb : map.getBombs()) {
                 if (x == bomb.getX() && y == bomb.getY()) {
@@ -456,12 +502,14 @@ public class Bomb extends Entity {
             }
         }
 
+        // make item appear
         for (Item item : map.getItems()) {
             if (x == item.getX() && y == item.getY()) {
                 item.APPEAR();
             }
         }
 
+        // the bomb
         if (range > 0) {
             for (Bomb edge : edges) {
                 if (edge != null)
