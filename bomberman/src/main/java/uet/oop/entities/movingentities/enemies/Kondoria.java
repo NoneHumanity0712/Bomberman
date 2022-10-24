@@ -2,13 +2,9 @@ package uet.oop.entities.movingentities.enemies;
 
 import java.io.FileNotFoundException;
 
-import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
 public class Kondoria extends Enemy {
-    
-    Image[][] kondoria_images = new Image[2][3];
-    Image kondoria_dead;
 
     @Override
     public void setupImage() throws FileNotFoundException {

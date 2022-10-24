@@ -3,6 +3,7 @@ package uet.oop.entities.items;
 import java.io.FileNotFoundException;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer.Status;
 import uet.oop.entities.movingentities.Bomber;
 
 public class SpeedItem extends Item{
@@ -24,6 +25,11 @@ public class SpeedItem extends Item{
     public void beingReceived(Bomber bomber) {
         bomber.setSpeed(bomber.getSpeed() + speed_to_increase);
         setReceived(true);
+        
+        setupSound();
+        if (!beingreceived.getStatus().equals(Status.PLAYING)) {
+            beingreceived.play();
+        }
     }
 
     @Override

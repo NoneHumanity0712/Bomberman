@@ -2,12 +2,16 @@ package uet.oop.entities.items;
 
 import java.io.FileNotFoundException;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import uet.oop.entities.Entity;
 import uet.oop.entities.movingentities.Bomber;
 
 public abstract class Item extends Entity{
     private boolean received;
     private boolean hide;
+
+    protected MediaPlayer beingreceived;
 
     public boolean isHide() {
         return hide;
@@ -33,6 +37,10 @@ public abstract class Item extends Entity{
         super(x, y, type);
         received = false;
         hide = true;
+    }
+
+    protected void setupSound() {
+        beingreceived = new MediaPlayer(new Media(getClass().getResource("/sound/receive_item.wav").toString()));
     }
 
     @Override

@@ -2,14 +2,9 @@ package uet.oop.entities.movingentities.enemies;
 
 import java.io.FileNotFoundException;
 
-import javafx.scene.image.Image;
 import uet.oop.gameprocess.Map;
 
 public class Oneal extends Enemy {
-
-    Image[][] oneal_images = new Image[2][3];
-    Image oneal_dead ;
-
     public Oneal() throws FileNotFoundException {
         super();
         super.setType('2');
