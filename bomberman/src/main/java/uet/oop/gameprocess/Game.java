@@ -139,12 +139,16 @@ public class Game implements HandleImage {
         gameCanvas.context.setFill(Color.valueOf("EAEAEA"));
         gameCanvas.context.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
+        Image topbanner = new Image("file:src/main/resources/banners/topbanner.png");
+        gameCanvas.context.drawImage(topbanner, 0, 0);
+
         gameCanvas.context.setFill(Color.valueOf("38393D"));
         gameCanvas.context.setFont(font);
 
-        gameCanvas.context.fillText("Score:" + String.valueOf(score), 48 * 5, 80);
-        gameCanvas.context.fillText("Bombs:" + String.valueOf(bomber.getBombs()), 48 * 10, 80);
-        gameCanvas.context.fillText("Lifes:" + String.valueOf(bomber.getLifes()), 48 * 15, 80);
+        gameCanvas.context.fillText("Score:" + String.valueOf(score), 48 * 4, 88);
+        gameCanvas.context.fillText("Bombs:" + String.valueOf(bomber.getBombs()), 48 * 9, 88);
+        gameCanvas.context.fillText("Lifes:" + String.valueOf(bomber.getLifes()), 48 * 14, 88);
+        gameCanvas.context.fillText("Level:" + String.valueOf(level), 48 * 19, 88);
     };
 
     public void drawMap() {
@@ -258,6 +262,10 @@ public class Game implements HandleImage {
             } else {
                 if (System.currentTimeMillis() - bomber.getDeadBeforeTime() > 100)
                     bomber.DEAD();
+            }
+        } else if (bomber.getBombs() == 0){
+            if (gameMap.getEnemy().size() > 0 || gameMap.getPortal().isHide()){
+                GameOver = true;
             }
         }
 
