@@ -1,5 +1,5 @@
 # Lê Hoàng Minh Hà's OOP game repository
-> Program language: *Java*
+> Program language: *Java*.
 > Course: INT2204 40
 
 ## [Game: Bomberman](https://en.wikipedia.org/wiki/Bomberman "Wikipedia: Bomberman")
