@@ -41,6 +41,24 @@ Item | Name | Description
 ## Resources:
 - bomb ticking: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=37157">Pixabay</a>
 - bomb exploding: Sound Effect from <a href="https://assets.mixkit.co/sfx/preview/mixkit-8-bit-bomb-explosion-2811.mp3">mixkit</a>
+- receiving power-up items: Sound Effect from [mixkit](https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-casino-notification-211.mp3)
+
+## UML Diagrams:
+
+### Game Process: 
+![gameprocess](https://user-images.githubusercontent.com/40814521/197439658-54623043-b48f-4d98-9778-05fd357139fd.png)
+
+### Entities:
+![entities](https://user-images.githubusercontent.com/40814521/197439754-9c5d4c33-209d-40d6-a505-8d1902f2db2f.png)
+
+### Moving Entities:
+![movingentities](https://user-images.githubusercontent.com/40814521/197439820-eaf4b65d-6024-4335-a249-fb8c3e584d40.png)
+
+### Enemies:
+![enemies](https://user-images.githubusercontent.com/40814521/197439838-8f2fecff-e463-462e-80b9-01db8c70ea8e.png)
+
+### Items:
+![items](https://user-images.githubusercontent.com/40814521/197439871-19073407-61ad-4c77-9ab3-2a9560c4b0a2.png)
 
 
 ### Task list:
@@ -60,4 +78,4 @@ Item | Name | Description
 - [x] Move to new level when go through portal 
 - [x] Create bombs item
 - [x] Create wallpass item
-- [ ] Create enemy Kondoria
+- [x] Create enemy Kondoria
