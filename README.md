@@ -63,22 +63,14 @@ Item | Name | Description
 ### Items:
 ![items](https://user-images.githubusercontent.com/40814521/197439871-19073407-61ad-4c77-9ab3-2a9560c4b0a2.png)
 
+## Images:
 
-### Task list:
-- [x] Draw map
-- [x] Make bomber moves using right/down/left/up arrow button
-- [x] Bomber can place bomb
-- [x] Bomb can kill enemy, destroy brick, explode automatically 2 seconds after being placed, activate other bomb in exploded range
-- [x] Create enemy Balloom and make Balloom moves automatically, disappear after being killed
-- [x] Create portal, make portal appears when the brick is exploded
-- [x] Create speed item
-- [x] Create enemy Oneal
-- [x] Create flame item
-- [x] Make Bomber die when being bomb, meet enemies,...
-- [x] Make algorithm for Oneal to find Bomber (kinda)
-- [x] Add new level
-- [x] Add sound effects
-- [x] Move to new level when go through portal 
-- [x] Create bombs item
-- [x] Create wallpass item
-- [x] Create enemy Kondoria
+### Start Stage:
+![image](https://user-images.githubusercontent.com/40814521/197460395-71324b80-0800-4bfa-a56b-ad0ce6704ce6.png)
+
+### How To Play:
+![image](https://user-images.githubusercontent.com/40814521/197460512-60eee6e2-66be-432f-be8a-954d8e097b20.png)
+![image](https://user-images.githubusercontent.com/40814521/197460535-5a7c1dea-83da-4580-a6c7-e4dfb5ec3f1e.png)
+
+### Game:
+![image](https://user-images.githubusercontent.com/40814521/197460587-23060894-9b6f-4ace-acb8-8097e99dbc5b.png)
