@@ -1,9 +1,10 @@
 # Lê Hoàng Minh Hà's OOP game repository
-Course: `INT2204 40`
-Student ID: '21020621'
-Program language: `Java`
-IDE: `Visual Studio Code`
-UML Diagrams: `IntelliJ Ultimate 2022.2`
+
+Course: `INT2204 40`.
+Student ID: '21020621'.
+Program language: `Java`.
+IDE: `Visual Studio Code`.
+UML Diagrams: `IntelliJ Ultimate 2022.2`.
 
 ## [Game: Bomberman](https://en.wikipedia.org/wiki/Bomberman "Wikipedia: Bomberman")
 
