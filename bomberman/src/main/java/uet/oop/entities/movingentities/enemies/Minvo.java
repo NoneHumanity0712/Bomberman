@@ -17,20 +17,6 @@ public class Minvo extends Enemy {
         super.enemy_dead[0] = getImage("minvo_dead.png", "sprites");
     }
 
-    public Minvo() throws FileNotFoundException {
-        super();
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(2);
-        setStep(getSpeed() / 8);
-        setStepCount(0);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
     public Minvo(int x, int y) throws FileNotFoundException {
         super(x, y);
         super.setDirection(0);

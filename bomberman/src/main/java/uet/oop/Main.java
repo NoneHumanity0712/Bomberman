@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -71,7 +72,7 @@ public class Main extends Application implements HandleImage {
         try {
             List<Map> maps = new ArrayList<>();
 
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 5; i++) {
                 ReadFromFile maplevel = new ReadFromFile();
                 maplevel.readFile(new File("src/main/resources/levels/level" + String.valueOf(i + 1) + ".txt"));
                 maplevels.add(maplevel);
@@ -146,7 +147,7 @@ public class Main extends Application implements HandleImage {
     }
 
     public void gameOver(Stage primaryStage) throws FileNotFoundException {
-        MediaPlayer gameover = new MediaPlayer(new Media(getClass().getResource("/sound/gameover.mp3").toString()));
+        MediaPlayer gameover = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/gameover.mp3")).toString()));
 
         Image gameoverImage = getImage("gameover.png", "banners");
         ImageView gameoverView = new ImageView(gameoverImage);
@@ -192,7 +193,7 @@ public class Main extends Application implements HandleImage {
         }
         bombermanGame.drawScene();
 
-        MediaPlayer passlevel = new MediaPlayer(new Media(getClass().getResource("/sound/nextlevel.mp3").toString()));
+        MediaPlayer passlevel = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/nextlevel.mp3")).toString()));
 
         if (bombermanGame.getMaps().size() >= bombermanGame.getLevel() + 1) {
 
@@ -211,7 +212,7 @@ public class Main extends Application implements HandleImage {
                 System.exit(0);
             });
         } else {
-            MediaPlayer wingame = new MediaPlayer(new Media(getClass().getResource("/sound/wingame.mp3").toString()));
+            MediaPlayer wingame = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/wingame.mp3")).toString()));
 
             WinStage winStage = new WinStage();
             winStage.show();
@@ -227,9 +228,7 @@ public class Main extends Application implements HandleImage {
                 }
             });
 
-            winStage.setOnCloseRequest(e -> {
-                Platform.exit();
-            });
+            winStage.setOnCloseRequest(e -> Platform.exit());
         }
     }
 }

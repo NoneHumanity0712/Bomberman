@@ -128,6 +128,7 @@ public class Bomber extends MovingEntity {
         bombs = 20;
         maxBombs = 1;
         lifes = 5;
+        bombRange = bomber.getBombRange();
 
         bomber_images = new Image[4][3];
         setupImage();

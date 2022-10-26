@@ -57,18 +57,6 @@ public interface HandleImage {
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-    default void render(GraphicsContext context, Image image, int x, int y) {
-        context.save();
-
-        if (image != null) {
-            context.drawImage(image, x * image.getWidth() * Entity.SCALE,
-                    100 + y * image.getHeight() * Entity.SCALE,
-                    image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
-        }
-
-        context.restore();
-    }
-
     default void render(GraphicsContext context, Image image, double x, double y) {
         context.save();
 

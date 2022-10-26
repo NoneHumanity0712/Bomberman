@@ -9,7 +9,6 @@ import uet.oop.entities.movingentities.Bomber;
 public class WallpassItem extends Item{
 
     Image wallpassItemImage;
-    private boolean able_to_pass_wall = true; //brick
 
     public WallpassItem(int x, int y) throws FileNotFoundException {
         super(x, y);
@@ -23,6 +22,8 @@ public class WallpassItem extends Item{
 
     @Override
     public void beingReceived(Bomber bomber) {
+        //brick
+        boolean able_to_pass_wall = true;
         bomber.setAbleToPassWall(able_to_pass_wall);
         setReceived(true);
         

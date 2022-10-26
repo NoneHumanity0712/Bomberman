@@ -1,6 +1,7 @@
 package uet.oop.entities.items;
 
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -34,7 +35,7 @@ public abstract class Item extends Entity{
     }
 
     protected void setupSound() {
-        beingreceived = new MediaPlayer(new Media(getClass().getResource("/sound/receive_item.wav").toString()));
+        beingreceived = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/receive_item.wav")).toString()));
     }
 
     @Override

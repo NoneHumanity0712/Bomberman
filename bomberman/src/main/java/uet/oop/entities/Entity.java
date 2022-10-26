@@ -40,7 +40,7 @@ public abstract class Entity implements HandleImage {
      * n Bombs Item,
      * w Wallpass Item
      * 
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException when file not found
      */
     public abstract void setupImage() throws FileNotFoundException;
 

@@ -37,9 +37,9 @@ public class Map {
 
         this.bomber = new Bomber();
         this.portal = new Portal();
-        this.bombs = new ArrayList<Bomb>();
-        this.enemies = new ArrayList<Enemy>();
-        this.items = new ArrayList<Item>();
+        this.bombs = new ArrayList<>();
+        this.enemies = new ArrayList<>();
+        this.items = new ArrayList<>();
     }
 
     public Map(Map m) throws FileNotFoundException {
@@ -50,7 +50,7 @@ public class Map {
         this.bomber = new Bomber(m.bomber);
         this.portal = new Portal(m.portal);
         this.bombs = new ArrayList<>(m.getBombs());
-        this.enemies = new ArrayList<Enemy>(m.getEnemy());
+        this.enemies = new ArrayList<>(m.getEnemy());
         this.items = new ArrayList<>(m.getItems());
     }
 
@@ -60,9 +60,9 @@ public class Map {
 
         this.bomber = new Bomber();
         this.portal = new Portal();
-        this.bombs = new ArrayList<Bomb>();
-        this.enemies = new ArrayList<Enemy>();
-        this.items = new ArrayList<Item>();
+        this.bombs = new ArrayList<>();
+        this.enemies = new ArrayList<>();
+        this.items = new ArrayList<>();
 
         setMap(map);
     }
@@ -187,7 +187,7 @@ public class Map {
     /**
      * set up map from input File
      * @param inputFile File
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException when file not found
      */
     public void setMapFromFile(ReadFromFile inputFile) throws FileNotFoundException {
         this.setRow(inputFile.getRow_read());

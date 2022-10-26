@@ -25,7 +25,7 @@ public class Game implements HandleImage {
     private boolean QuitGame;
     private boolean passLevel;
 
-    private List<Map> maps;
+    private final List<Map> maps;
 
     private Map gameMap;
     private Bomber bomber;
@@ -149,7 +149,7 @@ public class Game implements HandleImage {
         gameCanvas.context.fillText("Bombs:" + String.valueOf(bomber.getBombs()), 48 * 9, 88);
         gameCanvas.context.fillText("Lifes:" + String.valueOf(bomber.getLifes()), 48 * 14, 88);
         gameCanvas.context.fillText("Level:" + String.valueOf(level), 48 * 19, 88);
-    };
+    }
 
     public void drawMap() {
         for (int i = 0; i < gameMap.getRow(); i++) {
@@ -169,7 +169,7 @@ public class Game implements HandleImage {
                 }
             }
         }
-    };
+    }
 
     public void drawItem() {
         if (!gameMap.getPortal().isHide()) {
@@ -178,7 +178,7 @@ public class Game implements HandleImage {
         }
 
         for (Item item : gameMap.getItems()) {
-            if (!item.isHide()) {
+            if (item.isHide()) {
                 render(gameCanvas.context, item.getImage(), item.getX(), item.getY());
             }
         }
@@ -234,7 +234,7 @@ public class Game implements HandleImage {
         if (!gameMap.getBombs().isEmpty()) {
             drawBomb();
         }
-    };
+    }
 
     public void toNextLevel() {
         setLevel(getLevel() + 1);
@@ -315,7 +315,7 @@ public class Game implements HandleImage {
 
         List<Item> toRemoveItems = new ArrayList<>();
         for (Item item : gameMap.getItems()) {
-            if (bomber.getX() == item.getX() && bomber.getY() == item.getY() && !item.isHide()) {
+            if (bomber.getX() == item.getX() && bomber.getY() == item.getY() && item.isHide()) {
                 item.beingReceived(bomber);
             }
 

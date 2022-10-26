@@ -11,9 +11,6 @@ public abstract class Enemy extends MovingEntity {
     Image[][] enemy_images = new Image[2][3];
     Image[] enemy_dead;
 
-    public Enemy() throws FileNotFoundException {
-        super();
-    }
 
     public Enemy(int x, int y) throws FileNotFoundException {
         super(x, y);

@@ -46,7 +46,7 @@ public class ReadFromFile {
      * Read input file
      * 
      * @param input File
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException when file not found
      */
     public void readFile(File input) throws FileNotFoundException {
         Scanner myReader = new Scanner(input);

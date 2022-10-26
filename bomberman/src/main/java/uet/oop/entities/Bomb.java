@@ -3,6 +3,7 @@ package uet.oop.entities;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
@@ -67,7 +68,7 @@ public class Bomb extends Entity {
     /**
      * Create the bomb (center) from a bomber position
      * 
-     * @param bomber
+     * @param bomber the Bomber placed that bomb
      */
     public Bomb(Bomber bomber) {
         super(bomber.getX(), bomber.getY());
@@ -136,8 +137,8 @@ public class Bomb extends Entity {
     }
 
     public void setupSound() {
-        bomb_ticking = new MediaPlayer(new Media(getClass().getResource("/sound/ticking-clock1.wav").toString()));
-        bomb_exploding = new MediaPlayer(new Media(getClass().getResource("/sound/bomb_exploded1.wav").toString()));
+        bomb_ticking = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/ticking-clock1.wav")).toString()));
+        bomb_exploding = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/bomb_exploded1.wav")).toString()));
     }
 
     public int getRange() {
@@ -187,7 +188,7 @@ public class Bomb extends Entity {
     /**
      * To make bomb exlosing animation: 500ms from explosion
      * 
-     * @param time_since_exploded
+     * @param time_since_exploded time since the bomb exploded
      */
     public void setTime_since_exploded(long time_since_exploded) {
         this.time_since_exploded = time_since_exploded;

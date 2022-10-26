@@ -93,9 +93,7 @@ public class StartStage extends Stage implements HandleImage{
         subStage.getIcons().add(getImage("logo.png", "banners"));
         subStage.show();
 
-        backButton.setOnAction(e -> {
-            subStage.close();
-        });
+        backButton.setOnAction(e -> subStage.close());
     }
 
 }

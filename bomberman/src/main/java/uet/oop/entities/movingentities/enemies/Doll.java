@@ -18,19 +18,6 @@ public class Doll extends Enemy {
         super.enemy_dead[0] = getImage("doll_dead.png", "sprites");
     }
 
-    public Doll() throws FileNotFoundException {
-        super();
-        super.setDirection(0);
-        super.setAbleToPassWall(false);
-
-        setDelaytime(100);
-        setSpeed(1);
-        setStep(getSpeed() / 8);
-
-        setupImage();
-        setImage(enemy_images[0][0]);
-    }
-
     public Doll(int x, int y) throws FileNotFoundException {
         super(x, y);
         super.setDirection(0);
