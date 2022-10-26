@@ -13,9 +13,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import uet.oop.gameprocess.HandleImage;
 
-public class StartStage extends Stage implements HandleImage{
+public class StartStage extends Stage implements HandleImage {
 
     public Button startButton;
     public Button exitButton;

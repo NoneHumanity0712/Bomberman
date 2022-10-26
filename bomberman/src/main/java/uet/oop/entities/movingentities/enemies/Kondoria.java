@@ -17,19 +17,18 @@ public class Kondoria extends Enemy {
         super.enemy_dead[0] = getImage("kondoria_dead.png", "sprites");
     }
 
-	public Kondoria(int x, int y) throws FileNotFoundException {
+    public Kondoria(int x, int y) throws FileNotFoundException {
         super(x, y);
         super.setDirection(0);
         super.setAbleToPassWall(true);
 
         setDelaytime(200);
         setSpeed(1);
-        setStep(getSpeed()/8);
+        setStep(getSpeed() / 8);
 
         setupImage();
         setImage(enemy_images[0][0]);
     }
-
 
     @Override
     public void MOVE(Map map) {
@@ -79,5 +78,5 @@ public class Kondoria extends Enemy {
         setTimeBefore(System.currentTimeMillis());
         setTimebeforeeachstep(System.currentTimeMillis());
     }
-    
+
 }

@@ -186,6 +186,7 @@ public class Map {
 
     /**
      * set up map from input File
+     * 
      * @param inputFile File
      * @throws FileNotFoundException when file not found
      */

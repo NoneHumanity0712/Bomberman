@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+
 import uet.oop.entities.Bomb;
 import uet.oop.entities.items.Item;
 import uet.oop.entities.movingentities.Bomber;
@@ -263,8 +264,8 @@ public class Game implements HandleImage {
                 if (System.currentTimeMillis() - bomber.getDeadBeforeTime() > 100)
                     bomber.DEAD();
             }
-        } else if (bomber.getBombs() == 0){
-            if (gameMap.getEnemy().size() > 0 || gameMap.getPortal().isHide()){
+        } else if (bomber.getBombs() == 0) {
+            if (gameMap.getEnemy().size() > 0 || gameMap.getPortal().isHide()) {
                 GameOver = true;
             }
         }
@@ -402,7 +403,8 @@ public class Game implements HandleImage {
                     break;
 
                 case SPACE:
-                    if (bomber.getBombs() > 0 && gameMap.getMap()[bomber.getY()][bomber.getX()] == ' ' && gameMap.getBombs().size() < bomber.getMaxBombs()) {
+                    if (bomber.getBombs() > 0 && gameMap.getMap()[bomber.getY()][bomber.getX()] == ' '
+                            && gameMap.getBombs().size() < bomber.getMaxBombs()) {
                         Bomb bomb = new Bomb(bomber);
                         gameMap.getBombs().add(bomb);
 
@@ -421,7 +423,7 @@ public class Game implements HandleImage {
                 enemy.MOVE(gameMap);
             } else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
                 enemy.MOVE(gameMap);
-            } else if (now - enemy.getTimeBefore() > 2500 && enemy instanceof Kondoria){
+            } else if (now - enemy.getTimeBefore() > 2500 && enemy instanceof Kondoria) {
                 enemy.MOVE(gameMap);
             }
 

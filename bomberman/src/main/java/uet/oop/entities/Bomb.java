@@ -137,8 +137,10 @@ public class Bomb extends Entity {
     }
 
     public void setupSound() {
-        bomb_ticking = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/ticking-clock1.wav")).toString()));
-        bomb_exploding = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/bomb_exploded1.wav")).toString()));
+        bomb_ticking = new MediaPlayer(
+                new Media(Objects.requireNonNull(getClass().getResource("/sound/ticking-clock1.wav")).toString()));
+        bomb_exploding = new MediaPlayer(
+                new Media(Objects.requireNonNull(getClass().getResource("/sound/bomb_exploded1.wav")).toString()));
     }
 
     public int getRange() {
@@ -450,7 +452,8 @@ public class Bomb extends Entity {
     }
 
     /**
-     * bomb exloding 
+     * bomb exloding
+     * 
      * @param map Map
      */
     public void Explode(Map map) {

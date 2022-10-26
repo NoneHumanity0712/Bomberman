@@ -11,9 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
 import uet.oop.gameprocess.HandleImage;
 
-public class PassLevelStage extends Stage implements HandleImage{
+public class PassLevelStage extends Stage implements HandleImage {
 
     Image passlevelImage;
     ImageView passlevelView;

@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import uet.oop.gameprocess.HandleImage;
 
-public class WinStage extends Stage implements HandleImage{
+public class WinStage extends Stage implements HandleImage {
     Image winGameImage;
     ImageView winGameView;
     public Button replay;

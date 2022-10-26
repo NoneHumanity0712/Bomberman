@@ -184,7 +184,7 @@ public abstract class MovingEntity extends Entity {
 
         alive = true;
     }
-    
+
     public boolean legal_move(Map map, int y, int x) {
         if (y >= 0 && y < map.getRow() && x >= 0 && x < map.getColumn()) {
             if (map.getMap()[y][x] == ' ') {
@@ -203,7 +203,8 @@ public abstract class MovingEntity extends Entity {
                 }
 
                 return true;
-            } else return map.getMap()[y][x] == '*' && isAbleToPassWall();
+            } else
+                return map.getMap()[y][x] == '*' && isAbleToPassWall();
         }
         return false;
     }

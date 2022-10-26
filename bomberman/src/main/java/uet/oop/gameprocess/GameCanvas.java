@@ -23,7 +23,7 @@ public class GameCanvas extends Canvas {
         this.setWidth(screenWidth);
         this.setHeight(screenHeight);
         this.setFocusTraversable(true);
-        
+
         context = this.getGraphicsContext2D();
     }
 

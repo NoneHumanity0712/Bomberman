@@ -147,7 +147,8 @@ public class Main extends Application implements HandleImage {
     }
 
     public void gameOver(Stage primaryStage) throws FileNotFoundException {
-        MediaPlayer gameover = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/gameover.mp3")).toString()));
+        MediaPlayer gameover = new MediaPlayer(
+                new Media(Objects.requireNonNull(getClass().getResource("/sound/gameover.mp3")).toString()));
 
         Image gameoverImage = getImage("gameover.png", "banners");
         ImageView gameoverView = new ImageView(gameoverImage);
@@ -193,7 +194,8 @@ public class Main extends Application implements HandleImage {
         }
         bombermanGame.drawScene();
 
-        MediaPlayer passlevel = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/nextlevel.mp3")).toString()));
+        MediaPlayer passlevel = new MediaPlayer(
+                new Media(Objects.requireNonNull(getClass().getResource("/sound/nextlevel.mp3")).toString()));
 
         if (bombermanGame.getMaps().size() >= bombermanGame.getLevel() + 1) {
 
@@ -212,7 +214,8 @@ public class Main extends Application implements HandleImage {
                 System.exit(0);
             });
         } else {
-            MediaPlayer wingame = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/wingame.mp3")).toString()));
+            MediaPlayer wingame = new MediaPlayer(
+                    new Media(Objects.requireNonNull(getClass().getResource("/sound/wingame.mp3")).toString()));
 
             WinStage winStage = new WinStage();
             winStage.show();
