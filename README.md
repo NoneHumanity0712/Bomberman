@@ -1,6 +1,9 @@
 # Lê Hoàng Minh Hà's OOP game repository
-> Program language: *Java*.
-> Course: INT2204 40
+Course: `INT2204 40`
+Student ID: '21020621'
+Program language: `Java`
+IDE: `Visual Studio Code`
+UML Diagrams: `IntelliJ Ultimate 2022.2`
 
 ## [Game: Bomberman](https://en.wikipedia.org/wiki/Bomberman "Wikipedia: Bomberman")
 
@@ -54,18 +57,18 @@ Item | Name | Description
 ![gameprocess](https://user-images.githubusercontent.com/40814521/197561397-787de333-0910-4d35-83cb-9c4664ead722.png)
 
 ### Entities:
-![entities](https://user-images.githubusercontent.com/40814521/197439754-9c5d4c33-209d-40d6-a505-8d1902f2db2f.png)
+![entities](https://user-images.githubusercontent.com/40814521/198057730-29a40c69-a89a-4823-a0a5-80b428a33712.png)
 
 ### Moving Entities:
-![movingentities](https://user-images.githubusercontent.com/40814521/197439820-eaf4b65d-6024-4335-a249-fb8c3e584d40.png)
+![movingentities](https://user-images.githubusercontent.com/40814521/198057772-8f963833-b04e-4199-96a6-5f9278272b30.png)
 
 ### Enemies:
-![enemies](https://user-images.githubusercontent.com/40814521/197439838-8f2fecff-e463-462e-80b9-01db8c70ea8e.png)
+![enemies](https://user-images.githubusercontent.com/40814521/198057669-8c6c3f7d-6786-4ba8-9351-26c3d46d46ca.png)
 
 ### Items:
-![items](https://user-images.githubusercontent.com/40814521/197439871-19073407-61ad-4c77-9ab3-2a9560c4b0a2.png)
+![items](https://user-images.githubusercontent.com/40814521/198057817-86139946-47b5-4ee5-9345-9f2268920d9a.png)
 
-## Images:
+## Game Images:
 
 ### Start Stage:
 ![start menu](https://user-images.githubusercontent.com/40814521/197535344-a0e3c033-30da-4c07-8e2f-5404e2ceb4d8.png "Start Menu")
