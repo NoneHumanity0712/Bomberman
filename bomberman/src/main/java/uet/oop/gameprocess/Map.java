@@ -25,11 +25,11 @@ public class Map {
     private char[][] map; // 2D char array to save non-moving enetities: grass, brick, wall
 
     private Bomber bomber; // bomber
-    private List<Enemy> enemies; // enemies
-    private List<Bomb> bombs; // bombs
-    private List<Item> items; // power-up items
+    private final List<Enemy> enemies; // enemies
+    private final List<Bomb> bombs; // bombs
+    private final List<Item> items; // power-up items
 
-    private Portal portal; // portal
+    private final Portal portal; // portal
 
     public Map() throws FileNotFoundException {
         this.row = 1;
@@ -40,7 +40,7 @@ public class Map {
         this.bombs = new ArrayList<Bomb>();
         this.enemies = new ArrayList<Enemy>();
         this.items = new ArrayList<Item>();
-    };
+    }
 
     public Map(Map m) throws FileNotFoundException {
         setRow(m.getRow());

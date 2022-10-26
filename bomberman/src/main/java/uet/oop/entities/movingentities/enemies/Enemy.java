@@ -13,7 +13,7 @@ public abstract class Enemy extends MovingEntity {
 
     public Enemy() throws FileNotFoundException {
         super();
-    };
+    }
 
     public Enemy(int x, int y) throws FileNotFoundException {
         super(x, y);

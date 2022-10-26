@@ -73,7 +73,7 @@ public abstract class Entity implements HandleImage {
     }
 
     public Entity() {
-    };
+    }
 
     public Entity(int x, int y) {
         this.x = x;

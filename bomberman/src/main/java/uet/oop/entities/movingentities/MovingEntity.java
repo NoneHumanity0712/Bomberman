@@ -171,12 +171,12 @@ public abstract class MovingEntity extends Entity {
         oldY = getDoubleY();
 
         alive = true;
-    };
+    }
 
     public MovingEntity(int x, int y) {
         super(x, y);
-        doubleX = (double) x;
-        doubleY = (double) y;
+        doubleX = x;
+        doubleY = y;
         stepCount = 0;
 
         oldX = getDoubleX();
@@ -203,9 +203,7 @@ public abstract class MovingEntity extends Entity {
                 }
 
                 return true;
-            } else if (map.getMap()[y][x] == '*' && isAbleToPassWall()) {
-                return true;
-            }
+            } else return map.getMap()[y][x] == '*' && isAbleToPassWall();
         }
         return false;
     }

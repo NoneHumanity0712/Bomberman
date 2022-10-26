@@ -25,3 +25,8 @@ bomberman/target/
 bomberman/src/main/resources/fonts/Pixel_NES.otf
 bomberman/src/main/resources/fonts/Pixel_NES.ttf
 /Designs
+bomberman/src/main/resources/UMLdiagrams/enemies.svg
+bomberman/src/main/resources/UMLdiagrams/entities.svg
+bomberman/src/main/resources/UMLdiagrams/items.svg
+.gitignore
+bomberman/src/main/resources/UMLdiagrams/movingentities.svg
