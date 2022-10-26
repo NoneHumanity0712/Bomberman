@@ -1,7 +1,7 @@
 # Lê Hoàng Minh Hà's OOP game repository
 
 Course: `INT2204 40`.
-Student ID: '21020621'.
+Student ID: `21020621`.
 Program language: `Java`.
 IDE: `Visual Studio Code`.
 UML Diagrams: `IntelliJ Ultimate 2022.2`.
