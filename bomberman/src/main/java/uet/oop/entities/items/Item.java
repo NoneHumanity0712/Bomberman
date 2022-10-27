@@ -35,7 +35,7 @@ public abstract class Item extends Entity{
     }
 
     protected void setupSound() {
-        beingreceived = new MediaPlayer(new Media(Objects.requireNonNull(getClass().getResource("/sound/receive_item.wav")).toString()));
+        beingreceived = new MediaPlayer(new Media(getClass().getResource("/sound/receive_item.wav").toString()));
     }
 
     @Override

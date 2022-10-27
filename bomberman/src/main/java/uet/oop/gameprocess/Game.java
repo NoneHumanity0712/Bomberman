@@ -179,7 +179,7 @@ public class Game implements HandleImage {
         }
 
         for (Item item : gameMap.getItems()) {
-            if (item.isHide()) {
+            if (!item.isHide()) {
                 render(gameCanvas.context, item.getImage(), item.getX(), item.getY());
             }
         }
@@ -316,7 +316,7 @@ public class Game implements HandleImage {
 
         List<Item> toRemoveItems = new ArrayList<>();
         for (Item item : gameMap.getItems()) {
-            if (bomber.getX() == item.getX() && bomber.getY() == item.getY() && item.isHide()) {
+            if (bomber.getX() == item.getX() && bomber.getY() == item.getY() && !item.isHide()) {
                 item.beingReceived(bomber);
             }
 
@@ -417,14 +417,16 @@ public class Game implements HandleImage {
         });
         for (Enemy enemy : gameMap.getEnemy()) {
             long now = System.currentTimeMillis();
-            if (now - enemy.getTimeBefore() > 1000 && (enemy instanceof Doll || enemy instanceof Minvo)) {
-                enemy.MOVE(gameMap);
-            } else if (now - enemy.getTimeBefore() > 1500 && enemy instanceof Oneal) {
-                enemy.MOVE(gameMap);
-            } else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
-                enemy.MOVE(gameMap);
-            } else if (now - enemy.getTimeBefore() > 2500 && enemy instanceof Kondoria) {
-                enemy.MOVE(gameMap);
+            if (!enemy.isMoving()) {
+                if (now - enemy.getTimeBefore() > 1000 && (enemy instanceof Doll || enemy instanceof Minvo)) {
+                    enemy.MOVE(gameMap);
+                } else if (now - enemy.getTimeBefore() > 1500 && enemy instanceof Oneal) {
+                    enemy.MOVE(gameMap);
+                } else if (now - enemy.getTimeBefore() > 2000 && enemy instanceof Balloom) {
+                    enemy.MOVE(gameMap);
+                } else if (now - enemy.getTimeBefore() > 2500 && enemy instanceof Kondoria) {
+                    enemy.MOVE(gameMap);
+                }
             }
 
         }

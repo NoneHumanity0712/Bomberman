@@ -22,7 +22,7 @@ public class Kondoria extends Enemy {
         super.setDirection(0);
         super.setAbleToPassWall(true);
 
-        setDelaytime(200);
+        setDelaytime(100);
         setSpeed(1);
         setStep(getSpeed() / 8);
 
