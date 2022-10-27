@@ -30,3 +30,4 @@ bomberman/src/main/resources/UMLdiagrams/entities.svg
 bomberman/src/main/resources/UMLdiagrams/items.svg
 .gitignore
 bomberman/src/main/resources/UMLdiagrams/movingentities.svg
+bomberman/src/main/resources/UMLdiagrams/game.svg
