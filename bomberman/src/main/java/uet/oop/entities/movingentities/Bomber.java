@@ -73,6 +73,8 @@ public class Bomber extends MovingEntity {
         this.setDoubleY(y);
 
         setImage(bomber_images[0][0]);
+        setDeadState(0);
+        setTimeBefore(System.currentTimeMillis());
         setAlive(true);
         setAbleToPassWall(false);
         super.setAbleToPassWall(false);

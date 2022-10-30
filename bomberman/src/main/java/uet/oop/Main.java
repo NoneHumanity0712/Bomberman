@@ -25,6 +25,10 @@ import uet.oop.gameprocess.GameLoopTimer;
 import uet.oop.gameprocess.HandleImage;
 import uet.oop.gameprocess.Map;
 import uet.oop.gameprocess.ReadFromFile;
+import uet.oop.stages.GameoverStage;
+import uet.oop.stages.PassLevelStage;
+import uet.oop.stages.StartStage;
+import uet.oop.stages.WinStage;
 
 public class Main extends Application implements HandleImage {
 
@@ -147,32 +151,14 @@ public class Main extends Application implements HandleImage {
     }
 
     public void gameOver(Stage primaryStage) throws FileNotFoundException {
-        MediaPlayer gameover = new MediaPlayer(
-                new Media(Objects.requireNonNull(getClass().getResource("/sound/gameover.mp3")).toString()));
+        
+        GameoverStage gameoverStage = new GameoverStage();
+        gameoverStage.show();  
 
-        Image gameoverImage = getImage("gameover.png", "banners");
-        ImageView gameoverView = new ImageView(gameoverImage);
-
-        Button replay = new Button("REPLAY");
-        replay.setPrefSize(150, 30);
-        replay.setLayoutX(175);
-        replay.setLayoutY(150);
-        replay.setStyle("-fx-text-fill: #38393D; -fx-font: 18 Consolas;");
-
-        Group root = new Group(gameoverView, replay);
-
-        Stage subStage = new Stage();
-        Scene subScene = new Scene(root, gameoverImage.getWidth(), gameoverImage.getHeight());
-
-        subStage.setScene(subScene);
-        subStage.getIcons().add(getImage("logo.png", "banners"));
-        subStage.show();
-        gameover.play();
-
-        replay.setOnAction(e -> {
+        gameoverStage.replay.setOnAction(e -> {
             try {
                 start(new Stage());
-                subStage.close();
+                gameoverStage.close();
                 primaryStage.close();
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -180,7 +166,7 @@ public class Main extends Application implements HandleImage {
 
         });
 
-        subStage.setOnCloseRequest(e -> {
+        gameoverStage.setOnCloseRequest(e -> {
             Platform.exit();
             System.exit(0);
         });

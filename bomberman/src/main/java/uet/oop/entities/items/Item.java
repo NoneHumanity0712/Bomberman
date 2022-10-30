@@ -1,7 +1,6 @@
 package uet.oop.entities.items;
 
 import java.io.FileNotFoundException;
-import java.util.Objects;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

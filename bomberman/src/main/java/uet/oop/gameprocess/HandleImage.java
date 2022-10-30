@@ -62,8 +62,8 @@ public interface HandleImage {
         context.save();
 
         if (image != null) {
-            context.drawImage(image, x * image.getWidth() * Entity.SCALE,
-                    100 + y * image.getHeight() * Entity.SCALE,
+            context.drawImage(image, x * Entity.size,
+                    100 + y * Entity.size,
                     image.getWidth() * Entity.SCALE, image.getHeight() * Entity.SCALE);
         }
 
