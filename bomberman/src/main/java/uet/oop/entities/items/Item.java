@@ -50,6 +50,6 @@ public abstract class Item extends Entity{
         this.received = received;
     }
 
-    public abstract void beingReceived(Bomber bomber);
+    public abstract void beingReceived(Bomber bomber, boolean isMuteSound);
     public abstract void APPEAR();
 }

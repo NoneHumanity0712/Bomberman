@@ -42,6 +42,8 @@ public class Bomb extends Entity {
 
     private long timebeforeeachframe;
 
+    private boolean isMuteSound;
+
     /**
      * Create flame from bomb.
      * 
@@ -70,7 +72,7 @@ public class Bomb extends Entity {
      * 
      * @param bomber the Bomber placed that bomb
      */
-    public Bomb(Bomber bomber) {
+    public Bomb(Bomber bomber, boolean isMuteSound) {
         super(bomber.getX(), bomber.getY());
         bomber.setBombs(bomber.getBombs() - 1);
 
@@ -100,6 +102,8 @@ public class Bomb extends Entity {
 
         time_since_placed = System.currentTimeMillis();
         timebeforeeachframe = System.currentTimeMillis();
+
+        this.isMuteSound = isMuteSound;
     }
 
     public int getPlacedState() {
@@ -428,7 +432,7 @@ public class Bomb extends Entity {
                 if (now - timebeforeeachframe > 100) {
                     bomb_placing();
                 }
-                if (!bomb_ticking.getStatus().equals(Status.PLAYING))
+                if (!bomb_ticking.getStatus().equals(Status.PLAYING) && !isMuteSound)
                     bomb_ticking.play();
             } else {
                 explode = true;
@@ -444,7 +448,7 @@ public class Bomb extends Entity {
                 }
             } else {
                 Explode(map);
-                if (!bomb_exploding.getStatus().equals(Status.PLAYING))
+                if (!bomb_exploding.getStatus().equals(Status.PLAYING)  && !isMuteSound)
                     bomb_exploding.play();
                 explode = false;
             }

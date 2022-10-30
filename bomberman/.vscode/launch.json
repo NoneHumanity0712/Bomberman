@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Setting",
+            "request": "launch",
+            "mainClass": "uet.oop.stages.Setting",
+            "projectName": "bomberman"
+        },
+        {
+            "type": "java",
             "name": "Launch demo",
             "request": "launch",
             "mainClass": "uet.oop.demogame.demo",

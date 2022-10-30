@@ -27,12 +27,12 @@ public class BombsItem extends Item{
     }
 
     @Override
-    public void beingReceived(Bomber bomber) {
+    public void beingReceived(Bomber bomber, boolean isMuteSound) {
         bomber.setMaxBombs(bomber.getMaxBombs() + bomb_num_to_increase);
         setReceived(true);
 
         setupSound();
-        if (!beingreceived.getStatus().equals(Status.PLAYING)) {
+        if (!beingreceived.getStatus().equals(Status.PLAYING)  && !isMuteSound) {
             beingreceived.play();
         }
     }

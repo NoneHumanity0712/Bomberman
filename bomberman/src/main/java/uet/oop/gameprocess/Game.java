@@ -25,6 +25,8 @@ public class Game implements HandleImage {
     private boolean GameOver;
     private boolean QuitGame;
     private boolean passLevel;
+    private boolean isLightMode;
+    private boolean isMuteSound;
 
     private final List<Map> maps;
 
@@ -53,9 +55,13 @@ public class Game implements HandleImage {
         QuitGame = false;
         passLevel = false;
 
-        setGrassImage(getImage("grass.png", "sprites"));
-        setBrickImage(getImage("brick.png", "sprites"));
-        setWallImage(getImage("wall.png", "sprites"));
+        String theme;
+        if (isLightMode) theme = "";
+        else theme = "dark/";
+
+        setGrassImage(getImage("grass.png", theme + "sprites"));
+        setBrickImage(getImage("brick.png",  theme + "sprites"));
+        setWallImage(getImage("wall.png",  theme + "sprites"));
     }
 
     public void setBomber(Bomber bomber) {
@@ -132,6 +138,14 @@ public class Game implements HandleImage {
 
     public void setGameMap(Map gameMap) {
         this.gameMap = gameMap;
+    }
+
+    public void setLightMode(boolean isLightMode) {
+        this.isLightMode = isLightMode;
+    }
+
+    public void setMuteSound(boolean isMuteSound) {
+        this.isMuteSound = isMuteSound;
     }
 
     private void drawBackground() {
@@ -317,7 +331,7 @@ public class Game implements HandleImage {
         List<Item> toRemoveItems = new ArrayList<>();
         for (Item item : gameMap.getItems()) {
             if (bomber.getX() == item.getX() && bomber.getY() == item.getY() && !item.isHide()) {
-                item.beingReceived(bomber);
+                item.beingReceived(bomber, isMuteSound);
             }
 
             if (item.isReceived()) {
@@ -405,7 +419,7 @@ public class Game implements HandleImage {
                 case SPACE:
                     if (bomber.getBombs() > 0 && gameMap.getMap()[bomber.getY()][bomber.getX()] == ' '
                             && gameMap.getBombs().size() < bomber.getMaxBombs()) {
-                        Bomb bomb = new Bomb(bomber);
+                        Bomb bomb = new Bomb(bomber, isMuteSound);
                         gameMap.getBombs().add(bomb);
 
                         System.out.println("Place Bomb. Bombs remain: " + bomber.getBombs());

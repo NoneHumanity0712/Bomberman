@@ -21,13 +21,13 @@ public class SpeedItem extends Item{
     }
 
     @Override
-    public void beingReceived(Bomber bomber) {
+    public void beingReceived(Bomber bomber, boolean isMuteSound) {
         double speed_to_increase = 0.5;
         bomber.setSpeed(bomber.getSpeed() + speed_to_increase);
         setReceived(true);
         
         setupSound();
-        if (!beingreceived.getStatus().equals(Status.PLAYING)) {
+        if (!beingreceived.getStatus().equals(Status.PLAYING)  && !isMuteSound) {
             beingreceived.play();
         }
     }

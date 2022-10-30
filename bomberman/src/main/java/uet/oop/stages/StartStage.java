@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import uet.oop.gameprocess.HandleImage;
@@ -19,18 +20,38 @@ import uet.oop.gameprocess.HandleImage;
 public class StartStage extends Stage implements HandleImage {
 
     public Button startButton;
-    public Button exitButton;
+    // public Button exitButton;
     public Button howtoplayButton;
+    public SwitchButton sound;
+    public SwitchButton theme;
+
+    private boolean isLightMode;
+    private boolean isMuteSound;
 
     Font font = new Font("Consolas", 21);
 
     Group root;
-
     Scene scene;
 
     ScrollPane howtoplayPane;
     Stage subStage;
     Scene subScene;
+
+    public boolean isLightMode() {
+        return isLightMode;
+    }
+
+    public boolean isMuteSound() {
+        return isMuteSound;
+    }
+
+    public void setLightMode(boolean isLightMode) {
+        this.isLightMode = isLightMode;
+    }
+
+    public void setMuteSound(boolean isMuteSound) {
+        this.isMuteSound = isMuteSound;
+    }
 
     public StartStage() throws FileNotFoundException {
         Image image = getImage("startmenu.png", "banners");
@@ -39,24 +60,32 @@ public class StartStage extends Stage implements HandleImage {
         startButton = new Button("Start Game");
         startButton.setLayoutX(150);
         startButton.setLayoutY(250);
+        startButton.setPrefSize(200, 40);
+        startButton.setFont(font);
+        startButton.setStyle("-fx-text-fill: #38393D;");
 
-        exitButton = new Button("Exit");
-        exitButton.setLayoutX(150);
-        exitButton.setLayoutY(310);
-
+        
         howtoplayButton = new Button("How To Play");
         howtoplayButton.setLayoutX(150);
-        howtoplayButton.setLayoutY(370);
+        howtoplayButton.setLayoutY(310);
+        howtoplayButton.setPrefSize(200, 40);
+        howtoplayButton.setFont(font);
+        howtoplayButton.setStyle("-fx-text-fill: #38393D;");
 
-        root = new Group(imageView, startButton, exitButton, howtoplayButton);
+        Text soundButton = new Text(150, 420, "Sound");
+        soundButton.setFont(new Font("Consolas", 20));
+        sound = new SwitchButton();
+        sound.setLayoutX(150);
+        sound.setLayoutY(370);
 
-        root.getChildren().forEach(button -> {
-            if (button instanceof Button) {
-                ((Button) button).setPrefSize(200, 40);
-                ((Button) button).setFont(font);
-                ((Button) button).setStyle("-fx-text-fill: #38393D;");
-            }
-        });
+        Text themeText = new Text(290, 420,"Theme");
+        themeText.setFont(new Font("Consolas", 20));
+        theme = new SwitchButton();
+        theme.setLayoutX(290);
+        theme.setLayoutY(370);
+
+        root = new Group(imageView, startButton, howtoplayButton, soundButton, sound, themeText, theme);
+
         scene = new Scene(root, 500, 500, Color.valueOf("EAEAEA"));
 
         this.setScene(scene);

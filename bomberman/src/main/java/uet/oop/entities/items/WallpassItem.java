@@ -21,14 +21,14 @@ public class WallpassItem extends Item{
     }
 
     @Override
-    public void beingReceived(Bomber bomber) {
+    public void beingReceived(Bomber bomber, boolean isMuteSound) {
         //brick
         boolean able_to_pass_wall = true;
         bomber.setAbleToPassWall(able_to_pass_wall);
         setReceived(true);
         
         setupSound();
-        if (!beingreceived.getStatus().equals(Status.PLAYING)) {
+        if (!beingreceived.getStatus().equals(Status.PLAYING) && !isMuteSound) {
             beingreceived.play();
         }
     }

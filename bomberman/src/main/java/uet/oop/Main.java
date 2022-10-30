@@ -9,9 +9,6 @@ import java.util.Objects;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.application.Application;
@@ -33,6 +30,8 @@ import uet.oop.stages.WinStage;
 public class Main extends Application implements HandleImage {
 
     Game bombermanGame;
+    boolean isMuteSound;
+    boolean isLightMode;
     GameLoopTimer gameTimer;
 
     /**
@@ -51,10 +50,7 @@ public class Main extends Application implements HandleImage {
         StartStage startMenu = new StartStage();
         startMenu.show();
 
-        startMenu.exitButton.setOnAction(e -> {
-            System.out.println("Exit");
-            Platform.exit();
-        });
+        startMenu.setOnCloseRequest(e -> Platform.exit());
 
         startMenu.howtoplayButton.setOnAction(e -> {
             try {
@@ -66,6 +62,8 @@ public class Main extends Application implements HandleImage {
 
         startMenu.startButton.setOnAction(e -> {
             System.out.println("Start Game");
+            isMuteSound = startMenu.sound.isState();
+            isLightMode = startMenu.theme.isState();
             startMenu.close();
             startGame(primaryStage);
         });
@@ -89,6 +87,8 @@ public class Main extends Application implements HandleImage {
                     maps.get(0).getRow() * Entity.size + 100);
 
             bombermanGame = new Game(maps, canvas);
+            bombermanGame.setMuteSound(!isMuteSound);
+            bombermanGame.setLightMode(isLightMode);
             bombermanGame.setLevel(maplevels.get(0).getLevel_read());
 
             Group root = new Group();
@@ -151,9 +151,9 @@ public class Main extends Application implements HandleImage {
     }
 
     public void gameOver(Stage primaryStage) throws FileNotFoundException {
-        
+
         GameoverStage gameoverStage = new GameoverStage();
-        gameoverStage.show();  
+        gameoverStage.show();
 
         gameoverStage.replay.setOnAction(e -> {
             try {
