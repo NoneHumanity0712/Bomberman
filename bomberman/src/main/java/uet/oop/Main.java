@@ -30,8 +30,8 @@ import uet.oop.stages.WinStage;
 public class Main extends Application implements HandleImage {
 
     Game bombermanGame;
-    boolean isMuteSound;
-    boolean isLightMode;
+    boolean isMuteSound = false;
+    boolean isLightMode = true;
     GameLoopTimer gameTimer;
 
     /**
@@ -62,7 +62,7 @@ public class Main extends Application implements HandleImage {
 
         startMenu.startButton.setOnAction(e -> {
             System.out.println("Start Game");
-            isMuteSound = startMenu.sound.isState();
+            isMuteSound = !startMenu.sound.isState();
             isLightMode = startMenu.theme.isState();
             startMenu.close();
             startGame(primaryStage);
@@ -86,9 +86,8 @@ public class Main extends Application implements HandleImage {
             GameCanvas canvas = new GameCanvas(maps.get(0).getColumn() * Entity.size,
                     maps.get(0).getRow() * Entity.size + 100);
 
-            bombermanGame = new Game(maps, canvas);
-            bombermanGame.setMuteSound(!isMuteSound);
-            bombermanGame.setLightMode(isLightMode);
+            bombermanGame = new Game(maps, canvas, isMuteSound, isLightMode);
+            System.out.println("main:" + isLightMode);
             bombermanGame.setLevel(maplevels.get(0).getLevel_read());
 
             Group root = new Group();

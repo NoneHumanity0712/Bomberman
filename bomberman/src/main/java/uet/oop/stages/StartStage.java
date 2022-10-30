@@ -78,7 +78,7 @@ public class StartStage extends Stage implements HandleImage {
         sound.setLayoutX(150);
         sound.setLayoutY(370);
 
-        Text themeText = new Text(290, 420,"Theme");
+        Text themeText = new Text(290, 420,"Light");
         themeText.setFont(new Font("Consolas", 20));
         theme = new SwitchButton();
         theme.setLayoutX(290);
