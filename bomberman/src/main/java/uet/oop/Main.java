@@ -30,8 +30,8 @@ import uet.oop.stages.WinStage;
 public class Main extends Application implements HandleImage {
 
     Game bombermanGame;
-    boolean isMuteSound = false;
-    boolean isLightMode = true;
+    boolean isMuteSound;
+    boolean isLightMode;
     GameLoopTimer gameTimer;
 
     /**
