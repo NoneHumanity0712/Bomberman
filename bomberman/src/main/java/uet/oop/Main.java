@@ -87,7 +87,6 @@ public class Main extends Application implements HandleImage {
                     maps.get(0).getRow() * Entity.size + 100);
 
             bombermanGame = new Game(maps, canvas, isMuteSound, isLightMode);
-            System.out.println("main:" + isLightMode);
             bombermanGame.setLevel(maplevels.get(0).getLevel_read());
 
             Group root = new Group();

@@ -55,11 +55,12 @@ public class Game implements HandleImage {
         QuitGame = false;
         passLevel = false;
 
+        this.isLightMode = isLightMode;
+        this.isMuteSound = isMuteSound;
+
         String theme;
         if (isLightMode) theme = "";
         else theme = "dark/";
-
-        System.out.println(isLightMode);
 
         setGrassImage(getImage("grass.png", theme + "sprites"));
         setBrickImage(getImage("brick.png",  theme + "sprites"));

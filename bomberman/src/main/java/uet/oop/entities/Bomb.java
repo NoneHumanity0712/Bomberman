@@ -448,8 +448,9 @@ public class Bomb extends Entity {
                 }
             } else {
                 Explode(map);
-                if (!bomb_exploding.getStatus().equals(Status.PLAYING)  && !isMuteSound)
+                if (!bomb_exploding.getStatus().equals(Status.PLAYING) && !isMuteSound) {
                     bomb_exploding.play();
+                }
                 explode = false;
             }
         }
