@@ -152,6 +152,7 @@ public class Main extends Application implements HandleImage {
 
         GameoverStage gameoverStage = new GameoverStage();
         gameoverStage.show();
+        if (!isMuteSound) gameoverStage.gameover.play();
 
         gameoverStage.replay.setOnAction(e -> {
             try {

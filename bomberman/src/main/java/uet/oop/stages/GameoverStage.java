@@ -13,34 +13,33 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import uet.oop.gameprocess.HandleImage;
 
-public class GameoverStage extends Stage implements HandleImage{
-    MediaPlayer gameover;
+public class GameoverStage extends Stage implements HandleImage {
+    public MediaPlayer gameover;
     Image gameoverImage;
     ImageView gameoverView;
     public Button replay;
     Group root;
     Scene scene;
 
-    public GameoverStage() throws FileNotFoundException{ 
+    public GameoverStage() throws FileNotFoundException {
         gameover = new MediaPlayer(
                 new Media(Objects.requireNonNull(getClass().getResource("/sound/gameover.mp3")).toString()));
-        
+
         gameoverImage = getImage("gameover.png", "banners");
         gameoverView = new ImageView(gameoverImage);
 
         replay = new Button("REPLAY");
         replay.setPrefSize(150, 30);
-        replay.setLayoutX(gameoverImage.getWidth()/2 - 150/2);
+        replay.setLayoutX(gameoverImage.getWidth() / 2 - 150 / 2);
         replay.setLayoutY(150);
         replay.setStyle("-fx-text-fill: #38393D; -fx-font: 18 Consolas;");
 
         root = new Group(gameoverView, replay);
 
-        scene =  new Scene(root, gameoverImage.getWidth(), gameoverImage.getHeight());
+        scene = new Scene(root, gameoverImage.getWidth(), gameoverImage.getHeight());
 
         this.setScene(scene);
         this.getIcons().add(getImage("logo.png", "banners"));
-        
-        gameover.play();
+        this.setTitle("Game Over");
     }
 }
