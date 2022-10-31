@@ -25,7 +25,6 @@ public class Game implements HandleImage {
     private boolean GameOver;
     private boolean QuitGame;
     private boolean passLevel;
-    private boolean isLightMode;
     private boolean isMuteSound;
 
     private final List<Map> maps;
@@ -55,7 +54,6 @@ public class Game implements HandleImage {
         QuitGame = false;
         passLevel = false;
 
-        this.isLightMode = isLightMode;
         this.isMuteSound = isMuteSound;
 
         String theme;
@@ -141,14 +139,6 @@ public class Game implements HandleImage {
 
     public void setGameMap(Map gameMap) {
         this.gameMap = gameMap;
-    }
-
-    public void setLightMode(boolean isLightMode) {
-        this.isLightMode = isLightMode;
-    }
-
-    public void setMuteSound(boolean isMuteSound) {
-        this.isMuteSound = isMuteSound;
     }
 
     private void drawBackground() {
