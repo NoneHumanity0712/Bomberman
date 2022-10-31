@@ -57,7 +57,7 @@ Item | Name | Description
 ## UML Diagrams:
 
 ### Game Process: 
-![gameprocess](https://user-images.githubusercontent.com/40814521/197561397-787de333-0910-4d35-83cb-9c4664ead722.png)
+![gameprocess](https://user-images.githubusercontent.com/40814521/198934461-98da137e-3412-4bf6-88a4-876335042ae4.png)
 
 ### Entities:
 ![entities](https://user-images.githubusercontent.com/40814521/198057730-29a40c69-a89a-4823-a0a5-80b428a33712.png)
@@ -74,7 +74,9 @@ Item | Name | Description
 ## Game Images:
 
 ### Start Stage:
-![start menu](https://user-images.githubusercontent.com/40814521/197535344-a0e3c033-30da-4c07-8e2f-5404e2ceb4d8.png "Start Menu")
+![start stage](https://user-images.githubusercontent.com/40814521/198934679-e2479dfb-3a53-427f-b5cb-74ac5566099c.png "Start Menu")
+- Sound switch button: to turn on/off sound effects.
+- Light switch button: to enable light mode theme/dark mode theme.
 
 ### How To Play:
 ![how_to_play](https://user-images.githubusercontent.com/40814521/197568736-b722df3c-d8d8-4fde-ab61-e80a85571b07.png "How to Play")
@@ -87,3 +89,5 @@ Item | Name | Description
 ### Winning Game:
 ![wingame](https://user-images.githubusercontent.com/40814521/197568342-310ab7c5-1f5b-4b1a-ba33-5d98907d9bec.png "Pass All Level")
 
+### Game Over:
+![gameover](https://user-images.githubusercontent.com/40814521/198935171-95739d8f-ff45-448a-90ab-b100d456e24c.png "Game Over")
