@@ -42,7 +42,8 @@ public class Game implements HandleImage {
 
     Font font = Font.font("Consolas", FontWeight.BOLD, 24);
 
-    public Game(List<Map> maps, GameCanvas canvas, boolean isMuteSound, boolean isLightMode) throws FileNotFoundException {
+    public Game(List<Map> maps, GameCanvas canvas, boolean isMuteSound, boolean isLightMode)
+            throws FileNotFoundException {
         this.maps = maps;
         gameMap = maps.get(0);
         this.bomber = gameMap.getBomber();
@@ -57,12 +58,14 @@ public class Game implements HandleImage {
         this.isMuteSound = isMuteSound;
 
         String theme;
-        if (isLightMode) theme = "";
-        else theme = "dark/";
+        if (isLightMode)
+            theme = "";
+        else
+            theme = "dark/";
 
         setGrassImage(getImage("grass.png", theme + "sprites"));
-        setBrickImage(getImage("brick.png",  theme + "sprites"));
-        setWallImage(getImage("wall.png",  theme + "sprites"));
+        setBrickImage(getImage("brick.png", theme + "sprites"));
+        setWallImage(getImage("wall.png", theme + "sprites"));
     }
 
     public void setBomber(Bomber bomber) {

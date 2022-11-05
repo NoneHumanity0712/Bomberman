@@ -64,7 +64,6 @@ public class StartStage extends Stage implements HandleImage {
         startButton.setFont(font);
         startButton.setStyle("-fx-text-fill: #38393D;");
 
-        
         howtoplayButton = new Button("How To Play");
         howtoplayButton.setLayoutX(150);
         howtoplayButton.setLayoutY(310);
@@ -78,7 +77,7 @@ public class StartStage extends Stage implements HandleImage {
         sound.setLayoutX(150);
         sound.setLayoutY(370);
 
-        Text themeText = new Text(290, 420,"Light");
+        Text themeText = new Text(290, 420, "Light");
         themeText.setFont(new Font("Consolas", 20));
         theme = new SwitchButton();
         theme.setLayoutX(290);

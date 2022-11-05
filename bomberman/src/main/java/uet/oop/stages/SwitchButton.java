@@ -38,7 +38,7 @@ public class SwitchButton extends StackPane {
 
 		back.setArcHeight(back.getHeight());
 		back.setArcWidth(back.getHeight());
-					back.setFill(Color.valueOf("#6d92b3"));
+		back.setFill(Color.valueOf("#6d92b3"));
 
 		Double r = 3.0;
 		button.setShape(new Circle(r));
