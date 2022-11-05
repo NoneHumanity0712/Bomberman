@@ -2,30 +2,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Setting",
+            "name": "Launch Main",
             "request": "launch",
-            "mainClass": "uet.oop.stages.Setting",
-            "projectName": "bomberman"
-        },
-        {
-            "type": "java",
-            "name": "Launch demo",
-            "request": "launch",
-            "mainClass": "uet.oop.demogame.demo",
-            "projectName": "bomberman"
-        },
-        {
-            "type": "java",
-            "name": "Launch Bomberman_Game",
-            "request": "launch",
-            "mainClass": "uet.oop.Bomberman_Game",
-            "projectName": "bomberman"
-        },
-        {
-            "type": "java",
-            "name": "Launch demo",
-            "request": "launch",
-            "mainClass": "uet.oop.demo",
+            "mainClass": "bomberman/uet.oop.Main",
             "projectName": "bomberman"
         },
         {
@@ -33,21 +12,7 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "uet.oop.Main",
-            "projectName": "bomberman"
-        },
-        {
-            "type": "java",
-            "name": "Launch ReadFromFile",
-            "request": "launch",
-            "mainClass": "uet.oop.ReadFromFile",
-            "projectName": "bomberman"
-        },
-        {
-            "type": "java",
-            "name": "Launch MainApp",
-            "request": "launch",
-            "mainClass": "uet.oop.MainApp",
-            "projectName": "bomberman"
+            "projectName": "bomberman",
         },
         {
             "name": "Launch Edge",

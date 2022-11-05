@@ -29,7 +29,7 @@ public class Game implements HandleImage {
 
     private final List<Map> maps;
 
-    private Map gameMap;
+    private Map gameMap; // current level map
     private Bomber bomber;
 
     public GameCanvas gameCanvas;
