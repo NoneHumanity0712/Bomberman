@@ -32,3 +32,4 @@ bomberman/src/main/resources/UMLdiagrams/items.svg
 bomberman/src/main/resources/UMLdiagrams/movingentities.svg
 bomberman/src/main/resources/UMLdiagrams/game.svg
 .vscode/launch.json
+bomberman/.vscode/
