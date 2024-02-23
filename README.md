@@ -8,7 +8,7 @@
 
 ## [Game: Bomberman](https://en.wikipedia.org/wiki/Bomberman "Wikipedia: Bomberman")
 
-![Bomberman Logo](https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Bomberman_series_logo.png/375px-Bomberman_series_logo.png)
+![Bomberman Logo](https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/91e92e8d-ef90-4143-9d07-fe6a6f2b27b3/davj5z4-1dd80d3c-2c2a-4d9e-bd2c-bd216063e07d.png/v1/fill/w_1280,h_355/bomberman_logo___vector_by_sailorbomber_davj5z4-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MzU1IiwicGF0aCI6IlwvZlwvOTFlOTJlOGQtZWY5MC00MTQzLTlkMDctZmU2YTZmMmIyN2IzXC9kYXZqNXo0LTFkZDgwZDNjLTJjMmEtNGQ5ZS1iZDJjLWJkMjE2MDYzZTA3ZC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.pewpMJCp0z6QAlImFF2poUwsDZuN0SSnTu-JDJxpW7c)
 
 Bomberman is a video game franchise originally developed by Hudson Soft and currently owned by Konami. The original game, also known as Bakudan Otoko, was released in Japan in July 1983.
 
